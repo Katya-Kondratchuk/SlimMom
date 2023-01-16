@@ -2,12 +2,9 @@
   "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://goitacademy.github.io/react-homework-template/",
+  "homepage": "https://katya-kondratchuk.github.io/SlimMom/",
   "dependencies": {
-<<<<<<< HEAD
-=======
     "@reduxjs/toolkit": "^1.9.1",
->>>>>>> 81789202532ac967d8753cdd8cf68c163ea67a21
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.4",
@@ -21,12 +18,9 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
-<<<<<<< HEAD
     "styled-components": "^5.3.6",
     "uuid": "^9.0.0",
-=======
     "redux-persist": "^6.0.0",
->>>>>>> 81789202532ac967d8753cdd8cf68c163ea67a21
     "web-vitals": "^2.1.3"
   },
   "scripts": {

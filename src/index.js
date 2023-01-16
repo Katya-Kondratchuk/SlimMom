@@ -11,19 +11,15 @@ import { theme } from 'assets/styles/theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-<<<<<<< HEAD
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-=======
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/SlimMom">
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>
->>>>>>> 81789202532ac967d8753cdd8cf68c163ea67a21
   </React.StrictMode>
 );
 
