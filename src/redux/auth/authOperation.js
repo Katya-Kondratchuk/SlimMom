@@ -59,6 +59,7 @@ export const refreshUser = createAsyncThunk(
     try {
       const { data } = await axios.post(AUTH_ENDPOINT.REFRESH, { sid });
       token.set(data.newAccessToken);
+      ThunkAPI.dispatch(getUserInfo());
       return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
@@ -73,6 +74,18 @@ export const logoutUser = createAsyncThunk(
       await axios.post(AUTH_ENDPOINT.LOGOUT);
       token.unset();
       return;
+    } catch (error) {
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUserInfo = createAsyncThunk(
+  'auth/getUserInfo',
+  async (_, ThunkAPI) => {
+    try {
+      const { data } = await axios.get(AUTH_ENDPOINT.USER);
+      return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
     }

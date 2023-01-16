@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  getUserInfo,
   loginUser,
   logoutUser,
   refreshUser,
@@ -7,7 +8,7 @@ import {
 } from './authOperation';
 
 const initialState = {
-  user: { username: null, email: null },
+  user: { username: null, email: null, id: null },
   sid: null,
   refreshToken: null,
   loadind: false,
@@ -35,6 +36,7 @@ export const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.user.username = payload.username;
         state.user.email = payload.email;
+        state.user.id = payload.id;
         state.loadind = false;
       })
       .addCase(registerUser.rejected, handlerRejected)
@@ -46,6 +48,7 @@ export const authSlice = createSlice({
         state.sid = payload.sid;
         state.user.email = payload.user.email;
         state.user.username = payload.user.username;
+        state.user.id = payload.user.id;
         state.loadind = false;
       })
       .addCase(loginUser.rejected, handlerRejected)
@@ -73,15 +76,28 @@ export const authSlice = createSlice({
         state.sid = null;
         state.user.email = null;
         state.user.username = null;
+        state.user.id = null;
         state.isLoggedIn = false;
+        state.loadind = false;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
         state.refreshToken = null;
         state.sid = null;
         state.user.email = null;
         state.user.username = null;
+        state.user.id = null;
         state.isLoggedIn = false;
         state.error = payload;
-      });
+        state.loadind = false;
+      })
+
+      .addCase(getUserInfo.pending, handlerPending)
+      .addCase(getUserInfo.fulfilled, (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.username = payload.username;
+        state.user.id = payload.id;
+        state.loadind = false;
+      })
+      .addCase(getUserInfo.rejected, handlerRejected);
   },
 });
