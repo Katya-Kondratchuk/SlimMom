@@ -21,6 +21,7 @@ import {
   FormControlLabel,
   FormControlLabelProps,
 } from '@mui/material';
+import ModalWindow from 'components/Modal/ModalWindow.jsx';
 const initialValues = {
   height: '',
   age: '',
@@ -73,11 +74,6 @@ const theme = createTheme({
       fontWeight: 500,
     },
   },
-  button: {
-    color: '#FC842D',
-    fontSize: 0.875,
-    fontWeight: 700,
-  },
 });
 
 function MyFormControlLabel(props) {
@@ -96,18 +92,22 @@ MyFormControlLabel.propTypes = {
   value: PropTypes.string,
 };
 
-const UserDataForm = () => {
-  //   const dispatch = useDispatch();
-
+const Home = () => {
+  const [open, setOpen] = useState(false);
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
-      //   dispatch(send(values));
       setSubmitting(false);
     },
     validateOnBlur: true,
   });
+  const handleCloseModal = () => {
+    setOpen(!open);
+  };
+  //   const { height, age, currentWeight, desiredWeight, bloodType } =
+  //     formik.values;
+
   return (
     <Paper
       elevation={0}
@@ -317,14 +317,22 @@ const UserDataForm = () => {
           <ColorButton
             type="submit"
             variant="contained"
+            onClick={handleCloseModal}
             sx={{ display: 'block', borderRadius: '30px' }}
           >
             Start losing weight
           </ColorButton>
         </ThemeProvider>
       </Box>
+      {open && (
+        <ModalWindow
+          values={formik.values}
+          open={open}
+          onClose={handleCloseModal}
+        />
+      )}
     </Paper>
   );
 };
 
-export default UserDataForm;
+export default Home;
