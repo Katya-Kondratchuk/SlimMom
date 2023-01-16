@@ -18,8 +18,6 @@ import {
   Typography,
   Paper,
   Box,
-  FormControlLabel,
-  FormControlLabelProps,
 } from '@mui/material';
 import ModalWindow from 'components/Modal/ModalWindow.jsx';
 const initialValues = {

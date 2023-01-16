@@ -28,7 +28,6 @@ const ModalWindow = ({ values, open, onClose }) => {
       desiredWeight: d,
       bloodType: e,
     };
-    console.log(value);
 
     postDailyRate(value).then(res => setData(res));
   }, [a, b, c, d, e]);
