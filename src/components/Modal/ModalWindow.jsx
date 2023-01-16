@@ -10,21 +10,28 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
 
-const ModalWindow = ({ open, onClose }) => {
+const ModalWindow = ({ values, open, onClose }) => {
   const [data, setData] = useState({});
 
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  const a = Number(values.height);
+  const b = Number(values.age);
+  const c = Number(values.currentWeight);
+  const d = Number(values.desiredWeight);
+  const e = Number(values.bloodType);
 
   useEffect(() => {
-    postDailyRate({
-      weight: 120,
-      height: 160,
-      age: 34,
-      desiredWeight: 60,
-      bloodType: 1,
-    }).then(res => setData(res));
-  }, []);
+    const value = {
+      height: a,
+      age: b,
+      weight: c,
+      desiredWeight: d,
+      bloodType: e,
+    };
+    console.log(value);
 
+    postDailyRate(value).then(res => setData(res));
+  }, [a, b, c, d, e]);
   return (
     <Modal
       open={open}
