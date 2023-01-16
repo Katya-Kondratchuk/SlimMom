@@ -1,16 +1,17 @@
+import { useState } from 'react';
+import ModalWindow from './Modal/ModalWindow';
+
 export const App = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setOpen(!open);
+  };
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <button onClick={handleCloseModal}>Open modal</button>
+      {open && <ModalWindow open={open} onClose={handleCloseModal} />}
+    </>
   );
 };
