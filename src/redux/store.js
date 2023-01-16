@@ -15,7 +15,7 @@ import { authSlice } from './auth/authSlice';
 const persistConfig = {
   key: 'refresh-user-token',
   storage,
-  whitelist: ['refreshToken'],
+  whitelist: ['refreshToken', 'sid'],
 };
 
 export const store = configureStore({

@@ -8,6 +8,7 @@ export const RequireAuthRoute = ({
   redirectTo = '/',
 }) => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+
   return isLoggedIn ? Component : <Navigate to={redirectTo} replace />;
 };
 
