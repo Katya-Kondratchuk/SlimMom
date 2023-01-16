@@ -6,9 +6,14 @@ import { postDailyRate } from 'services/api/base_api';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
 
 const ModalWindow = ({ open, onClose }) => {
   const [data, setData] = useState({});
+
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
   useEffect(() => {
     postDailyRate({
@@ -28,22 +33,28 @@ const ModalWindow = ({ open, onClose }) => {
       aria-describedby="modal-modal-description"
     >
       <BoxStyled>
-        <Typography id="modal-modal-title" variant="h6" component="span">
+        <Typography id="modal-modal-title" variant="h2" component="span">
           Your recommended daily calorie intake is
         </Typography>
-        <Typography id="modal-modal-title" variant="h6" component="p">
+        <Typography id="modal-modal-title" variant="h3" component="p">
           {data.dailyRate}
+          {/* <Typography id="modal-modal-title" variant="subtitle1" component="p"> */}
+          ккал
+          {/* </Typography> */}
         </Typography>
-        <Typography id="modal-modal-title" variant="h6" component="span">
+        <Typography id="modal-modal-title" variant="h4" component="span">
           Foods you should not eat
+          <List>
+            {data?.notAllowedProducts?.slice(0, 4).map(item => (
+              <ListItem disablePadding key={uuidv4()}>
+                <ListItemText primary={item} />
+              </ListItem>
+            ))}
+          </List>
         </Typography>
-        <List>
-          {data?.notAllowedProducts?.slice(55, 59).map(item => (
-            <ListItem disablePadding key={uuidv4()}>
-              <ListItemText primary={item} />
-            </ListItem>
-          ))}
-        </List>
+        <Link to={isLoggedIn ? '/diary' : '/registration'} onClick={onClose}>
+          Start losing weight
+        </Link>
       </BoxStyled>
     </Modal>
   );

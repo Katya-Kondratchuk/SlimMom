@@ -9,5 +9,5 @@ export const BoxStyled = styled(Box)`
   width: 400;
   background-color: white;
   box-shadow: 24;
-  padding: 4px;
+  padding: 64px 154px;
 `;
