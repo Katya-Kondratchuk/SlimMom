@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/929.59f7aa4b.chunk.js","mappings":"gMAMA,EANuB,WACrB,OACE,yFAEH,C","sources":["pages/CalculatorPage/CalculatorPage.js"],"sourcesContent":["const CalculatorPage = () => {\n  return (\n    <div>CalculatorPage/Calculate your daily calorie intake right now</div>\n  );\n};\n\nexport default CalculatorPage;\n"],"names":[],"sourceRoot":""}

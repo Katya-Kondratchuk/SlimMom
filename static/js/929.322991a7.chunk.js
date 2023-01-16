@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[929],{4929:function(e,t,a){a.r(t),a.d(t,{default:function(){return n}});var r=a(184),n=function(){return(0,r.jsx)("div",{children:"CalculatorPage/Calculate your daily calorie intake right now"})}}}]);
+//# sourceMappingURL=929.322991a7.chunk.js.map
