@@ -4,8 +4,11 @@ import { Radio, InputLabel, FormControlLabel } from '@mui/material';
 export const ColorButton = styled(Button)(({ theme }) => ({
   color: '#FFFFFF',
   backgroundColor: '#FC842D',
-  chubby: true,
-
+  display: 'block',
+  borderRadius: '30px',
+  maxWidth: '210px',
+  marginTop: '60px',
+  marginLeft: '323px',
   '&:hover': {
     backgroundColor: '#FFFFFF',
     color: '#FC842D',
