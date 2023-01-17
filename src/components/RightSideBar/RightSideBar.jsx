@@ -1,9 +1,9 @@
-import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
+// import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
 
 export default function RightSideBar({ respons, data, products }) {
   return (
     <>
-      <List
+      {/* <List
         sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         subheader={<ListSubheader>`Summary for ${data}`</ListSubheader>}
       >
@@ -29,7 +29,7 @@ export default function RightSideBar({ respons, data, products }) {
             <ListItemText primary={`${product}`} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </>
   );
 }

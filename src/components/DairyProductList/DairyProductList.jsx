@@ -1,10 +1,10 @@
-import DairyProdactItem from 'components/DairyProdactItem/DairyProdactItem';
+// import DairyProdactItem from 'components/DairyProdactItem/DairyProdactItem';
 // import PropTypes from 'prop-types';
 
 export default function DairyProductList({ products, onDeleteContact }) {
   return (
     <ul>
-      {products.map(({ id, name, enterGrams, enterKcal }) => {
+      {/* {products.map(({ id, name, enterGrams, enterKcal }) => {
         return (
           <DairyProdactItem
             key={id}
@@ -14,7 +14,7 @@ export default function DairyProductList({ products, onDeleteContact }) {
             deleteContact={event => onDeleteContact(id, event)}
           />
         );
-      })}
+      })} */}
     </ul>
   );
 }

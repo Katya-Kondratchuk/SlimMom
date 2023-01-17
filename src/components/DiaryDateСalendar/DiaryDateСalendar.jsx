@@ -4,7 +4,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useState } from 'react';
 
-export default function DiaryDateСalendar() {
+function DiaryDateСalendar() {
   const [value, setValue] = useState(null);
   return (
     <Box
@@ -31,3 +31,5 @@ export default function DiaryDateСalendar() {
     </Box>
   );
 }
+
+export default DiaryDateСalendar;
