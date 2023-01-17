@@ -1,4 +1,10 @@
 import { TextField } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectAuthUserId } from 'redux/auth/authSelectors';
+import { getProducts, postDailyRateWithId } from 'services/api/base_api';
+// import { useSelector } from 'react-redux';
+// import { selectAuthRefreshToken } from 'redux/auth/authSelectors';
+// import { getProducts } from 'services/api/base_api';
 // import PropTypes from 'prop-types';
 
 export default function DairyAddProductForm() {
@@ -19,6 +25,28 @@ export default function DairyAddProductForm() {
     //   alert(`${newName} is already in contacts`);
     // }
   };
+
+  // getProducts('молоко').then(res => console.log(res));
+
+  // const id = useSelector(selectAuthUserId);
+  // const obj = {
+  //   weight: 100,
+  //   height: 170,
+  //   age: 30,
+  //   desiredWeight: 60,
+  //   bloodType: 1,
+  // };
+  // const obj2 = {
+  //   weight: 120,
+  //   height: 170,
+  //   age: 30,
+  //   desiredWeight: 60,
+  //   bloodType: 1,
+  // };
+
+  // postDailyRateWithId(id, obj).then(res => console.log(res));
+  // postDailyRateWithId(id, obj2).then(res => console.log(res));
+  // console.log(id);
 
   return (
     <form onSubmit={handelSubmit}>

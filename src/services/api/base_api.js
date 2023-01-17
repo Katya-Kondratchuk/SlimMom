@@ -13,3 +13,27 @@ export const postDailyRate = async data => {
     };
   }
 };
+
+// Daily - rate with id
+export const postDailyRateWithId = async (id, data) => {
+  try {
+    const response = await axios.post(`/daily-rate/${id}`, data);
+    return response.data;
+  } catch (error) {
+    return {
+      error,
+    };
+  }
+};
+
+// Products
+export const getProducts = async value => {
+  try {
+    const response = await axios.get(`/product?search=${value}`);
+    return response.data;
+  } catch (error) {
+    return {
+      error,
+    };
+  }
+};

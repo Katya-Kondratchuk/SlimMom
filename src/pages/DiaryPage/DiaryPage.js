@@ -1,3 +1,4 @@
+import ContainerLayout from 'components/Container/Container';
 import DairyAddProductForm from 'components/DairyAddProductForm/DairyAddProductForm';
 import DairyProductList from 'components/DairyProductList/DairyProductList';
 
@@ -6,14 +7,12 @@ import React from 'react';
 
 const DiaryPage = () => {
   return (
-    <div>
-      <div>
-        {/* <DiaryDateСalendar /> */}
-        <DairyAddProductForm />
-        <DairyProductList />
-        <RightSideBar />
-      </div>
-    </div>
+    <ContainerLayout>
+      {/* <DiaryDateСalendar /> */}
+      <DairyAddProductForm />
+      <DairyProductList />
+      <RightSideBar />
+    </ContainerLayout>
   );
 };
 
