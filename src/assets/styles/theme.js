@@ -46,4 +46,12 @@ export const theme = createTheme({
       marginBottom: 20,
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 320,
+      md: 768,
+      lg: 1200,
+    },
+  },
 });

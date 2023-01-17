@@ -1,3 +1,4 @@
+import ContainerLayout from 'components/Container/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from 'redux/auth/authOperation';
@@ -26,7 +27,7 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div>
+    <ContainerLayout>
       <form onSubmit={handlerSubmitRegister}>
         <input
           required
@@ -51,7 +52,7 @@ const RegistrationPage = () => {
         />
         <button>Registration</button>
       </form>
-    </div>
+    </ContainerLayout>
   );
 };
 

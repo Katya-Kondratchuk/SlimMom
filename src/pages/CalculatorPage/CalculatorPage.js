@@ -1,6 +1,11 @@
+import ContainerLayout from 'components/Container/Container';
+import Home from 'components/Main/Main';
+
 const CalculatorPage = () => {
   return (
-    <div>CalculatorPage/Calculate your daily calorie intake right now</div>
+    <ContainerLayout>
+      <Home />
+    </ContainerLayout>
   );
 };
 

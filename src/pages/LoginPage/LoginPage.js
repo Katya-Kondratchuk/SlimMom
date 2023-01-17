@@ -1,3 +1,4 @@
+import ContainerLayout from 'components/Container/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperation';
@@ -25,7 +26,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <ContainerLayout>
       <form onSubmit={handlerSubmitLogin}>
         <input
           required
@@ -43,7 +44,7 @@ const LoginPage = () => {
         />
         <button>Log In</button>
       </form>
-    </div>
+    </ContainerLayout>
   );
 };
 
