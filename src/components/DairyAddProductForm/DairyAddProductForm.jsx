@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { selectAuthUserId } from 'redux/auth/authSelectors';
-import { getProducts, postDailyRateWithId } from 'services/api/base_api';
+// import { useSelector } from 'react-redux';
+// import { selectAuthUserId } from 'redux/auth/authSelectors';
+// import { getProducts, postDailyRateWithId } from 'services/api/base_api';
 // import { useSelector } from 'react-redux';
 // import { selectAuthRefreshToken } from 'redux/auth/authSelectors';
 // import { getProducts } from 'services/api/base_api';
