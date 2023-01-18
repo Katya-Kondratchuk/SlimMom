@@ -1,6 +1,10 @@
 import ContainerLayout from 'components/Container/Container';
 import RegisterForm from 'components/AuthForm/RegisterForm';
-import { AuthWrapper, TitleStyled } from 'assets/styles/AuthPages.styled';
+import {
+  AuthWrapper,
+  BgWrapper,
+  TitleStyled,
+} from 'assets/styles/AuthPages.styled';
 
 const RegistrationPage = () => {
   return (
@@ -8,6 +12,7 @@ const RegistrationPage = () => {
       <ContainerLayout>
         <TitleStyled>Register</TitleStyled>
         <RegisterForm />
+        <BgWrapper />
       </ContainerLayout>
     </AuthWrapper>
   );
