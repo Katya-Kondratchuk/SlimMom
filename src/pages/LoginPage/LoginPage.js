@@ -9,7 +9,7 @@ import {
 const LoginPage = () => {
   return (
     <AuthWrapper>
-      <ContainerLayout sx={{ pt: '160px' }}>
+      <ContainerLayout>
         <TitleStyled>Log in</TitleStyled>
         <LoginForm />
         <BgWrapper />

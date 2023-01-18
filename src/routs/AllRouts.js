@@ -10,6 +10,7 @@ const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const DiaryPage = lazy(() => import('pages/DiaryPage'));
 const CalculatorPage = lazy(() => import('pages/CalculatorPage'));
+const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 const AllRouts = () => {
   return (
@@ -54,6 +55,7 @@ const AllRouts = () => {
                 />
               }
             />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </Suspense>
