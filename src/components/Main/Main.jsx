@@ -10,7 +10,6 @@ import {
 } from './Main.styled.js';
 
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   FormControl,
   FormHelperText,
@@ -20,6 +19,7 @@ import {
   Box,
 } from '@mui/material';
 import ModalWindow from 'components/Modal/ModalWindow.jsx';
+import { BgImg } from './backgroundImage/BackGround.styled.js';
 const initialValues = {
   height: '',
   age: '',
@@ -30,24 +30,30 @@ const initialValues = {
 
 const schema = yup.object().shape({
   height: yup
-    .number('Your height must be a number!')
+    .number()
+    .required('Please write down your your height')
+    .typeError('Your height must be a number!')
     .positive()
     .min(130, 'You cant be that short!')
-    .max(220, 'Humans cant be that big!')
-    .required('Please write down your your height'),
+    .max(220, 'Humans cant be that big!'),
+
   age: yup
     .number()
+    .typeError('Your age must be a number!')
     .min(15, 'Aplication is not for children')
     .max(80, 'Better check your weight with a doctor')
     .required('Please write down your your age'),
   currentWeight: yup
     .number()
+    .required('Please write down your current weight')
+    .typeError('Your current weight must be a number!')
     .min(50, 'You are too light to use this app.')
     .max(350, 'You cant be that big!')
-    .positive()
-    .required('Please write down your current weight'),
+    .positive(),
+
   desiredWeight: yup
     .number()
+    .typeError('Your desired weight must be a number!')
     .min(45, 'You cant be that light.')
     .max(100, 'You can do better!')
     .notOneOf(
@@ -60,18 +66,6 @@ const schema = yup.object().shape({
     // )
     .required('Please write down your desired weight'),
   bloodType: yup.string().required('Please chose your blood type'),
-});
-
-const theme = createTheme({
-  typography: {
-    mainTitle: {
-      fontSize: 34,
-      fontWeight: 700,
-    },
-    secondaTytitle: {
-      fontWeight: 500,
-    },
-  },
 });
 
 function MyFormControlLabel(props) {
@@ -100,34 +94,29 @@ const Home = () => {
     },
     validateOnBlur: true,
   });
+  const isValid = schema.isValidSync(formik.values);
   const handleCloseModal = () => {
     setOpen(!open);
   };
-  //   const { height, age, currentWeight, desiredWeight, bloodType } =
-  //     formik.values;
-
   return (
-    <Paper
-      elevation={0}
-      sx={{
-        '& > :not(style)': { m: 2, width: '608px' },
-      }}
-    >
-      <ThemeProvider theme={theme}>
-        <Typography variant="mainTitle" component="h1">
-          Calculate your daily calorie intake right now
-        </Typography>
-      </ThemeProvider>
+    <Paper elevation={0} sx={{ backgroundColor: 'transparent' }}>
+      <BgImg />
       <Box
         component="form"
-        sx={{
-          '& > :not(style)': { m: 2 },
-        }}
+        sx={{ width: '608px', mt: '147px' }}
         autoComplete="off"
         onSubmit={formik.handleSubmit}
       >
+        <Typography variant="mainTitle" component="h1" sx={{ mb: '41px' }}>
+          Calculate your daily calorie intake right now
+        </Typography>
         <FormControl variant="standard">
-          <StyledInputLable htmlFor="height" disableAnimation shrink>
+          <StyledInputLable
+            htmlFor="height"
+            disableAnimation
+            shrink
+            error={formik.touched.height && Boolean(formik.errors.height)}
+          >
             Height*
           </StyledInputLable>
           <Input
@@ -136,33 +125,56 @@ const Home = () => {
             placeholder="Write down your height in sm."
             value={formik.values.height}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             error={formik.touched.height && Boolean(formik.errors.height)}
-            sx={{ mb: '20px', width: '240px' }}
+            sx={{ width: '240px', mt: '17px', mr: '32px' }}
           />
-          <FormHelperText id="height">
-            {formik.touched.height
-              ? formik.touched.height && formik.errors.height
-              : ' '}
-          </FormHelperText>
+          {formik.touched.height && formik.errors.height ? (
+            <FormHelperText
+              error={formik.touched.height && Boolean(formik.errors.height)}
+              id="height-helper-text"
+            >
+              {formik.errors.height}
+            </FormHelperText>
+          ) : (
+            <FormHelperText id="height-helper-text"> </FormHelperText>
+          )}
         </FormControl>
         <FormControl variant="standard">
-          <StyledInputLable htmlFor="age" disableAnimation shrink>
+          <StyledInputLable
+            htmlFor="age"
+            disableAnimation
+            shrink
+            error={formik.touched.age && Boolean(formik.errors.age)}
+          >
             Age*
           </StyledInputLable>
           <Input
             notched="true"
             id="age"
             value={formik.values.age}
+            placeholder="Write down your age."
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             error={formik.touched.age && Boolean(formik.errors.age)}
             variant="standard"
-            sx={{ mb: '20px', width: '240px' }}
+            sx={{ width: '240px' }}
           />
-          <FormHelperText id="age">
-            {formik.touched.age ? formik.touched.age && formik.errors.age : ' '}
-          </FormHelperText>
+          {formik.touched.age && formik.errors.age ? (
+            <FormHelperText
+              error={formik.touched.age && Boolean(formik.errors.age)}
+              id="age-helper-text"
+            >
+              {formik.errors.age}
+            </FormHelperText>
+          ) : (
+            <FormHelperText id="age-helper-text"> </FormHelperText>
+          )}
         </FormControl>
-        <FormControl sx={{ mb: 2, width: '240px' }} variant="standard">
+        <FormControl
+          sx={{ width: '240px', mt: '17px', mr: '32px' }}
+          variant="standard"
+        >
           <StyledInputLable
             error={
               formik.touched.currentWeight &&
@@ -184,6 +196,7 @@ const Home = () => {
             value={formik.values.currentWeight}
             aria-describedby="currentWeight-helper-text"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             error={
               formik.touched.currentWeight &&
               Boolean(formik.errors.currentWeight)
@@ -203,7 +216,7 @@ const Home = () => {
             <FormHelperText id="currentWeight-helper-text"> </FormHelperText>
           )}
         </FormControl>
-        <FormControl sx={{ mb: 2, width: '240px' }} variant="standard">
+        <FormControl sx={{ width: '240px', mt: '17px' }} variant="standard">
           <StyledInputLable
             error={formik.touched.bloodType && Boolean(formik.errors.bloodType)}
             disableAnimation
@@ -217,8 +230,8 @@ const Home = () => {
             notched="true"
             id="bloodType"
             name="bloodType"
+            value={formik.values.bloodType}
             placeholder="Choose your blood type."
-            // defaultValue={formik.values.bloodType}
             aria-describedby="bloodType-helper-text"
             error={formik.touched.bloodType && Boolean(formik.errors.bloodType)}
           />
@@ -269,59 +282,58 @@ const Home = () => {
           ) : (
             <FormHelperText id="bloodType-helper-text"></FormHelperText>
           )}
-          <FormControl sx={{ mb: 2, width: '240px' }} variant="standard">
-            <StyledInputLable
-              error={
-                formik.touched.desiredWeight &&
-                Boolean(formik.errors.desiredWeight)
-              }
-              disableAnimation
-              shrink
-              htmlFor="desiredWeight"
-            >
-              Desired Weight*
-            </StyledInputLable>
-            <Input
-              notched="true"
-              fullWidth
-              id="desiredWeight"
-              name="desiredWeight"
-              label="Desired Weight*"
-              placeholder="Your desired weight in kg."
-              value={formik.values.desiredWeight}
-              aria-describedby="desiredWeight-helper-text"
-              onChange={formik.handleChange}
-              error={
-                formik.touched.desiredWeight &&
-                Boolean(formik.errors.desiredWeight)
-              }
-            />
-            {formik.touched.desiredWeight && formik.errors.desiredWeight ? (
-              <FormHelperText
-                error={
-                  formik.touched.desiredWeight &&
-                  Boolean(formik.errors.desiredWeight)
-                }
-                id="desiredWeight-helper-text"
-              >
-                {formik.errors.desiredWeight}
-              </FormHelperText>
-            ) : (
-              <FormHelperText id="desiredWeight-helper-text"></FormHelperText>
-            )}
-          </FormControl>
         </FormControl>
-        <ThemeProvider theme={theme}>
-          <ColorButton
-            type="submit"
-            variant="contained"
-            onClick={handleCloseModal}
-            sx={{ display: 'block', borderRadius: '30px' }}
+        <FormControl sx={{ width: '240px' }} variant="standard">
+          <StyledInputLable
+            error={
+              formik.touched.desiredWeight &&
+              Boolean(formik.errors.desiredWeight)
+            }
+            disableAnimation
+            shrink
+            htmlFor="desiredWeight"
           >
-            Start losing weight
-          </ColorButton>
-        </ThemeProvider>
+            Desired Weight*
+          </StyledInputLable>
+          <Input
+            notched="true"
+            fullWidth
+            id="desiredWeight"
+            name="desiredWeight"
+            label="Desired Weight*"
+            placeholder="Your desired weight in kg."
+            value={formik.values.desiredWeight}
+            aria-describedby="desiredWeight-helper-text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.desiredWeight &&
+              Boolean(formik.errors.desiredWeight)
+            }
+          />
+          {formik.touched.desiredWeight && formik.errors.desiredWeight ? (
+            <FormHelperText
+              error={
+                formik.touched.desiredWeight &&
+                Boolean(formik.errors.desiredWeight)
+              }
+              id="desiredWeight-helper-text"
+            >
+              {formik.errors.desiredWeight}
+            </FormHelperText>
+          ) : (
+            <FormHelperText id="desiredWeight-helper-text"></FormHelperText>
+          )}
+        </FormControl>
       </Box>
+      <ColorButton
+        disabled={isValid ? false : true}
+        type="submit"
+        variant="contained"
+        onClick={handleCloseModal}
+      >
+        Start losing weight
+      </ColorButton>
       {open && (
         <ModalWindow
           values={formik.values}

@@ -11,6 +11,28 @@ export default function DairyAddProductForm({ onSubmitting }) {
   //   alert(`${newName} is already in contacts`);
   // }
 
+  // getProducts('молоко').then(res => console.log(res));
+
+  // const id = useSelector(selectAuthUserId);
+  // const obj = {
+  //   weight: 100,
+  //   height: 170,
+  //   age: 30,
+  //   desiredWeight: 60,
+  //   bloodType: 1,
+  // };
+  // const obj2 = {
+  //   weight: 120,
+  //   height: 170,
+  //   age: 30,
+  //   desiredWeight: 60,
+  //   bloodType: 1,
+  // };
+
+  // postDailyRateWithId(id, obj).then(res => console.log(res));
+  // postDailyRateWithId(id, obj2).then(res => console.log(res));
+  // console.log(id);
+
   return (
     <form onSubmit={onSubmitting}>
       <FieldStyled
