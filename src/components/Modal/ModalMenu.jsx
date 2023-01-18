@@ -14,9 +14,20 @@ const ModalWindow = ({ values, open, onClose }) => {
   const [data, setData] = useState({});
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
+  const { height, age, currentWeight, desiredWeight, bloodType } = values;
+
   useEffect(() => {
-    postDailyRate(values).then(res => setData(res));
-  }, [values]);
+    const value = {
+      height: Number(height),
+      age: Number(age),
+      weight: Number(currentWeight),
+      desiredWeight: Number(desiredWeight),
+      bloodType: Number(bloodType),
+    };
+
+    postDailyRate(value).then(res => setData(res));
+  }, [height, age, currentWeight, desiredWeight, bloodType]);
+
   return (
     <Modal
       open={open}
