@@ -8,9 +8,9 @@ import {
 } from './authOperation';
 
 const initialState = {
-  user: { username: null, email: null, id: null },
-  sid: null,
-  refreshToken: null,
+  user: { username: '', email: '', id: '' },
+  sid: '',
+  refreshToken: '',
   loadind: false,
   isLoggedIn: false,
   isLoadCurrentUser: false,
@@ -64,28 +64,28 @@ export const authSlice = createSlice({
         state.isLoadCurrentUser = false;
       })
       .addCase(refreshUser.rejected, (state, { payload }) => {
-        state.refreshToken = null;
-        state.sid = null;
+        state.refreshToken = '';
+        state.sid = '';
         state.error = payload;
         state.isLoadCurrentUser = false;
       })
 
       .addCase(logoutUser.pending, handlerPending)
       .addCase(logoutUser.fulfilled, (state, _) => {
-        state.refreshToken = null;
-        state.sid = null;
-        state.user.email = null;
-        state.user.username = null;
-        state.user.id = null;
+        state.refreshToken = '';
+        state.sid = '';
+        state.user.email = '';
+        state.user.username = '';
+        state.user.id = '';
         state.isLoggedIn = false;
         state.loadind = false;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
-        state.refreshToken = null;
-        state.sid = null;
-        state.user.email = null;
-        state.user.username = null;
-        state.user.id = null;
+        state.refreshToken = '';
+        state.sid = '';
+        state.user.email = '';
+        state.user.username = '';
+        state.user.id = '';
         state.isLoggedIn = false;
         state.error = payload;
         state.loadind = false;
