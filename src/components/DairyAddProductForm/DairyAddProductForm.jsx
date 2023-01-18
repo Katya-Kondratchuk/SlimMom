@@ -1,54 +1,51 @@
-import { TextField } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { FabStyled, FieldStyled } from './DairyAddProductForm.styled';
 // import PropTypes from 'prop-types';
 
-export default function DairyAddProductForm() {
-  const handelSubmit = e => {
-    e.preventDefault();
-    // const productName = e.target.elements.name.value.trim();
-    // const productGrams = e.target.elements.grams.value.trim();
-
-    // const newProduct = {
-    //   name: productName,
-    //   grams: productGrams,
-    // };
-
-    // if (!findeName && !findeNumber) {
-    //   dispatch(postOperation(newContact));
-    //   e.target.reset();
-    // } else {
-    //   alert(`${newName} is already in contacts`);
-    // }
-  };
+export default function DairyAddProductForm({ onSubmitting }) {
+  // if (!findeName && !findeNumber) {
+  //   dispatch(postOperation(newContact));
+  //   e.target.reset();
+  // } else {
+  //   alert(`${newName} is already in contacts`);
+  // }
 
   return (
-    <form onSubmit={handelSubmit}>
-      <TextField
-        id="standard-basic"
+    <form onSubmit={onSubmitting}>
+      <FieldStyled
+        required
+        id="filled-product"
         label="Enter product name"
+        name="product"
         variant="filled"
       />
-      {/* <label>
-        Enter product name
-        <input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Enter product name. For example Bread, Nut, Poultry meat, Eggplant"
-          required
-        />
-      </label> */}
-      <label>
-        Grams
-        <input
-          type="number"
-          name="grams"
-          title="Enter the amount of grams"
-          required
-        />
-      </label>
-      <button type="submit">
-        Add<span></span>
-      </button>
+      <TextField
+        required
+        label="Grams"
+        id="filled-number"
+        name="grams"
+        type="number"
+        sx={{
+          width: 150,
+          mx: 3,
+          '&.MuiTextField-root .MuiInputBase-root.Mui-focused': {
+            backgroundColor: '#1acebf26',
+          },
+        }}
+        InputProps={{
+          endAdornment: <InputAdornment position="end">gr</InputAdornment>,
+        }}
+        inputProps={{
+          inputMode: 'numeric',
+          pattern: 'd{4}',
+          max: 9999,
+        }}
+        variant="filled"
+      />
+      <FabStyled aria-label="add" type="submit">
+        <AddIcon />
+      </FabStyled>
     </form>
   );
 }
