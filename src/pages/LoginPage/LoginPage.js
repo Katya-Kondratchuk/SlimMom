@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import ContainerLayout from 'components/Container/Container';
 import {
   ButtonStyled,
@@ -32,44 +33,60 @@ const LoginPage = () => {
 
   return (
     <ContainerLayout>
-      <TitleStyled>Log in</TitleStyled>
-      <form
-        onSubmit={handlerSubmitLogin}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+      <Box
+        sx={{
+          display: { md: 'flex' },
+          flexDirection: { md: 'column' },
+          alignItems: { md: 'flex-start' },
         }}
       >
-        <input
-          required
-          type="email"
-          name="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          required
-          type="password"
-          name="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <ButtonStyled
-          type="submit"
-          variant="contained"
-          sx={{ backgroundColor: '#FC842D' }}
+        <TitleStyled
+          sx={{
+            marginTop: { md: '170px' },
+          }}
         >
           Log in
-        </ButtonStyled>
-        <LinkyStyled
-          variant="outlined"
-          sx={{ color: '#FC842D' }}
-          to="/registration"
+        </TitleStyled>
+        <form
+          onSubmit={handlerSubmitLogin}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
         >
-          Registration
-        </LinkyStyled>
-      </form>
+          <input
+            required
+            type="email"
+            name="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <input
+            required
+            type="password"
+            name="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          {/* <Box sx={{ display: { md: 'flex' } }}> */}
+          <ButtonStyled
+            type="submit"
+            variant="contained"
+            sx={{ backgroundColor: '#FC842D' }}
+          >
+            Log in
+          </ButtonStyled>
+          <LinkyStyled
+            variant="outlined"
+            sx={{ color: '#FC842D' }}
+            to="/registration"
+          >
+            Registration
+          </LinkyStyled>
+          {/* </Box> */}
+        </form>
+      </Box>
     </ContainerLayout>
   );
 };

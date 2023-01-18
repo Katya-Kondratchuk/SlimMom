@@ -12,7 +12,7 @@ const UserMenu = ({ styles }) => {
     <Stack
       sx={{
         display: styles,
-        backgroundColor: '#E0E0E0',
+        backgroundColor: { xs: '#E0E0E0', md: 'inherit' },
         justifyContent: 'flex-end',
       }}
       direction="row"
