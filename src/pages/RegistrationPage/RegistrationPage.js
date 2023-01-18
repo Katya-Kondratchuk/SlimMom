@@ -1,7 +1,13 @@
+import {
+  ButtonStyled,
+  LinkyStyled,
+  TitleStyled,
+} from 'pages/RegistrationPage/Register.styled';
 import ContainerLayout from 'components/Container/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from 'redux/auth/authOperation';
+
 const RegistrationPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +34,15 @@ const RegistrationPage = () => {
 
   return (
     <ContainerLayout>
-      <form onSubmit={handlerSubmitRegister}>
+      <TitleStyled>Register</TitleStyled>
+      <form
+        onSubmit={handlerSubmitRegister}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <input
           required
           type="text"
@@ -50,7 +64,17 @@ const RegistrationPage = () => {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button>Registration</button>
+        <ButtonStyled
+          type="submit"
+          variant="contained"
+          sx={{ backgroundColor: '#FC842D' }}
+          to="/registration"
+        >
+          Registration
+        </ButtonStyled>
+        <LinkyStyled variant="outlined" sx={{ color: '#FC842D' }} to="/login">
+          Log in
+        </LinkyStyled>
       </form>
     </ContainerLayout>
   );

@@ -1,4 +1,9 @@
 import ContainerLayout from 'components/Container/Container';
+import {
+  ButtonStyled,
+  LinkyStyled,
+  TitleStyled,
+} from 'pages/RegistrationPage/Register.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperation';
@@ -27,7 +32,15 @@ const LoginPage = () => {
 
   return (
     <ContainerLayout>
-      <form onSubmit={handlerSubmitLogin}>
+      <TitleStyled>Log in</TitleStyled>
+      <form
+        onSubmit={handlerSubmitLogin}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <input
           required
           type="email"
@@ -42,7 +55,20 @@ const LoginPage = () => {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button>Log In</button>
+        <ButtonStyled
+          type="submit"
+          variant="contained"
+          sx={{ backgroundColor: '#FC842D' }}
+        >
+          Log in
+        </ButtonStyled>
+        <LinkyStyled
+          variant="outlined"
+          sx={{ color: '#FC842D' }}
+          to="/registration"
+        >
+          Registration
+        </LinkyStyled>
       </form>
     </ContainerLayout>
   );
