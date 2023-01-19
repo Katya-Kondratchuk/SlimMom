@@ -4,7 +4,7 @@ import { NavLinkStyled } from './AuthNav.styled';
 const AuthNav = () => {
   return (
     <>
-      <Typography variant="h6" component="div" sx={{ mr: 4 }}>
+      <Typography variant="h6" component="div" sx={{ mr: 2 }}>
         <NavLinkStyled to="/login">LOG IN</NavLinkStyled>
       </Typography>
       <Typography variant="h6" component="div">
