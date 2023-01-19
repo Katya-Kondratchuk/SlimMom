@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
 import { ColorButton } from '../Main/Main.styled';
-
 import ClearIcon from '@mui/icons-material/Clear';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Box } from '@mui/system';
@@ -18,6 +17,7 @@ import { Box } from '@mui/system';
 const ModalWindow = ({ values, open, onClose, setOpen }) => {
   const [data, setData] = useState({});
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  
   Object.keys(values).forEach((key, index) => {
     if (typeof values[key] === 'string') values[key] = Number(values[key]);
   });
@@ -25,7 +25,9 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
   useEffect(() => {
     postDailyRate(values).then(res => setData(res));
   }, [values]);
+
   const handleCloseBtn = () => setOpen(!open);
+
   return (
     <Modal
       open={open}

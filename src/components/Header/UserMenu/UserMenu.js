@@ -1,4 +1,4 @@
-import { Divider, Stack } from '@mui/material';
+import { Button, Divider, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'redux/auth/authOperation';
 import { selectAuthUserName } from 'redux/auth/authSelectors';
@@ -10,15 +10,43 @@ const UserMenu = ({ styles }) => {
 
   return (
     <Stack
-      sx={{ display: styles }}
+      sx={{
+        display: styles,
+        backgroundColor: { xs: '#E0E0E0', md: 'inherit' },
+        justifyContent: 'flex-end',
+      }}
       direction="row"
       divider={<Divider orientation="vertical" flexItem />}
       spacing={2}
     >
-      {name ? normalizeName(name) : 'User'}
-
-      {/* <p>{name ? normalizeName(name) : 'User'}</p> */}
-      <button onClick={() => dispatch(logoutUser())}>Exit</button>
+      <p
+        style={{
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 1.2,
+          textAlign: 'right',
+          letterSpacing: '0.04em',
+          color: '#212121',
+        }}
+      >
+        {name ? normalizeName(name) : 'User'}
+      </p>
+      <Button
+        sx={{
+          border: 'none',
+          textTransform: 'capitalize',
+          marginLeft: 0,
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 1.2,
+          textAlign: 'right',
+          letterSpacing: '0.04em',
+          color: '#9B9FAA',
+        }}
+        onClick={() => dispatch(logoutUser())}
+      >
+        Exit
+      </Button>
     </Stack>
   );
 };

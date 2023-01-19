@@ -1,16 +1,41 @@
-import { Box, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { MenuItem } from '@mui/material';
+import { NavLinkStyled } from './AuthNav.styled';
 
-const UserNav = () => {
+const UserNav = ({ handleClose }) => {
   return (
-    <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
-      <Typography variant="h6" component="div" sx={{ mr: 4 }}>
-        <NavLink to="/diary">Diary</NavLink>
-      </Typography>
-      <Typography variant="h6" component="div" sx={{ mr: 4 }}>
-        <NavLink to="/calculator">Calculator</NavLink>
-      </Typography>
-    </Box>
+    <>
+      <MenuItem
+        onClick={handleClose}
+        sx={{
+          mr: 4,
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 1.2,
+          letterSpacing: '0.04em',
+          textTransform: 'uppercase',
+        }}
+      >
+        <NavLinkStyled style={{ textDecoration: 'none' }} to="/diary">
+          Diary
+        </NavLinkStyled>
+      </MenuItem>
+      <MenuItem
+        onClick={handleClose}
+        sx={{
+          mr: 4,
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 1.2,
+          letterSpacing: '0.04em',
+          textTransform: 'uppercase',
+        }}
+      >
+        <NavLinkStyled style={{ textDecoration: 'none' }} to="/calculator">
+          Calculator
+        </NavLinkStyled>
+      </MenuItem>
+    </>
+    // </Box>
   );
 };
 
