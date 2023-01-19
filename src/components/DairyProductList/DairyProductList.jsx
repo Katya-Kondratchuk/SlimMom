@@ -1,21 +1,24 @@
-// import DairyProdactItem from 'components/DairyProdactItem/DairyProdactItem';
+import DairyProdactItem from 'components/DairyProdactItem/DairyProdactItem';
+import { ListStyled } from './DairyProductList.styled';
 // import PropTypes from 'prop-types';
 
-export default function DairyProductList({ products, onDeleteContact }) {
+export default function DairyProductList({ poducts, onDeleteProduct }) {
   return (
-    <ul>
-      {/* {products.map(({ id, name, enterGrams, enterKcal }) => {
+    <ListStyled>
+      {poducts.map(({ id, weight, title, kcal, dayId, daySummary }) => {
         return (
           <DairyProdactItem
             key={id}
-            name={name}
-            grams={enterGrams}
-            kcal={enterKcal}
-            deleteContact={event => onDeleteContact(id, event)}
+            name={title}
+            grams={weight}
+            kcal={kcal.toFixed(0)}
+            deleteProduct={event =>
+              onDeleteProduct({ dayId: dayId, eatenProductId: id })
+            }
           />
         );
-      })} */}
-    </ul>
+      })}
+    </ListStyled>
   );
 }
 

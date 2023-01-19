@@ -1,10 +1,15 @@
-import { NavLink } from 'react-router-dom';
+import { Typography } from '@mui/material';
+import { NavLinkStyled } from './AuthNav.styled';
 
 const AuthNav = () => {
   return (
     <>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/registration">Registration</NavLink>
+      <Typography variant="h6" component="div" sx={{ mr: 4 }}>
+        <NavLinkStyled to="/login">LOG IN</NavLinkStyled>
+      </Typography>
+      <Typography variant="h6" component="div">
+        <NavLinkStyled to="/registration">REGISTRATION</NavLinkStyled>
+      </Typography>
     </>
   );
 };

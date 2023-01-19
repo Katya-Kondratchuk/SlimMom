@@ -1,11 +1,41 @@
-import { NavLink } from 'react-router-dom';
+import { MenuItem } from '@mui/material';
+import { NavLinkStyled } from './AuthNav.styled';
 
-const UserNav = () => {
+const UserNav = ({ handleClose }) => {
   return (
     <>
-      <NavLink to="/diary">Diary</NavLink>
-      <NavLink to="/calculator">Calculator</NavLink>
+      <MenuItem
+        onClick={handleClose}
+        sx={{
+          mr: 4,
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 1.2,
+          letterSpacing: '0.04em',
+          textTransform: 'uppercase',
+        }}
+      >
+        <NavLinkStyled style={{ textDecoration: 'none' }} to="/diary">
+          Diary
+        </NavLinkStyled>
+      </MenuItem>
+      <MenuItem
+        onClick={handleClose}
+        sx={{
+          mr: 4,
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 1.2,
+          letterSpacing: '0.04em',
+          textTransform: 'uppercase',
+        }}
+      >
+        <NavLinkStyled style={{ textDecoration: 'none' }} to="/calculator">
+          Calculator
+        </NavLinkStyled>
+      </MenuItem>
     </>
+    // </Box>
   );
 };
 

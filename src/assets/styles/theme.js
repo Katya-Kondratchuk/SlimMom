@@ -6,8 +6,8 @@ export const theme = createTheme({
       main: '#212121',
       white: '#FFFFFF',
       grey: '#9B9FAA',
+      accent: '#FC842D',
     },
-    accent: '#FC842D',
     secondary: {
       main: '#264061',
     },
@@ -43,7 +43,14 @@ export const theme = createTheme({
       lineHeight: 1.2,
       // letter-spacing: 0.04em;
       color: '#212121',
-      marginBottom: 20,
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 320,
+      md: 768,
+      lg: 1280,
     },
   },
 });
