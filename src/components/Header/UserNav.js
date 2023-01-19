@@ -5,7 +5,6 @@ const UserNav = ({ handleClose }) => {
   return (
     <>
       <MenuItem
-        onClick={handleClose}
         sx={{
           mr: 4,
           fontWeight: 700,
@@ -15,12 +14,15 @@ const UserNav = ({ handleClose }) => {
           textTransform: 'uppercase',
         }}
       >
-        <NavLinkStyled style={{ textDecoration: 'none' }} to="/diary">
+        <NavLinkStyled
+          style={{ textDecoration: 'none' }}
+          to="/diary"
+          onClick={handleClose}
+        >
           Diary
         </NavLinkStyled>
       </MenuItem>
       <MenuItem
-        onClick={handleClose}
         sx={{
           mr: 4,
           fontWeight: 700,
@@ -30,7 +32,11 @@ const UserNav = ({ handleClose }) => {
           textTransform: 'uppercase',
         }}
       >
-        <NavLinkStyled style={{ textDecoration: 'none' }} to="/calculator">
+        <NavLinkStyled
+          style={{ textDecoration: 'none' }}
+          to="/calculator"
+          onClick={handleClose}
+        >
           Calculator
         </NavLinkStyled>
       </MenuItem>

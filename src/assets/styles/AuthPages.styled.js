@@ -2,7 +2,6 @@ import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
-
 import BgImgAuthTabl1x from 'assets/images/auth/auth-bg-tabl-1x.png';
 import BgImgAuthTabl2x from 'assets/images/auth/auth-bg-tabl-2x.png';
 import BgImgAuthDesk1x from 'assets/images/auth/auth-bg-desk-1x.png';
@@ -25,14 +24,16 @@ export const LinkyStyled = styled(Link)({
   color: 'white',
   textDecoration: 'none',
   letterSpacing: '0.04em',
-  '&:hover': {
+  '&:hover, &:focus': {
     backgroundColor: '#de9847',
-    boxShadow: '0 0 0 0.2rem #edb322',
     color: 'white',
   },
 });
 
 export const ButtonStyled = styled(Button)({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   border: '1px solid #FC842D',
   borderRadius: 30,
   width: 182,
@@ -43,9 +44,11 @@ export const ButtonStyled = styled(Button)({
   paddingTop: '13px',
   paddingBottom: '13px',
 
-  '&:hover': {
-    backgroundColor: '#de9847',
-    boxShadow: '0 0 0 0.2rem #edb322',
+  '&:hover, &:focus': {
+    backgroundColor: '#f28f1d',
+  },
+  '&:disabled': {
+    backgroundColor: '#f28f1d',
   },
 });
 

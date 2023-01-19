@@ -1,16 +1,24 @@
 import { MenuStyled } from './Menu.styled';
 
-export default function Menu({ anchorEl, handleClose, open, children }) {
+export default function ModalMenu({
+  anchorEl,
+  onClose,
+  onClick,
+  open,
+  children,
+}) {
   return (
     <MenuStyled
       id="basic-menu"
       anchorEl={anchorEl}
       open={open}
-      onBlur={handleClose}
-      onClick={handleClose}
-      onClose={handleClose}
+      onClose={onClose}
       MenuListProps={{
         'aria-labelledby': 'basic-button',
+      }}
+      sx={{
+        top: '65px',
+        backgroundColor: '#264061',
       }}
     >
       {children}

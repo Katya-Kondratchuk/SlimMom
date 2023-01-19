@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
+import { normalizeName } from 'services/normalized';
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
 const AUTH_ENDPOINT = {
@@ -25,8 +26,20 @@ export const registerUser = createAsyncThunk(
   async (credentials, ThunkAPI) => {
     try {
       const { data } = await axios.post(AUTH_ENDPOINT.REGISTER, credentials);
+      toast(`You successfully registered, ${normalizeName(data.username)}!`);
+      ThunkAPI.dispatch(
+        loginUser({ email: credentials.email, password: credentials.password })
+      );
       return data;
     } catch (error) {
+      if (error.response.status === 409) {
+        toast.error(`${error.response?.data?.message}!`);
+      }
+
+      if (error.response.status === 400) {
+        toast.error('Failed to register, try again pls!');
+      }
+
       return ThunkAPI.rejectWithValue(error.message);
     }
   }
@@ -38,8 +51,25 @@ export const loginUser = createAsyncThunk(
     try {
       const { data } = await axios.post(AUTH_ENDPOINT.LOGIN, credentials);
       token.set(data.accessToken);
+      toast.success(`Welcome, ${normalizeName(data.user.username)}!`);
       return data;
     } catch (error) {
+      if (error.response.status === 403) {
+        toast.error(
+          `${
+            error.response?.data?.message ??
+            'Wrong password or login, try again pls!'
+          }!`
+        );
+      }
+
+      if (error.response.status === 400) {
+        toast.error(
+          `${
+            error.response?.data?.message ?? 'Failed to login, try again pls!'
+          }!`
+        );
+      }
       return ThunkAPI.rejectWithValue(error.message);
     }
   }
@@ -72,9 +102,11 @@ export const logoutUser = createAsyncThunk(
   async (_, ThunkAPI) => {
     try {
       await axios.post(AUTH_ENDPOINT.LOGOUT);
+      toast('You successfully logged out!');
       token.unset();
       return;
     } catch (error) {
+      toast('You logged out, pls login again!');
       return ThunkAPI.rejectWithValue(error.message);
     }
   }

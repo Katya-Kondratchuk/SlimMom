@@ -11,12 +11,12 @@ import {
   Box,
   Divider,
   IconButton,
-  Menu,
   Stack,
   Toolbar,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
+import ModalMenu from 'components/Menu/Menu';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
@@ -32,8 +32,8 @@ const Header = () => {
     setOpen(false);
   };
 
-  console.log(open);
-  console.log(anchorEl);
+  // console.log(open);
+  // console.log(anchorEl);
 
   return (
     <>
@@ -44,90 +44,101 @@ const Header = () => {
           backgroundColor: 'transparent',
           boxShadow: { lg: 'none' },
           paddingTop: { lg: '131px' },
-          paddingBottom: { lg: '145px' },
         }}
       >
         <Toolbar
           sx={{
-            justifyContent: 'end',
+            justifyContent: {
+              xs: 'space-between',
+              lg: isLoggedIn ? 'space-between' : 'start',
+            },
           }}
         >
-          <Link
-            to="/"
-            style={{
-              marginRight: 'auto',
+          <Stack
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center"
+            spacing={2}
+            sx={{
+              width: { md: '100%', lg: 'auto' },
+              justifyContent: { md: 'space-between', lg: 'flex-start' },
             }}
           >
-            <Stack
-              direction="row"
-              justifyContent="flex-start"
-              alignItems="center"
-              spacing={2}
+            <Link
+              to="/"
+              style={{
+                marginRight: 'auto',
+              }}
             >
-              <Logo />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <LogoText />
-              </Box>
-              {isLoggedIn && (
-                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <Stack direction={'row'} alignItems="center" spacing={2}>
+                <Logo />
+                <Box
+                  sx={{
+                    display: { xs: isLoggedIn ? 'flex' : 'none', md: 'flex' },
+                  }}
+                >
                   <LogoText />
                 </Box>
-              )}
-              {!isLoggedIn && (
-                <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
-                  <Divider
-                    orientation="vertical"
-                    variant="middle"
-                    flexItem
-                    sx={{ mr: '20px' }}
-                  />
-                  <AuthNav />
-                </Box>
-              )}
-            </Stack>
-          </Link>
-          {/* {isLoggedIn && (
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              styles={{ md: 'flex', sm: 'none' }}
-            />
-          )} */}
-          {isLoggedIn && (
-            <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
-              <UserNav />
-            </Box>
-          )}
-          {/* {isLoggedIn && (
-            <UserMenu sx={{ display: { xs: 'none', lg: 'flex' } }} />
-          )} */}
-          {!isLoggedIn && (
-            <Box sx={{ display: { xs: 'flex', lg: 'none' } }}>
-              <AuthNav />
-            </Box>
-          )}
+              </Stack>
+            </Link>
+            {!isLoggedIn && (
+              <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{ mr: '20px' }}
+                />
+                <AuthNav />
+              </Box>
+            )}
 
-          {isLoggedIn && (
-            <>
-              <IconButton
-                size="large"
-                color="blue"
-                aria-label="menu"
-                sx={{ m: 0, p: 0, display: { sm: 'flex', lg: 'none' } }}
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu anchorEl={anchorEl} handleClose={handleClose} open={open}>
-                <UserNav handleClose={handleClose}></UserNav>
-              </Menu>
-            </>
-          )}
+            {isLoggedIn && (
+              <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{ mr: '20px' }}
+                />
+                <UserNav />
+              </Box>
+            )}
+            {!isLoggedIn && (
+              <Box sx={{ display: { xs: 'flex', lg: 'none' } }}>
+                <AuthNav />
+              </Box>
+            )}
+          </Stack>
+          <Stack direction={'row'} spacing={3}>
+            {isLoggedIn && <UserMenu styles={{ xs: 'none', md: 'flex' }} />}
+            {isLoggedIn && (
+              <>
+                <IconButton
+                  size="large"
+                  color="blue"
+                  aria-label="menu"
+                  sx={{ m: 0, p: 0, display: { sm: 'flex', lg: 'none' } }}
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                >
+                  <MenuIcon />
+                </IconButton>
+                {open && (
+                  <ModalMenu
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    open={open}
+                  >
+                    <UserNav handleClose={handleClose}></UserNav>
+                  </ModalMenu>
+                )}
+              </>
+            )}
+          </Stack>
         </Toolbar>
       </AppBar>
       {isLoggedIn && <UserMenu styles={{ md: 'none' }} />}

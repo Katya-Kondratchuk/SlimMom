@@ -8,9 +8,13 @@ export const NavLinkStyled = styled(NavLink)`
   line-height: 1.2;
   text-align: right;
   color: #212121;
-  :active,
-  :hover,
-  :focus {
+
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    color: #fc842d;
+    background-color: inherit;
+  }
+  &.active {
     color: #9b9faa;
   }
 `;

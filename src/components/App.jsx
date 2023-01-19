@@ -3,6 +3,8 @@ import AllRouts from 'routs/AllRouts';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/authOperation';
 import { selectAuthIsLoadCurrentUser } from 'redux/auth/authSelectors';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -12,5 +14,10 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return <>{!isLoadCurrentUser && <AllRouts />}</>;
+  return (
+    <>
+      <ToastContainer position="top-right" autoClose={3000} theme="light" />
+      {!isLoadCurrentUser && <AllRouts />}
+    </>
+  );
 };
