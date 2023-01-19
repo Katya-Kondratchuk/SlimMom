@@ -1,10 +1,14 @@
-// import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
+import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
+import { SideBarRight } from './RightSideBar.styled';
+
 // backgroundImage:'url(../images/desktoprightSideBar.png)' backgroundColor:'#F0F1F3',
-export default function RightSideBar({ respons, data, products }) {
+export default function RightSideBar({ summaryDayInfo }) {
+  const { kcalConsumed, kcalLeft, percentsOfDailyRate, dailyRate, date } =
+    summaryDayInfo;
   return (
     <>
-    <div style = {{backgroundImage:'url(../images/desktoprightSideBar.png)', height:'850px', width:'517px',display:'grid'}}>
- <table style={{margin:' 292px auto 60px', grid:'20px'}}>
+      <SideBarRight>
+        {/* <table style={{margin:' 292px auto 60px', grid:'20px'}}>
   <tr>
     <th sx ={{mb:'20px'}}>Summary from...</th>
   </tr>
@@ -46,43 +50,43 @@ export default function RightSideBar({ respons, data, products }) {
   <tr>
     <td>backend</td>
   </tr>
-</table>
-
+</table> */}
+        {/* 
 <ul style ={{listStyle:"none"}}>
   <li></li>
   <li></li>
   <li></li>
   <li></li>
-</ul>
-      
-    </div>
-      {/* <List
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        subheader={<ListSubheader>`Summary for ${data}`</ListSubheader>}
-      >
-        <ListItem disableGutters>
-          <ListItemText primary={`Left ${respons.left}`} />
-        </ListItem>
-        <ListItem disableGutters>
-          <ListItemText primary={`Consumed ${respons.consumed}`} />
-        </ListItem>
-        <ListItem disableGutters>
-          <ListItemText primary={`Daily rate ${respons.rate}`} />
-        </ListItem>
-        <ListItem disableGutters>
-          <ListItemText primary={`n% of normal ${respons.normal}`} />
-        </ListItem>
-      </List>
-      <List
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        subheader={<ListSubheader>`Food not recommended`</ListSubheader>}
-      >
-        {products.map(product => (
+</ul> */}
+
+        <List
+          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+          subheader={<ListSubheader>Summary for {date}</ListSubheader>}
+        >
+          <ListItem disableGutters>
+            <ListItemText primary={`Left ${kcalLeft}`} />
+          </ListItem>
+          <ListItem disableGutters>
+            <ListItemText primary={`Consumed ${kcalConsumed}`} />
+          </ListItem>
+          <ListItem disableGutters>
+            <ListItemText primary={`Daily rate ${dailyRate}`} />
+          </ListItem>
+          <ListItem disableGutters>
+            <ListItemText primary={`n% of normal ${percentsOfDailyRate}`} />
+          </ListItem>
+        </List>
+        <List
+          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+          subheader={<ListSubheader>`Food not recommended`</ListSubheader>}
+        >
+          {/* {products.map(product => (
           <ListItem disableGutters>
             <ListItemText primary={`${product}`} />
           </ListItem>
-        ))}
-      </List> */}
+        ))} */}
+        </List>
+      </SideBarRight>
     </>
   );
 }
