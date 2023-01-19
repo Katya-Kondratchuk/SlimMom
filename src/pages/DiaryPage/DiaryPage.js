@@ -1,6 +1,6 @@
 import DairyAddProductForm from 'components/DairyAddProductForm/DairyAddProductForm';
 import DairyProductList from 'components/DairyProductList/DairyProductList';
-import RightSideBar from 'components/RightSideBar/RightSideBar';
+import { RightSideBar } from 'components/RightSideBar/RightSideBar';
 import DiaryDateСalendar from 'components/DiaryDateСalendar/DiaryDateСalendar';
 import { useEffect, useState } from 'react';
 import {
@@ -106,7 +106,7 @@ const DiaryPage = () => {
   return (
     <StyledContainer>
       <div style={{ display: 'flex' }}>
-        <div>
+        <div style={{ marginRight: '136px' }}>
           <DiaryDateСalendar onDateChange={handleDateChange} />
           <DairyAddProductForm onSubmitting={handelSubmitPost} />
           {products.length === 0 ? (

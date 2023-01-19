@@ -2,7 +2,7 @@ import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
 import { SideBarRight } from './RightSideBar.styled';
 
 // backgroundImage:'url(../images/desktoprightSideBar.png)' backgroundColor:'#F0F1F3',
-export default function RightSideBar({ summaryDayInfo }) {
+export function RightSideBar({ summaryDayInfo }) {
   const { kcalConsumed, kcalLeft, percentsOfDailyRate, dailyRate, date } =
     summaryDayInfo;
   return (
