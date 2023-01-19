@@ -8,7 +8,7 @@ import {
 } from './authOperation';
 
 const initialState = {
-  user: { username: '', email: '', id: '' },
+  user: { userData: null, username: '', email: '', id: '' },
   sid: '',
   refreshToken: '',
   loadind: false,
@@ -48,6 +48,7 @@ export const authSlice = createSlice({
         state.sid = payload.sid;
         state.user.email = payload.user.email;
         state.user.username = payload.user.username;
+        state.user.userData = payload.user.userData;
         state.user.id = payload.user.id;
         state.loadind = false;
       })
@@ -76,6 +77,7 @@ export const authSlice = createSlice({
         state.sid = '';
         state.user.email = '';
         state.user.username = '';
+        state.user.userData = null;
         state.user.id = '';
         state.isLoggedIn = false;
         state.loadind = false;
@@ -85,6 +87,7 @@ export const authSlice = createSlice({
         state.sid = '';
         state.user.email = '';
         state.user.username = '';
+        state.user.userData = null;
         state.user.id = '';
         state.isLoggedIn = false;
         state.error = payload;
@@ -95,6 +98,7 @@ export const authSlice = createSlice({
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
         state.user.email = payload.email;
         state.user.username = payload.username;
+        state.user.userData = payload.userData;
         state.user.id = payload.id;
         state.loadind = false;
       })
