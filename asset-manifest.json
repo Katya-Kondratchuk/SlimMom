@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/SlimMom/static/css/main.394856d5.css",
-    "main.js": "/SlimMom/static/js/main.eea36930.js",
+    "main.js": "/SlimMom/static/js/main.98caf442.js",
     "static/js/566.abc6c0b4.chunk.js": "/SlimMom/static/js/566.abc6c0b4.chunk.js",
     "static/js/506.9f7d598a.chunk.js": "/SlimMom/static/js/506.9f7d598a.chunk.js",
     "static/js/366.b7670cd2.chunk.js": "/SlimMom/static/js/366.b7670cd2.chunk.js",
@@ -24,7 +24,7 @@
     "static/media/Group 18.svg": "/SlimMom/static/media/Group 18.f99c2e341eb0e93dfe4ce6c09783ce75.svg",
     "index.html": "/SlimMom/index.html",
     "main.394856d5.css.map": "/SlimMom/static/css/main.394856d5.css.map",
-    "main.eea36930.js.map": "/SlimMom/static/js/main.eea36930.js.map",
+    "main.98caf442.js.map": "/SlimMom/static/js/main.98caf442.js.map",
     "566.abc6c0b4.chunk.js.map": "/SlimMom/static/js/566.abc6c0b4.chunk.js.map",
     "506.9f7d598a.chunk.js.map": "/SlimMom/static/js/506.9f7d598a.chunk.js.map",
     "366.b7670cd2.chunk.js.map": "/SlimMom/static/js/366.b7670cd2.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.394856d5.css",
-    "static/js/main.eea36930.js"
+    "static/js/main.98caf442.js"
   ]
 }
