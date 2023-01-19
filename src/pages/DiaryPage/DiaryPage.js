@@ -9,6 +9,7 @@ import {
   getDayProducts,
   postProduct,
 } from 'services/api/base_api';
+import { MessageStyled } from 'components/DairyProductList/DairyProductList.styled';
 // import { object } from 'prop-types';
 
 const DiaryPage = () => {
@@ -97,7 +98,9 @@ const DiaryPage = () => {
         <DiaryDateСalendar onDateChange={handleDateChange} />
         <DairyAddProductForm onSubmitting={handelSubmitPost} />
         {products.length === 0 ? (
-          'нету нечего'
+          <MessageStyled>
+            There are no products on the selected date
+          </MessageStyled>
         ) : (
           <DairyProductList
             poducts={products}
