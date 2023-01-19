@@ -3,7 +3,7 @@ import DairyAddProductForm from 'components/DairyAddProductForm/DairyAddProductF
 import DairyProductList from 'components/DairyProductList/DairyProductList';
 import RightSideBar from 'components/RightSideBar/RightSideBar';
 import DiaryDateСalendar from 'components/DiaryDateСalendar/DiaryDateСalendar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   deleteProduct,
   getDayProducts,
@@ -14,7 +14,25 @@ import {
 const DiaryPage = () => {
   const [products, setProducts] = useState([]);
   const [date, setDate] = useState('');
-  console.log(products);
+  const [currentDayId, setCurrentDayId] = useState('');
+  // console.log(products);
+  // console.log(currentDayId);
+  // console.log(date);
+
+  useEffect(() => {
+    if (date === '') {
+      return;
+    }
+    getDayProducts({ date: date }).then(res => {
+      // console.log(res);
+      const newDayId = res.id;
+      const newEatenProducts = res.eatenProducts;
+      // console.log(newDayId);
+
+      setCurrentDayId(newDayId ?? '');
+      setProducts(newEatenProducts ?? []);
+    });
+  }, [date]);
 
   const handleDateChange = date => {
     // console.log(date);
@@ -23,7 +41,7 @@ const DiaryPage = () => {
     // console.log(backendDate);
   };
 
-  const handelSubmit = object => {
+  const handelSubmitPost = object => {
     // console.log(object);
 
     const newProduct = {
@@ -33,19 +51,26 @@ const DiaryPage = () => {
     };
     // console.log(newProduct);
     postProduct(newProduct).then(res => {
-      // const new = [res.eatenProduct];
-      setProducts(prevProducts => [
-        ...prevProducts,
-        ...[
-          {
-            ...(res?.day || res?.newDay),
-            ...res.eatenProduct,
-            dayId: res.day?.id || res.newDay?.id,
-          },
-        ],
-      ]);
+      // console.log(res);
 
-      console.log(res);
+      if (res.newDay) {
+        setCurrentDayId(res.newDay.id);
+        setProducts(prev => [...prev, ...[res.eatenProduct]]);
+      } else {
+        setProducts(res.day.eatenProducts);
+      }
+
+      // const new = [res.eatenProduct];
+      // setProducts(prevProducts => [
+      //   ...prevProducts,
+      //   ...[
+      //     {
+      //       ...(res?.day || res?.newDay),
+      //       ...res.eatenProduct,
+      //       dayId: res.day?.id || res.newDay?.id,
+      //     },
+      //   ],
+      // ]);
     });
     //     {
     //   "date": "2020-12-31",
@@ -57,21 +82,28 @@ const DiaryPage = () => {
   };
 
   const handleDelete = object => {
-    console.log(object);
+    // console.log(object);
     deleteProduct(object).then(res => {
       console.log(res);
     });
-    getDayProducts(date).then();
+    getDayProducts({ date: date }).then(res => {
+      const newEatenProducts = res.eatenProducts;
+      setProducts(newEatenProducts ?? []);
+    });
   };
   return (
     <ContainerLayout>
       <div>
         <DiaryDateСalendar onDateChange={handleDateChange} />
-        <DairyAddProductForm onSubmitting={handelSubmit} />
+        <DairyAddProductForm onSubmitting={handelSubmitPost} />
         {products.length === 0 ? (
           'нету нечего'
         ) : (
-          <DairyProductList poducts={products} onDeleteProduct={handleDelete} />
+          <DairyProductList
+            poducts={products}
+            onDeleteProduct={handleDelete}
+            dayId={currentDayId}
+          />
         )}
         <RightSideBar />
       </div>

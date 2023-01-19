@@ -116,9 +116,12 @@ export default function DairyAddProductForm({ onSubmitting }) {
         sx={{
           width: 150,
           mx: 3,
-          // '&.MuiTextField-root .MuiInputBase-root.Mui-focused': {
-          //   backgroundColor: '#1acebf26',
-          // },
+          '&.MuiTextField-root .MuiInputBase-root': {
+            backgroundColor: 'white',
+            '::before': {
+              borderColor: '#e0e0e0',
+            },
+          },
         }}
         InputProps={{
           endAdornment: <InputAdornment position="end">gr</InputAdornment>,
