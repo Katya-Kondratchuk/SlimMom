@@ -1,7 +1,6 @@
 import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { SideBarRight } from './RightSideBar.styled';
-import { v4 as uuidv4 } from 'uuid';
 export function arrayRandElement(products = []) {
   const rand = Math.floor(Math.random() * products.length);
   return products[rand];
@@ -14,7 +13,6 @@ export function RightSideBar({ summaryDayInfo }) {
   const todaysData = data?.summaries?.find(({ date }) => date === backendDate);
   console.log(summaryDayInfo);
   console.log(todaysData);
-  // const id = uuidv4();
   const {
     kcalConsumed = 0,
     kcalLeft = 0,
@@ -51,16 +49,16 @@ export function RightSideBar({ summaryDayInfo }) {
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           subheader={<ListSubheader>`Food not recommended`</ListSubheader>}
         >
-          <ListItem disableGutters key={uuidv4()}>
+          <ListItem disableGutters>
             <ListItemText primary={`${arrayRandElement(products) || ''}`} />
           </ListItem>
-          <ListItem disableGutters key={uuidv4()}>
+          <ListItem disableGutters>
             <ListItemText primary={`${arrayRandElement(products) || ''}`} />
           </ListItem>
-          <ListItem disableGutters key={uuidv4()}>
+          <ListItem disableGutters>
             <ListItemText primary={`${arrayRandElement(products) || ''}`} />
           </ListItem>
-          <ListItem disableGutters key={uuidv4()}>
+          <ListItem disableGutters>
             <ListItemText primary={`${arrayRandElement(products) || ''}`} />
           </ListItem>
         </List>
