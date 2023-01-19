@@ -54,15 +54,15 @@ export const theme = createTheme({
     },
   },
   components: {
-    MuiMenu: {
-      styleOverrides: {
-        paper: { top: '10%', left: '25%', backgroundColor: 'red' },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        rounded: { top: '10%', left: '25%', backgroundColor: 'red' },
-      },
-    },
+    // MuiMenu: {
+    //   styleOverrides: {
+    //     paper: { top: '10%', left: '25%', backgroundColor: 'red' },
+    //   },
+    // },
+    // MuiPaper: {
+    //   styleOverrides: {
+    //     rounded: { top: '10%', left: '25%', backgroundColor: 'red' },
+    //   },
+    // },
   },
 });
