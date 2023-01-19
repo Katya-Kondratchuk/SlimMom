@@ -1,11 +1,16 @@
 import { Button, Divider, Stack } from '@mui/material';
+import LoadingSpiner from 'components/AuthForm/LoadingSpiner';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'redux/auth/authOperation';
-import { selectAuthUserName } from 'redux/auth/authSelectors';
+import {
+  selectAuthLoading,
+  selectAuthUserName,
+} from 'redux/auth/authSelectors';
 import { normalizeName } from 'services/normalized';
 
 const UserMenu = ({ styles }) => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectAuthLoading);
   const name = useSelector(selectAuthUserName);
 
   return (
@@ -45,7 +50,7 @@ const UserMenu = ({ styles }) => {
         }}
         onClick={() => dispatch(logoutUser())}
       >
-        Exit
+        {loading ? <LoadingSpiner color="#000" size={9} /> : 'Exit'}
       </Button>
     </Stack>
   );

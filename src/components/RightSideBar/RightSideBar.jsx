@@ -1,64 +1,33 @@
 import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
+import { useSelector } from 'react-redux';
 import { SideBarRight } from './RightSideBar.styled';
-
+export function arrayRandElement(products = []) {
+  const rand = Math.floor(Math.random() * products.length);
+  return products[rand];
+}
 // backgroundImage:'url(../images/desktoprightSideBar.png)' backgroundColor:'#F0F1F3',
 export function RightSideBar({ summaryDayInfo }) {
-  const { kcalConsumed, kcalLeft, percentsOfDailyRate, dailyRate, date } =
-    summaryDayInfo;
+  const data = useSelector(state => state.daily);
+  const products = data.notAllowedProducts;
+  const backendDate = new Date().toISOString().split('T')[0];
+  const todaysData = data?.summaries?.find(({ date }) => date === backendDate);
+  console.log(summaryDayInfo);
+  console.log(todaysData);
+  const {
+    kcalConsumed = 0,
+    kcalLeft = 0,
+    percentsOfDailyRate = 0,
+    dailyRate = 0,
+    date = 0,
+  } = summaryDayInfo || todaysData || {};
+
+  // Получаем случайный ключ массива
+  // const rand = () => Math.floor(Math.random() * products.length);
+  // console.log(products[rand]);
+
   return (
     <>
       <SideBarRight>
-        {/* <table style={{margin:' 292px auto 60px', grid:'20px'}}>
-  <tr>
-    <th sx ={{mb:'20px'}}>Summary from...</th>
-  </tr>
-  <tr>
-    <td>Left</td>
-    <td>backend</td>
-  </tr>
-  <tr>
-    <td>Consumed</td>
-
-    <td>backend</td>
-  </tr>
-  <tr>
-    <td>Daily rate
-</td>
-    <td>backend</td>
-  </tr>
-  <tr>
-    <td>n% of normal</td>
-    <td>backend</td>
-  </tr>
-</table>
- <table style={{margin: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px'}}>
-  <tr>
-    <th>Food not recommended</th>
-  </tr>
-  <tr>
-    <td>backend</td>
-  </tr>
-  <tr>
-    <td>backend</td>
-  </tr>
-  <tr>
-    <td>backend</td>
-  </tr>
-  <tr>
-    <td>backend</td>
-  </tr>
-</table> */}
-        {/* 
-<ul style ={{listStyle:"none"}}>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-</ul> */}
-
         <List
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           subheader={<ListSubheader>Summary for {date}</ListSubheader>}
@@ -80,11 +49,18 @@ export function RightSideBar({ summaryDayInfo }) {
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           subheader={<ListSubheader>`Food not recommended`</ListSubheader>}
         >
-          {/* {products.map(product => (
           <ListItem disableGutters>
-            <ListItemText primary={`${product}`} />
+            <ListItemText primary={`${arrayRandElement(products) || ''}`} />
           </ListItem>
-        ))} */}
+          <ListItem disableGutters>
+            <ListItemText primary={`${arrayRandElement(products) || ''}`} />
+          </ListItem>
+          <ListItem disableGutters>
+            <ListItemText primary={`${arrayRandElement(products) || ''}`} />
+          </ListItem>
+          <ListItem disableGutters>
+            <ListItemText primary={`${arrayRandElement(products) || ''}`} />
+          </ListItem>
         </List>
       </SideBarRight>
     </>

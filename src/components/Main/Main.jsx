@@ -12,6 +12,13 @@ import {
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import { FormHelperText, Input, Typography, Box } from '@mui/material';
 import ModalWindow from 'components/Modal/ModalWindow.jsx';
+import {
+  selectAuthIsLoggedIn,
+  selectAuthUserId,
+} from 'redux/auth/authSelectors.js';
+import { useDispatch, useSelector } from 'react-redux';
+// import { postDailyRateWithId } from 'services/api/base_api.js';
+import { dailyRateOperation } from 'redux/daily/dailyOperation.js';
 
 const localInitValues = JSON.parse(localStorage?.getItem('item'));
 // console.log(localInitValues);
@@ -80,6 +87,8 @@ MyFormControlLabel.propTypes = {
 
 const Home = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
@@ -95,6 +104,8 @@ const Home = ({ onSubmit }) => {
   const handleCloseModal = () => {
     setOpen(!open);
   };
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  const id = useSelector(selectAuthUserId);
 
   return (
     <Box component="div">
@@ -363,7 +374,11 @@ const Home = ({ onSubmit }) => {
             disabled={isValid ? false : true}
             type="submit"
             variant="contained"
-            onClick={handleCloseModal}
+            onClick={() =>
+              isLoggedIn
+                ? dispatch(dailyRateOperation({ id, data: formik.values }))
+                : handleCloseModal()
+            }
           >
             {isValid ? `Start losing weight` : `Fill in your data `}
           </ColorButton>

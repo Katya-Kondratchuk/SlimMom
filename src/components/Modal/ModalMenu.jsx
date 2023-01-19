@@ -5,7 +5,6 @@ import { BoxStyled } from './ModalWindow.styled';
 import { postDailyRate } from 'services/api/base_api';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
@@ -49,7 +48,7 @@ const ModalWindow = ({ values, open, onClose }) => {
           Foods you should not eat
           <List>
             {data?.notAllowedProducts?.slice(0, 4).map(item => (
-              <ListItem disablePadding key={uuidv4()}>
+              <ListItem disablePadding>
                 <ListItemText primary={item} />
               </ListItem>
             ))}

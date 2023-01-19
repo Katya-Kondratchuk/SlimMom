@@ -5,7 +5,6 @@ import { BoxStyled, StyledItem } from './ModalWindow.styled';
 import { postDailyRate } from 'services/api/base_api';
 import { useEffect } from 'react';
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
@@ -13,11 +12,12 @@ import { ColorButton } from '../Main/Main.styled';
 import ClearIcon from '@mui/icons-material/Clear';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Box } from '@mui/system';
+import { arrayRandElement } from 'components/RightSideBar/RightSideBar';
 
 const ModalWindow = ({ values, open, onClose, setOpen }) => {
   const [data, setData] = useState({});
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
-  
+
   Object.keys(values).forEach((key, index) => {
     if (typeof values[key] === 'string') values[key] = Number(values[key]);
   });
@@ -107,49 +107,63 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
               padding: '0',
             }}
           >
-            {data?.notAllowedProducts?.slice(0, 4).map(item => (
-              <StyledItem
-                component="li"
-                disablePadding
-                key={uuidv4()}
-                style={{
-                  marginBotton: { xs: '14px' },
-                }}
-              >
-                <ListItemText
-                  primary={item}
-                  sx={{
-                    color: '#9B9FAA',
-                  }}
-                />
-              </StyledItem>
-            ))}
-          </ol>
-          {/* <List
-            component="ol"
-            sx={{
-              minHeight: '112px',
-              mb: '40px',
-              p: '0',
-            }}
-          >
-            {data?.notAllowedProducts?.slice(0, 4).map(item => (
-              <ListItem
-                disablePadding
-                key={uuidv4()}
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
                 sx={{
-                  mb: { xs: '14px' },
+                  color: '#9B9FAA',
                 }}
-              >
-                <ListItemText
-                  primary={item}
-                  sx={{
-                    color: '#9B9FAA',
-                  }}
-                />
-              </ListItem>
-            ))}
-          </List> */}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
+                sx={{
+                  color: '#9B9FAA',
+                }}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
+                sx={{
+                  color: '#9B9FAA',
+                }}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
+                sx={{
+                  color: '#9B9FAA',
+                }}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
+          </ol>
         </Box>
         <Link
           component="button"

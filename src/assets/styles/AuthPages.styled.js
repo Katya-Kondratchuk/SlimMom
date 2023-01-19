@@ -14,6 +14,7 @@ export const LinkyStyled = styled(Link)({
   paddingTop: '13px',
   paddingBottom: '13px',
   border: '1px solid #FC842D',
+  fontFamily: 'Verdana, sans-serif',
   borderRadius: 30,
   width: 182,
   height: '44px',
