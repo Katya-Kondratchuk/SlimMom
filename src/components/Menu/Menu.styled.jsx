@@ -2,7 +2,11 @@ import { Menu } from '@mui/material';
 import styled from 'styled-components';
 
 export const MenuStyled = styled(Menu)`
-  .MuiMenu-paper {
+  .MuiMenu-paper
+    .MuiPaper-root
+    .MuiMenu-paper
+    .MuiPaper-root
+    .MuiPopover-paper {
     max-height: 100%;
     min-height: 90%;
     min-width: 100vw;

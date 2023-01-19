@@ -11,12 +11,12 @@ import {
   Box,
   Divider,
   IconButton,
-  Menu,
   Stack,
   Toolbar,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
+import ModalMenu from 'components/Menu/Menu';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
@@ -32,8 +32,8 @@ const Header = () => {
     setOpen(false);
   };
 
-  console.log(open);
-  console.log(anchorEl);
+  // console.log(open);
+  // console.log(anchorEl);
 
   return (
     <>
@@ -44,7 +44,6 @@ const Header = () => {
           backgroundColor: 'transparent',
           boxShadow: { lg: 'none' },
           paddingTop: { lg: '131px' },
-          paddingBottom: { lg: '145px' },
         }}
       >
         <Toolbar
@@ -73,19 +72,19 @@ const Header = () => {
                   <LogoText />
                 </Box>
               )}
-              {!isLoggedIn && (
-                <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
-                  <Divider
-                    orientation="vertical"
-                    variant="middle"
-                    flexItem
-                    sx={{ mr: '20px' }}
-                  />
-                  <AuthNav />
-                </Box>
-              )}
             </Stack>
           </Link>
+          {!isLoggedIn && (
+            <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{ mr: '20px' }}
+              />
+              <AuthNav />
+            </Box>
+          )}
           {/* {isLoggedIn && (
             <Divider
               orientation="vertical"
@@ -123,9 +122,9 @@ const Header = () => {
               >
                 <MenuIcon />
               </IconButton>
-              <Menu anchorEl={anchorEl} handleClose={handleClose} open={open}>
+              <ModalMenu anchorEl={anchorEl} onClose={handleClose} open={open}>
                 <UserNav handleClose={handleClose}></UserNav>
-              </Menu>
+              </ModalMenu>
             </>
           )}
         </Toolbar>
