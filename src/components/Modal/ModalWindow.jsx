@@ -13,11 +13,12 @@ import { ColorButton } from '../Main/Main.styled';
 import ClearIcon from '@mui/icons-material/Clear';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Box } from '@mui/system';
+import { arrayRandElement } from 'components/RightSideBar/RightSideBar';
 
 const ModalWindow = ({ values, open, onClose, setOpen }) => {
   const [data, setData] = useState({});
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
-  
+
   Object.keys(values).forEach((key, index) => {
     if (typeof values[key] === 'string') values[key] = Number(values[key]);
   });
@@ -107,23 +108,62 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
               padding: '0',
             }}
           >
-            {data?.notAllowedProducts?.slice(0, 4).map(item => (
-              <StyledItem
-                component="li"
-                disablePadding
-                key={uuidv4()}
-                style={{
-                  marginBotton: { xs: '14px' },
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
+                sx={{
+                  color: '#9B9FAA',
                 }}
-              >
-                <ListItemText
-                  primary={item}
-                  sx={{
-                    color: '#9B9FAA',
-                  }}
-                />
-              </StyledItem>
-            ))}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
+                sx={{
+                  color: '#9B9FAA',
+                }}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
+                sx={{
+                  color: '#9B9FAA',
+                }}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
+            <StyledItem
+              component="li"
+              disablePadding
+              style={{
+                marginBotton: { xs: '14px' },
+              }}
+            >
+              <ListItemText
+                sx={{
+                  color: '#9B9FAA',
+                }}
+                primary={`${arrayRandElement(data.notAllowedProducts)}`}
+              />
+            </StyledItem>
           </ol>
           {/* <List
             component="ol"
