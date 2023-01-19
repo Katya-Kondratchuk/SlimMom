@@ -1,9 +1,9 @@
 // import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
-
+// backgroundImage:'url(../images/desktoprightSideBar.png)' 
 export default function RightSideBar({ respons, data, products }) {
   return (
     <>
-    <div style = {{backgroundColor:'grey', height:'850px', width:'517px',display:'grid'}}>
+    <div style = {{backgroundImage:'url(../images/desktoprightSideBar.png)',backgroundColor:'#F0F1F3', height:'850px', width:'517px',display:'grid'}}>
  <table style={{margin:' 292px auto 60px', grid:'20px'}}>
   <tr>
     <th>Summary from...</th>
