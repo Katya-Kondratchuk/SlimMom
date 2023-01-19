@@ -1,11 +1,12 @@
-import ContainerLayout from 'components/Container/Container';
 import Home from 'components/Main/Main';
+import RightSideBar from 'components/RightSideBar/RightSideBar';
 
 const CalculatorPage = () => {
   return (
-    <ContainerLayout>
+    <div style={{ display: 'flex' }}>
       <Home />
-    </ContainerLayout>
+      <RightSideBar />
+    </div>
   );
 };
 
