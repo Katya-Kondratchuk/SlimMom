@@ -18,9 +18,14 @@ export const FieldStyled = styled(TextField)`
   &.MuiTextField-root {
     margin: 0 24px;
     width: 240px;
+    background-color: transparent;
 
-    /* .MuiInputBase-root.Mui-focused {
-      background-color: #1acebf26;
-    } */
+    .MuiInputBase-root {
+      background-color: white;
+
+      ::before {
+        border-color: #e0e0e0;
+      }
+    }
   }
 `;

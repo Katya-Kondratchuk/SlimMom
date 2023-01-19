@@ -10,20 +10,18 @@ import {
 } from './Main.styled.js';
 
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
-import {
-  FormControl,
-  FormHelperText,
-  Input,
-  Typography,
-  Box,
-} from '@mui/material';
+import { FormHelperText, Input, Typography, Box } from '@mui/material';
 import ModalWindow from 'components/Modal/ModalWindow.jsx';
+
+const localInitValues = JSON.parse(localStorage?.getItem('item'));
+// console.log(localInitValues);
+
 const initialValues = {
-  height: '',
-  age: '',
-  weight: '',
-  desiredWeight: '',
-  bloodType: '',
+  height: localInitValues.height || '',
+  age: localInitValues.age || '',
+  weight: localInitValues.weight || '',
+  desiredWeight: localInitValues.desiredWeight || '',
+  bloodType: localInitValues.bloodType || '',
 };
 
 const schema = yup.object().shape({
@@ -80,20 +78,24 @@ MyFormControlLabel.propTypes = {
   value: PropTypes.string,
 };
 
-const Home = () => {
+const Home = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
+      setSubmitting(true);
+      localStorage.setItem('item', JSON.stringify(values));
       setSubmitting(false);
     },
     validateOnBlur: true,
   });
+
   const isValid = schema.isValidSync(formik.values);
   const handleCloseModal = () => {
     setOpen(!open);
   };
+
   return (
     <Box component="div">
       <Box
@@ -123,16 +125,20 @@ const Home = () => {
         <Box
           component="form"
           sx={{
-            display: { md: 'flex' },
             m: { xs: '0 auto', md: '0 auto 0 0' },
-            gap: '32px',
             maxWidth: { md: '512px', xs: '240px' },
           }}
           autoComplete="off"
           onSubmit={formik.handleSubmit}
         >
-          <div>
-            <FormControl variant="standard" sx={{}}>
+          <Box
+            component="div"
+            sx={{
+              display: { md: 'flex' },
+              gap: '32px',
+            }}
+          >
+            <Box component="div">
               <StyledInputLable
                 htmlFor="height"
                 disableAnimation
@@ -161,16 +167,13 @@ const Home = () => {
               ) : (
                 <FormHelperText id="height-helper-text"> </FormHelperText>
               )}
-            </FormControl>
-            <FormControl
-              variant="standard"
-              sx={{ mt: { xs: '32px', md: '20px' } }}
-            >
+
               <StyledInputLable
                 htmlFor="age"
                 disableAnimation
                 shrink
                 error={formik.touched.age && Boolean(formik.errors.age)}
+                sx={{ mt: { xs: '32px', md: '20px' } }}
               >
                 Age*
               </StyledInputLable>
@@ -195,16 +198,13 @@ const Home = () => {
               ) : (
                 <FormHelperText id="age-helper-text"> </FormHelperText>
               )}
-            </FormControl>
-            <FormControl
-              sx={{ mt: { xs: '32px', md: '20px' } }}
-              variant="standard"
-            >
+
               <StyledInputLable
                 error={formik.touched.weight && Boolean(formik.errors.weight)}
                 disableAnimation
                 shrink
                 htmlFor="weight"
+                sx={{ mt: { xs: '32px', md: '20px' } }}
               >
                 Current Weight*
               </StyledInputLable>
@@ -232,18 +232,14 @@ const Home = () => {
               ) : (
                 <FormHelperText id="weight-helper-text"> </FormHelperText>
               )}
-            </FormControl>
-          </div>
-          <div>
-            <FormControl
-              sx={{ mt: { xs: '32px', md: '0' } }}
-              variant="standard"
-            >
+            </Box>
+            <Box component="div">
               <StyledInputLable
                 error={
                   formik.touched.desiredWeight &&
                   Boolean(formik.errors.desiredWeight)
                 }
+                sx={{ mt: { xs: '32px', md: '0' } }}
                 disableAnimation
                 shrink
                 htmlFor="desiredWeight"
@@ -282,15 +278,12 @@ const Home = () => {
                   {' '}
                 </FormHelperText>
               )}
-            </FormControl>
-            <FormControl
-              sx={{ mt: { xs: '32px', md: '20px' } }}
-              variant="standard"
-            >
+
               <StyledInputLable
                 error={
                   formik.touched.bloodType && Boolean(formik.errors.bloodType)
                 }
+                sx={{ mt: { xs: '32px', md: '20px' } }}
                 disableAnimation
                 shrink
                 htmlFor="bloodType"
@@ -357,26 +350,25 @@ const Home = () => {
               ) : (
                 <FormHelperText id="bloodType-helper-text"></FormHelperText>
               )}
-            </FormControl>
-          </div>
+            </Box>
+          </Box>
+          <ColorButton
+            sx={{
+              m: {
+                xs: '40px auto 0 auto',
+                md: '60px auto 0 32px',
+                lg: '60px auto 0 323px',
+              },
+            }}
+            disabled={isValid ? false : true}
+            type="submit"
+            variant="contained"
+            onClick={handleCloseModal}
+          >
+            {isValid ? `Start losing weight` : `Fill in your data `}
+          </ColorButton>
         </Box>
-        <ColorButton
-          sx={{
-            m: {
-              xs: '40px auto 0 auto',
-              md: '60px auto 0 32px',
-              lg: '60px auto 0 323px',
-            },
-          }}
-          disabled={isValid ? false : true}
-          type="submit"
-          variant="contained"
-          onClick={handleCloseModal}
-        >
-          {isValid ? `Start losing weight` : `Fill in your data `}
-        </ColorButton>
       </Box>
-
       {open && (
         <ModalWindow
           values={formik.values}

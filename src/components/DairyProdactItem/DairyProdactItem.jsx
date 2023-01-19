@@ -5,7 +5,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export default function DairyProdactItem({ name, grams, kcal, deleteProduct }) {
   return (
     <>
-      <ListItem>
+      <ListItem
+        sx={{
+          alignItems: 'flex-end',
+        }}
+      >
         <ListItemText
           sx={{
             width: 240,
