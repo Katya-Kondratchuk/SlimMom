@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authSlice } from './auth/authSlice';
+import { dailySlice } from './daily/dailySlice';
 
 const persistConfig = {
   key: 'refresh-user-token',
@@ -21,6 +22,7 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authSlice.reducer),
+    daily: dailySlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
