@@ -1,9 +1,10 @@
 import SharedLayout from 'components/SharedLayout';
 import { lazy } from 'react';
-import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { RequireAuthRoute } from './RequireAuthRoute';
 import { RequireNotAuthRoute } from './RequireNotAuthRoute';
+import { selectAuthUserData } from 'redux/auth/authSelectors';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -13,52 +14,51 @@ const CalculatorPage = lazy(() => import('pages/CalculatorPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 const AllRouts = () => {
+  const userData = useSelector(selectAuthUserData);
+
   return (
     <>
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
-            <Route
-              path="login"
-              element={
-                <RequireNotAuthRoute
-                  component={<LoginPage />}
-                  redirectTo="/diary"
-                />
-              }
-            />
-            <Route
-              path="registration"
-              element={
-                <RequireNotAuthRoute
-                  component={<RegistrationPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="diary"
-              element={
-                <RequireAuthRoute
-                  component={<DiaryPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="calculator"
-              element={
-                <RequireAuthRoute
-                  component={<CalculatorPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="login"
+            element={
+              <RequireNotAuthRoute
+                component={<LoginPage />}
+                redirectTo={
+                  userData?.dailyRate !== 0 ? '/diary' : '/calculator'
+                }
+              />
+            }
+          />
+          <Route
+            path="registration"
+            element={
+              <RequireNotAuthRoute
+                component={<RegistrationPage />}
+                redirectTo="/calculator"
+              />
+            }
+          />
+          <Route
+            path="diary"
+            element={
+              <RequireAuthRoute component={<DiaryPage />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="calculator"
+            element={
+              <RequireAuthRoute
+                component={<CalculatorPage />}
+                redirectTo="/login"
+              />
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
     </>
   );
 };

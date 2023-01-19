@@ -1,11 +1,14 @@
 import { ButtonStyled, LinkyStyled } from 'assets/styles/AuthPages.styled';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from 'redux/auth/authOperation';
+import { selectAuthLoading } from 'redux/auth/authSelectors';
 import { Form, WrapperButton } from '../AuthForm.styled';
 import InputAuthFrom from '../InputAuthFrom';
+import LoadingSpiner from '../LoadingSpiner';
 
 const RegistrForm = () => {
+  const loading = useSelector(selectAuthLoading);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -68,12 +71,19 @@ const RegistrForm = () => {
         <ButtonStyled
           type="submit"
           variant="contained"
+          disabled={loading}
           sx={{ backgroundColor: '#FC842D' }}
-          to="/registration"
         >
-          Register
+          {loading ? <LoadingSpiner /> : 'Register'}
         </ButtonStyled>
-        <LinkyStyled variant="outlined" sx={{ color: '#FC842D' }} to="/login">
+        <LinkyStyled
+          variant="outlined"
+          sx={{
+            color: '#FC842D',
+            pointerEvents: `${loading ? 'none' : 'all'}`,
+          }}
+          to="/login"
+        >
           Log in
         </LinkyStyled>
       </WrapperButton>
