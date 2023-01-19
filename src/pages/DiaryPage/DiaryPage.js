@@ -1,4 +1,3 @@
-import ContainerLayout from 'components/Container/Container';
 import DairyAddProductForm from 'components/DairyAddProductForm/DairyAddProductForm';
 import DairyProductList from 'components/DairyProductList/DairyProductList';
 import RightSideBar from 'components/RightSideBar/RightSideBar';
@@ -10,12 +9,19 @@ import {
   postProduct,
 } from 'services/api/base_api';
 import { MessageStyled } from 'components/DairyProductList/DairyProductList.styled';
+import { StyledContainer } from 'components/Main/Main.styled';
+import UserMenu from 'components/Header/UserMenu';
+import { useSelector } from 'react-redux';
+import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
 // import { object } from 'prop-types';
 
 const DiaryPage = () => {
   const [products, setProducts] = useState([]);
   const [date, setDate] = useState('');
   const [currentDayId, setCurrentDayId] = useState('');
+  const [summaryDay, setSummaryDay] = useState({});
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+
   // console.log(products);
   // console.log(currentDayId);
   // console.log(date);
@@ -25,10 +31,11 @@ const DiaryPage = () => {
       return;
     }
     getDayProducts({ date: date }).then(res => {
-      // console.log(res);
+      console.log(res);
       const newDayId = res.id;
       const newEatenProducts = res.eatenProducts;
       // console.log(newDayId);
+      setSummaryDay(res.daySummary ?? { ...res, date: date });
 
       setCurrentDayId(newDayId ?? '');
       setProducts(newEatenProducts ?? []);
@@ -57,8 +64,10 @@ const DiaryPage = () => {
       if (res.newDay) {
         setCurrentDayId(res.newDay.id);
         setProducts(prev => [...prev, ...[res.eatenProduct]]);
+        setSummaryDay(res.newSummary);
       } else {
         setProducts(res.day.eatenProducts);
+        setSummaryDay(res.daySummary);
       }
 
       // const new = [res.eatenProduct];
@@ -90,27 +99,36 @@ const DiaryPage = () => {
     getDayProducts({ date: date }).then(res => {
       const newEatenProducts = res.eatenProducts;
       setProducts(newEatenProducts ?? []);
+      setSummaryDay(res.daySummary);
     });
   };
+
   return (
-    <ContainerLayout>
-      <div>
-        <DiaryDateСalendar onDateChange={handleDateChange} />
-        <DairyAddProductForm onSubmitting={handelSubmitPost} />
-        {products.length === 0 ? (
-          <MessageStyled>
-            There are no products on the selected date
-          </MessageStyled>
-        ) : (
-          <DairyProductList
-            poducts={products}
-            onDeleteProduct={handleDelete}
-            dayId={currentDayId}
-          />
-        )}
-        <RightSideBar />
+    <StyledContainer>
+      <div style={{ display: 'flex' }}>
+        <div>
+          <DiaryDateСalendar onDateChange={handleDateChange} />
+          <DairyAddProductForm onSubmitting={handelSubmitPost} />
+          {products.length === 0 ? (
+            <MessageStyled>
+              There are no products on the selected date
+            </MessageStyled>
+          ) : (
+            <DairyProductList
+              poducts={products}
+              onDeleteProduct={handleDelete}
+              dayId={currentDayId}
+            />
+          )}
+        </div>
+        <div>
+          {isLoggedIn && (
+            <UserMenu styles={{ xs: 'none', md: 'none', lg: 'flex' }} />
+          )}
+          <RightSideBar summaryDayInfo={summaryDay} />
+        </div>
       </div>
-    </ContainerLayout>
+    </StyledContainer>
   );
 };
 
