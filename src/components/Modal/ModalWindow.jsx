@@ -5,7 +5,6 @@ import { BoxStyled, StyledItem } from './ModalWindow.styled';
 import { postDailyRate } from 'services/api/base_api';
 import { useEffect } from 'react';
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
@@ -165,31 +164,6 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
               />
             </StyledItem>
           </ol>
-          {/* <List
-            component="ol"
-            sx={{
-              minHeight: '112px',
-              mb: '40px',
-              p: '0',
-            }}
-          >
-            {data?.notAllowedProducts?.slice(0, 4).map(item => (
-              <ListItem
-                disablePadding
-                key={uuidv4()}
-                sx={{
-                  mb: { xs: '14px' },
-                }}
-              >
-                <ListItemText
-                  primary={item}
-                  sx={{
-                    color: '#9B9FAA',
-                  }}
-                />
-              </ListItem>
-            ))}
-          </List> */}
         </Box>
         <Link
           component="button"
