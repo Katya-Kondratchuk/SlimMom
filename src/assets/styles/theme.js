@@ -43,7 +43,6 @@ export const theme = createTheme({
       lineHeight: 1.2,
       // letter-spacing: 0.04em;
       color: '#212121',
-      marginBottom: 20,
     },
   },
   breakpoints: {
@@ -51,7 +50,7 @@ export const theme = createTheme({
       xs: 0,
       sm: 320,
       md: 768,
-      lg: 1200,
+      lg: 1280,
     },
   },
 });
