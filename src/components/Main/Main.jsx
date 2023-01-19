@@ -24,11 +24,11 @@ const localInitValues = JSON.parse(localStorage?.getItem('item'));
 // console.log(localInitValues);
 
 const initialValues = {
-  height: localInitValues.height || '',
-  age: localInitValues.age || '',
-  weight: localInitValues.weight || '',
-  desiredWeight: localInitValues.desiredWeight || '',
-  bloodType: localInitValues.bloodType || '',
+  height: localInitValues?.height || '',
+  age: localInitValues?.age || '',
+  weight: localInitValues?.weight || '',
+  desiredWeight: localInitValues?.desiredWeight || '',
+  bloodType: localInitValues?.bloodType || '',
 };
 
 const schema = yup.object().shape({

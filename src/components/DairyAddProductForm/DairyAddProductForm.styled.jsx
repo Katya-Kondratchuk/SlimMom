@@ -29,3 +29,24 @@ export const FieldStyled = styled(TextField)`
     }
   }
 `;
+export const FormStyled = styled.form`
+  align-items: center;
+  display: flex;
+  position: relative;
+
+  ::after {
+    left: 0;
+    bottom: -345px;
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    height: 50px;
+    background: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 23%) 0%,
+      #ffffff 42.19%
+    );
+  }
+`;
