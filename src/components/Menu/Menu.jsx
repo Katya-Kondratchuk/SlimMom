@@ -1,28 +1,27 @@
-import { Menu } from '@mui/material';
+import { MenuStyled } from './Menu.styled';
 
-export default function ModalMenu({ anchorEl, onClose, open, children }) {
+export default function ModalMenu({
+  anchorEl,
+  onClose,
+  onClick,
+  open,
+  children,
+}) {
   return (
-    <Menu
+    <MenuStyled
       id="basic-menu"
       anchorEl={anchorEl}
       open={open}
-      onClick={onClose}
       onClose={onClose}
       MenuListProps={{
         'aria-labelledby': 'basic-button',
       }}
       sx={{
-        maxHeight: '100%',
-        minHeight: '90%',
-        minWidth: '100vw',
-        top: '60px',
-        left: 0,
-        marginTop: '80px',
-        marginLeft: '16px',
+        top: '65px',
         backgroundColor: '#264061',
       }}
     >
       {children}
-    </Menu>
+    </MenuStyled>
   );
 }

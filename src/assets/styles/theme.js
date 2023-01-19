@@ -53,4 +53,16 @@ export const theme = createTheme({
       lg: 1280,
     },
   },
+  components: {
+    MuiMenu: {
+      styleOverrides: {
+        paper: { top: '10%', left: '25%', backgroundColor: 'red' },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        rounded: { top: '10%', left: '25%', backgroundColor: 'red' },
+      },
+    },
+  },
 });
