@@ -3,11 +3,16 @@ import moment from 'moment';
 import { Box } from '@mui/system';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HeadingStyled } from './DiaryDateСalendar.styled';
 
 export default function DiaryDateСalendar({ onDateChange }) {
   const [value, setValue] = useState(moment(new Date()));
+
+  useEffect(() => {
+    onDateChange(value);
+  }, [onDateChange, value]);
+
   // console.log(value.toString());
   // console.log(value);
   //   console.log(new Date(value).toLocaleDateString());
@@ -31,7 +36,6 @@ export default function DiaryDateСalendar({ onDateChange }) {
         value={value}
         onChange={newValue => {
           setValue(newValue);
-          onDateChange(newValue);
         }}
         renderInput={({ inputRef, InputProps }) => (
           <Box sx={{ display: 'flex', alignItems: 'baseline' }}>

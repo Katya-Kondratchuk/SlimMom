@@ -34,24 +34,23 @@ export const theme = createTheme({
       color: '#264061',
       marginBottom: 44,
     },
-    // subtitle1: {},
-    // h4: {
-    //   fontFamily: 'Verdana',
-    //   fontStyle: 'normal',
-    //   fontWeight: 700,
-    //   fontSize: 14,
-    //   lineHeight: 1.2,
-    //   // letter-spacing: 0.04em;
-    //   color: '#212121',
-    //   marginBottom: 20,
-    // },
+    subtitle1: {},
+    h4: {
+      fontFamily: 'Verdana',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      fontSize: 14,
+      lineHeight: 1.2,
+      // letter-spacing: 0.04em;
+      color: '#212121',
+    },
   },
   breakpoints: {
     values: {
       xs: 0,
       sm: 320,
       md: 768,
-      lg: 1200,
+      lg: 1280,
     },
   },
 });

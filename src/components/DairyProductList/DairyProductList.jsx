@@ -2,17 +2,19 @@ import DairyProdactItem from 'components/DairyProdactItem/DairyProdactItem';
 import { ListStyled } from './DairyProductList.styled';
 // import PropTypes from 'prop-types';
 
-export default function DairyProductList({ poducts, onDeleteContact }) {
+export default function DairyProductList({ poducts, onDeleteProduct }) {
   return (
     <ListStyled>
-      {poducts.map(({ id, weight, title, calories }) => {
+      {poducts.map(({ id, weight, title, kcal, dayId, daySummary }) => {
         return (
           <DairyProdactItem
             key={id}
-            name={title.ru}
+            name={title}
             grams={weight}
-            kcal={calories}
-            deleteContact={event => onDeleteContact(id, event)}
+            kcal={kcal.toFixed(0)}
+            deleteProduct={event =>
+              onDeleteProduct({ dayId: dayId, eatenProductId: id })
+            }
           />
         );
       })}

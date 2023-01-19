@@ -37,3 +37,39 @@ export const getProducts = async value => {
     };
   }
 };
+// Post Dairy Product
+export const postProduct = async value => {
+  try {
+    const response = await axios.post('/day', value);
+    return response.data;
+  } catch (error) {
+    return {
+      error,
+    };
+  }
+};
+// Delete Dairy Product
+export const deleteProduct = async value => {
+  console.log(value);
+  try {
+    const response = await axios.delete('/day', {
+      data: value,
+    });
+    return response.data;
+  } catch (error) {
+    return {
+      error,
+    };
+  }
+};
+// Delete Dairy Product
+export const getDayProducts = async value => {
+  try {
+    const response = await axios.post('/day/info', value);
+    return response.data;
+  } catch (error) {
+    return {
+      error,
+    };
+  }
+};
