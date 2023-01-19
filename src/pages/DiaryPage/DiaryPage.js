@@ -1,139 +1,82 @@
-// import ContainerLayout from 'components/Container/Container';
+import ContainerLayout from 'components/Container/Container';
 import DairyAddProductForm from 'components/DairyAddProductForm/DairyAddProductForm';
 import DairyProductList from 'components/DairyProductList/DairyProductList';
 import RightSideBar from 'components/RightSideBar/RightSideBar';
 import DiaryDateСalendar from 'components/DiaryDateСalendar/DiaryDateСalendar';
 import { useState } from 'react';
+import {
+  deleteProduct,
+  getDayProducts,
+  postProduct,
+} from 'services/api/base_api';
+// import { object } from 'prop-types';
 
 const DiaryPage = () => {
-  const [products, setProducts] = useState(initial);
+  const [products, setProducts] = useState([]);
+  const [date, setDate] = useState('');
+  console.log(products);
 
   const handleDateChange = date => {
     // console.log(date);
     const backendDate = new Date(date).toISOString().split('T')[0];
-    console.log(backendDate);
+    setDate(backendDate);
+    // console.log(backendDate);
   };
 
-  const handelSubmit = e => {
-    e.preventDefault();
-    const productName = e.target.elements.product.value.trim();
-    const productGrams = e.target.elements.grams.value.trim();
+  const handelSubmit = object => {
+    // console.log(object);
 
-    const newProduct = [
-      {
-        id: new Date(),
-        title: { ru: productName },
-        weight: productGrams,
-        calories: 999,
-      },
-    ];
-    console.log(newProduct);
-    setProducts(prevProducts => [...prevProducts, ...newProduct]);
-    e.target.reset();
+    const newProduct = {
+      date: date,
+      productId: object.id,
+      weight: +object.weight,
+    };
+    // console.log(newProduct);
+    postProduct(newProduct).then(res => {
+      // const new = [res.eatenProduct];
+      setProducts(prevProducts => [
+        ...prevProducts,
+        ...[
+          {
+            ...(res?.day || res?.newDay),
+            ...res.eatenProduct,
+            dayId: res.day?.id || res.newDay?.id,
+          },
+        ],
+      ]);
+
+      console.log(res);
+    });
+    //     {
+    //   "date": "2020-12-31",
+    //   "productId": "5d51694802b2373622ff552c",
+    //   "weight": 100
+    // }
+    // console.log(newProduct);
+    // setProducts(prevProducts => [...prevProducts, ...newProduct]);
+  };
+
+  const handleDelete = object => {
+    console.log(object);
+    deleteProduct(object).then(res => {
+      console.log(res);
+    });
+    getDayProducts(date).then();
   };
   return (
-    <div>
+    <ContainerLayout>
       <div>
         <DiaryDateСalendar onDateChange={handleDateChange} />
         <DairyAddProductForm onSubmitting={handelSubmit} />
-        <DairyProductList poducts={products} />
+        {products.length === 0 ? (
+          'нету нечего'
+        ) : (
+          <DairyProductList poducts={products} onDeleteProduct={handleDelete} />
+        )}
         <RightSideBar />
       </div>
-    </div>
+    </ContainerLayout>
   );
 };
 
 export default DiaryPage;
-
-const initial = [
-  {
-    id: 1,
-    weight: 100,
-    title: {
-      ru: 'Меланж яичный',
-      ua: 'Меланж яєчний',
-    },
-    calories: 157,
-  },
-  {
-    id: 12,
-    weight: 100,
-    title: {
-      ru: 'Мясо',
-      ua: 'Мясо',
-    },
-    calories: 157,
-  },
-  {
-    id: 11,
-    weight: 100,
-    title: {
-      ru: 'Курица',
-      ua: 'Курица',
-    },
-    calories: 157,
-  },
-  {
-    id: 31,
-    weight: 100,
-    title: {
-      ru: 'Мармелад',
-      ua: 'Мармелад',
-    },
-    calories: 157,
-  },
-  {
-    id: 71,
-    weight: 100,
-    title: {
-      ru: 'Шоколад',
-      ua: 'Шоколад',
-    },
-    calories: 17,
-  },
-  {
-    id: 3231,
-    weight: 100,
-    title: {
-      ru: 'Гречка',
-      ua: 'Гречка',
-    },
-    calories: 197,
-  },
-  {
-    id: 19,
-    weight: 100,
-    title: {
-      ru: 'Картошка фри',
-      ua: 'Картошка фри',
-    },
-    calories: 135,
-  },
-  {
-    id: 331,
-    weight: 100,
-    title: {
-      ru: 'Шашлик',
-      ua: 'Шашлик',
-    },
-    calories: 157,
-  },
-  {
-    id: 17,
-    weight: 100,
-    title: {
-      ru: 'Хватит жрать',
-      ua: 'Хватит жрать',
-    },
-    calories: 997,
-  },
-  {
-    id: 3321,
-    weight: 100,
-    title: {
-      ru: 'Устал',
-      ua: 'Устал',
-    },
-    calories: 888,
-  },
-];

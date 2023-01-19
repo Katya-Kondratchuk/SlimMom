@@ -19,8 +19,8 @@ export const FieldStyled = styled(TextField)`
     margin: 0 24px;
     width: 240px;
 
-    .MuiInputBase-root.Mui-focused {
+    /* .MuiInputBase-root.Mui-focused {
       background-color: #1acebf26;
-    }
+    } */
   }
 `;
