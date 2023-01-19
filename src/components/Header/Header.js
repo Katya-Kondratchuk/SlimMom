@@ -111,7 +111,9 @@ const Header = () => {
             )}
           </Stack>
           <Stack direction={'row'} spacing={3}>
-            {isLoggedIn && <UserMenu styles={{ xs: 'none', md: 'flex' }} />}
+            {isLoggedIn && (
+              <UserMenu styles={{ xs: 'none', md: 'flex', lg: 'none' }} />
+            )}
             {isLoggedIn && (
               <>
                 <IconButton
