@@ -29,7 +29,7 @@ export function RightSideBar({ summaryDayInfo }) {
         >
           <ListItem disableGutters>
             <ListItemText
-              primary={`Left ${kcalLeft || data.dailyRate - kcalConsumed}`}
+              primary={`Left ${kcalLeft || data.dailyRate - kcalConsumed || 0}`}
             />
           </ListItem>
           <ListItem disableGutters>
@@ -37,7 +37,7 @@ export function RightSideBar({ summaryDayInfo }) {
           </ListItem>
           <ListItem disableGutters>
             <ListItemText
-              primary={`Daily rate ${dailyRate || data.dailyRate}`}
+              primary={`Daily rate ${dailyRate || data.dailyRate || 0}`}
             />
           </ListItem>
           <ListItem disableGutters>
