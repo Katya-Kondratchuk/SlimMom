@@ -44,12 +44,14 @@ export const ButtonStyled = styled(Button)({
   textTransform: 'none',
   paddingTop: '13px',
   paddingBottom: '13px',
+  cursor: 'pointer',
 
   '&:hover, &:focus': {
     backgroundColor: '#f28f1d',
   },
   '&:disabled': {
-    backgroundColor: '#f28f1d',
+    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+    border: '1px solid rgba(0, 0, 0, 0.12)',
   },
 });
 
@@ -72,6 +74,7 @@ export const TitleStyled = styled(Title)`
 
 export const AuthWrapper = styled(Box)`
   padding-top: 40px;
+  padding-bottom: 40px;
 
   @media screen and (min-width: 768px) {
     padding-top: 160px;
