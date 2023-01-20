@@ -14,22 +14,11 @@ import { FormHelperText, Input, Typography, Box } from '@mui/material';
 import ModalWindow from 'components/Modal/ModalWindow.jsx';
 import {
   selectAuthIsLoggedIn,
+  selectAuthUserData,
   selectAuthUserId,
 } from 'redux/auth/authSelectors.js';
 import { useDispatch, useSelector } from 'react-redux';
-// import { postDailyRateWithId } from 'services/api/base_api.js';
 import { dailyRateOperation } from 'redux/daily/dailyOperation.js';
-
-const localInitValues = JSON.parse(localStorage?.getItem('item'));
-// console.log(localInitValues);
-
-const initialValues = {
-  height: localInitValues?.height || '',
-  age: localInitValues?.age || '',
-  weight: localInitValues?.weight || '',
-  desiredWeight: localInitValues?.desiredWeight || '',
-  bloodType: localInitValues?.bloodType || '',
-};
 
 const schema = yup.object().shape({
   height: yup
@@ -89,6 +78,18 @@ const Home = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const userInitValues = useSelector(selectAuthUserData);
+  const localInitValues = JSON.parse(localStorage?.getItem('item'));
+  const initialValues = {
+    height: userInitValues?.height || localInitValues?.height || '',
+    age: userInitValues?.age || localInitValues?.age || '',
+    weight: userInitValues?.weight || localInitValues?.weight || '',
+    desiredWeight:
+      userInitValues?.desiredWeight || localInitValues?.desiredWeight || '',
+    bloodType: userInitValues?.bloodType || localInitValues?.bloodType || '',
+  };
+
+  console.log('Hi!');
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
