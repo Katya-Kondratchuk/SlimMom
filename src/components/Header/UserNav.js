@@ -1,5 +1,5 @@
 import { MenuItem } from '@mui/material';
-import { NavLinkMenu, NavLinkStyled, Wrapper } from './AuthNav.styled';
+import { NavLinkMenu } from './AuthNav.styled';
 
 const UserNav = ({ handleClose, changeStyle }) => {
   return (

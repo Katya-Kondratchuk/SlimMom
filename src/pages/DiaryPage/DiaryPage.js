@@ -106,7 +106,7 @@ const DiaryPage = () => {
   return (
     <StyledContainer>
       <div style={{ display: 'flex' }}>
-        {/* <div style={{ marginRight: '136px' }}>
+        <div style={{ marginRight: '136px' }}>
           <DiaryDateСalendar onDateChange={handleDateChange} />
           <DairyAddProductForm onSubmitting={handelSubmitPost} />
           {products.length === 0 ? (
@@ -126,7 +126,7 @@ const DiaryPage = () => {
             <UserMenu styles={{ xs: 'none', md: 'none', lg: 'flex' }} />
           )}
           <RightSideBar summaryDayInfo={summaryDay} />
-        </div> */}
+        </div>
       </div>
     </StyledContainer>
   );
