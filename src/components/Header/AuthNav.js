@@ -1,14 +1,14 @@
 import { Typography } from '@mui/material';
-import { NavLinkStyled } from './AuthNav.styled';
+import { NavLinkAuth } from './AuthNav.styled';
 
 const AuthNav = () => {
   return (
     <>
       <Typography variant="h6" component="div" sx={{ mr: 2 }}>
-        <NavLinkStyled to="/login">LOG IN</NavLinkStyled>
+        <NavLinkAuth to="/login">LOG IN</NavLinkAuth>
       </Typography>
       <Typography variant="h6" component="div">
-        <NavLinkStyled to="/registration">REGISTRATION</NavLinkStyled>
+        <NavLinkAuth to="/registration">REGISTRATION</NavLinkAuth>
       </Typography>
     </>
   );

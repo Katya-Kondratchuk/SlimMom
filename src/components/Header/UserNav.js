@@ -1,7 +1,7 @@
 import { MenuItem } from '@mui/material';
-import { NavLinkStyled } from './AuthNav.styled';
+import { NavLinkMenu, NavLinkStyled, Wrapper } from './AuthNav.styled';
 
-const UserNav = ({ handleClose }) => {
+const UserNav = ({ handleClose, changeStyle }) => {
   return (
     <>
       <MenuItem
@@ -14,13 +14,15 @@ const UserNav = ({ handleClose }) => {
           textTransform: 'uppercase',
         }}
       >
-        <NavLinkStyled
-          style={{ textDecoration: 'none' }}
+        <NavLinkMenu
+          style={{
+            textDecoration: 'none',
+          }}
           to="/diary"
           onClick={handleClose}
         >
           Diary
-        </NavLinkStyled>
+        </NavLinkMenu>
       </MenuItem>
       <MenuItem
         sx={{
@@ -32,16 +34,17 @@ const UserNav = ({ handleClose }) => {
           textTransform: 'uppercase',
         }}
       >
-        <NavLinkStyled
-          style={{ textDecoration: 'none' }}
+        <NavLinkMenu
+          style={{
+            textDecoration: 'none',
+          }}
           to="/calculator"
           onClick={handleClose}
         >
           Calculator
-        </NavLinkStyled>
+        </NavLinkMenu>
       </MenuItem>
     </>
-    // </Box>
   );
 };
 
