@@ -1,6 +1,10 @@
 import { Autocomplete, InputAdornment, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { FabStyled, FieldStyled } from './DairyAddProductForm.styled';
+import {
+  FabStyled,
+  FieldStyled,
+  FormStyled,
+} from './DairyAddProductForm.styled';
 import { getProducts } from 'services/api/base_api';
 import { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
@@ -78,10 +82,7 @@ export default function DairyAddProductForm({ onSubmitting }) {
   };
 
   return (
-    <form
-      style={{ alignItems: 'center', display: 'flex' }}
-      onSubmit={hendleSubmit}
-    >
+    <FormStyled onSubmit={hendleSubmit}>
       <Autocomplete
         sx={{ display: 'inline-block' }}
         disablePortal
@@ -136,7 +137,7 @@ export default function DairyAddProductForm({ onSubmitting }) {
       <FabStyled aria-label="add" type="submit">
         <AddIcon />
       </FabStyled>
-    </form>
+    </FormStyled>
   );
 }
 
