@@ -1,12 +1,13 @@
 import Home from 'components/Main/Main';
+import { StyledContainer } from 'components/Main/Main.styled';
 import { RightSideBar } from 'components/RightSideBar/RightSideBar';
 
 const CalculatorPage = () => {
   return (
-    <div style={{ display: 'flex' }}>
+    <StyledContainer style={{ display: 'flex' }}>
       <Home />
       <RightSideBar />
-    </div>
+    </StyledContainer>
   );
 };
 

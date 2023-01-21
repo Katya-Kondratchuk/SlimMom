@@ -10,14 +10,15 @@ export function RightSideBar({ summaryDayInfo }) {
   const products = data.notAllowedProducts;
   const backendDate = new Date().toISOString().split('T')[0];
   const todaysData = data?.summaries?.find(({ date }) => date === backendDate);
-  console.log(summaryDayInfo);
-  console.log(todaysData);
+  console.log(products);
+  console.log(data);
   const {
     kcalConsumed = 0,
     kcalLeft = 0,
     percentsOfDailyRate = 0,
     dailyRate = 0,
     date = backendDate,
+    id = 0,
   } = summaryDayInfo || todaysData || {};
 
   return (
@@ -27,30 +28,58 @@ export function RightSideBar({ summaryDayInfo }) {
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           subheader={<ListSubheader>Summary for {date}</ListSubheader>}
         >
-          <ListItem disableGutters>
+          <ListItem
+            disableGutters
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <ListItemText primary="Left" />
             <ListItemText
-              primary={`Left ${kcalLeft || data.dailyRate - kcalConsumed || 0}`}
+              primary={` ${
+                kcalLeft || data.dailyRate - kcalConsumed || 0 + '00 kcal'
+              }`}
             />
           </ListItem>
-          <ListItem disableGutters>
-            <ListItemText primary={`Consumed ${kcalConsumed}`} />
-          </ListItem>
-          <ListItem disableGutters>
+          <ListItem
+            disableGutters
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <ListItemText primary="Consumed" />
             <ListItemText
-              primary={`Daily rate ${dailyRate || data.dailyRate || 0}`}
+              sx={{ textAlight: 'end' }}
+              primary={`${kcalConsumed || '000 kcal'}`}
             />
           </ListItem>
-          <ListItem disableGutters>
+          <ListItem
+            disableGutters
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <ListItemText primary="Daily rate" />
             <ListItemText
-              primary={`n% of normal ${percentsOfDailyRate.toFixed(0)} %`}
+              sx={{ textAlight: 'end' }}
+              primary={` ${dailyRate || data.dailyRate || 0 + '00 kcal'}`}
+            />
+          </ListItem>
+          <ListItem
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+            disableGutters
+          >
+            <ListItemText primary="n% of normal" />
+            <ListItemText
+              sx={{ textAlight: 'end' }}
+              primary={`${percentsOfDailyRate.toFixed(0) + '%' || '000kcal'}`}
             />
           </ListItem>
         </List>
         <List
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-          subheader={<ListSubheader>`Food not recommended`</ListSubheader>}
+          subheader={<ListSubheader> Food not recommended</ListSubheader>}
         >
-          <ListItem disableGutters>
+          {/* {products.map((item, id) => (
+              <ListItem disableGutters key={id}>
+            <ListItemText primary={`${arrayRandElement(products) || ''}`} />
+          </ListItem>
+        ))} */}
+          {/* <ListItem disableGutters>
             <ListItemText primary={`${arrayRandElement(products) || ''}`} />
           </ListItem>
           <ListItem disableGutters>
@@ -61,7 +90,7 @@ export function RightSideBar({ summaryDayInfo }) {
           </ListItem>
           <ListItem disableGutters>
             <ListItemText primary={`${arrayRandElement(products) || ''}`} />
-          </ListItem>
+          </ListItem> */}
         </List>
       </SideBarRight>
     </>
