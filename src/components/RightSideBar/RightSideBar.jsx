@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import UserMenu from 'components/Header/UserMenu';
 import { SideBarRight } from './RightSideBar.styled';
 import { selectAuthIsLoggedIn } from '../../redux/auth/authSelectors';
-import { ListStyled } from '../DairyProductList/DairyProductList.styled';
+import { ListStyled } from 'components/Dairy/DairyProductList/DairyProductList.styled';
 
 
 
