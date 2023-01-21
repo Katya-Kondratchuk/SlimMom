@@ -40,6 +40,7 @@ export function RightSideBar({ summaryDayInfo }) {
     <SideBarRight styled={{ marginTop: '292px' }}>
       {isLoggedIn && (
         <UserMenu styles={{ xs: 'none', md: 'none', lg: 'flex' }} />
+        //16.131
       )}
       <Stack direction={{ xs: 'column', md: 'row', lg: 'column' }}>
         <Typography
@@ -87,7 +88,7 @@ export function RightSideBar({ summaryDayInfo }) {
             <ListItemText primary="Consumed" />
             <ListItemText
               sx={{ textAlign: 'end' }}
-              primary={`${kcalConsumed || '000 kcal'}`}
+              primary={`${kcalConsumed || '000 '}kcal`}
             />
           </ListItem>
           <ListItem
@@ -97,7 +98,7 @@ export function RightSideBar({ summaryDayInfo }) {
             <ListItemText primary="Daily rate" />
             <ListItemText
               sx={{ textAlign: 'end' }}
-              primary={` ${dailyRate || data.dailyRate || 0 + '00 kcal'}`}
+              primary={` ${dailyRate || data.dailyRate || 0 + '00 '}kcal`}
             />
           </ListItem>
           <ListItem
@@ -107,7 +108,7 @@ export function RightSideBar({ summaryDayInfo }) {
             <ListItemText primary="n% of normal" />
             <ListItemText
               sx={{ textAlign: 'end' }}
-              primary={`${percentsOfDailyRate.toFixed(0) + '%' || '000kcal'}`}
+              primary={`${percentsOfDailyRate.toFixed(0) + '%' || '000'}kcal`}
             />
           </ListItem>
         </List>
