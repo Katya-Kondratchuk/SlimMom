@@ -1,13 +1,13 @@
+import { Stack } from '@mui/material';
 import Home from 'components/Main/Main';
 import { RightSideBar } from 'components/RightSideBar/RightSideBar';
 
 const CalculatorPage = () => {
   return (
-    <div style={{ display: 'flex' }}>
-      <Home />
+    <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }}>
+      <Home> </Home>
       <RightSideBar />
-    </div>
+    </Stack>
   );
 };
-
 export default CalculatorPage;
