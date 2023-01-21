@@ -13,6 +13,10 @@ export const ColorButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     backgroundColor: '#FFFFFF',
     color: '#FC842D',
+    '&:disabled': {
+      backgroundColor: 'rgba(0, 0, 0, 0.12)',
+      border: '1px solid rgba(0, 0, 0, 0.12)',
+    },
   },
 }));
 export const ColorRadioBtn = styled(Radio)(({ theme }) => ({

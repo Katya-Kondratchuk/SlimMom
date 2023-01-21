@@ -118,9 +118,12 @@ const Home = ({ onSubmit }) => {
       component="div"
       sx={{
         p: {
-          xs: '32px 0 42px 0',
-          md: '100px 0 20px 0',
-          lg: '293px 0 100px 0 ',
+          xs: '32px 0 41px 0',
+          md: '100px 0 48px 0',
+          lg: '293px 0 111px 0 ',
+        },
+        mr: {
+          lg: '139px',
         },
       }}
     >
@@ -197,7 +200,7 @@ const Home = ({ onSubmit }) => {
                 disableAnimation
                 shrink
                 error={formik.touched.age && Boolean(formik.errors.age)}
-                sx={{ mt: { xs: '32px', md: '20px' } }}
+                sx={{ mt: { xs: '12px', md: '20px' } }}
               >
                 Age*
               </StyledInputLable>
@@ -228,7 +231,7 @@ const Home = ({ onSubmit }) => {
                 disableAnimation
                 shrink
                 htmlFor="weight"
-                sx={{ mt: { xs: '32px', md: '20px' } }}
+                sx={{ mt: { xs: '12px', md: '20px' } }}
               >
                 Current Weight*
               </StyledInputLable>
@@ -260,7 +263,7 @@ const Home = ({ onSubmit }) => {
                   formik.touched.desiredWeight &&
                   Boolean(formik.errors.desiredWeight)
                 }
-                sx={{ mt: { xs: '32px', md: '0' } }}
+                sx={{ mt: { xs: '12px', md: '0' } }}
                 disableAnimation
                 shrink
                 htmlFor="desiredWeight"
@@ -301,7 +304,7 @@ const Home = ({ onSubmit }) => {
                 error={
                   formik.touched.bloodType && Boolean(formik.errors.bloodType)
                 }
-                sx={{ mt: { xs: '32px', md: '20px' } }}
+                sx={{ mt: { xs: '12px', md: '20px' } }}
                 disableAnimation
                 shrink
                 htmlFor="bloodType"
@@ -374,7 +377,7 @@ const Home = ({ onSubmit }) => {
             sx={{
               m: {
                 xs: '20px auto 0 auto',
-                md: '40px auto 0 32px',
+                md: '40px auto 0 0px',
                 lg: '40px auto 0 323px',
               },
             }}
