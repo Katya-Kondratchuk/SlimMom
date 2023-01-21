@@ -44,12 +44,14 @@ export const ButtonStyled = styled(Button)({
   textTransform: 'none',
   paddingTop: '13px',
   paddingBottom: '13px',
+  cursor: 'pointer',
 
   '&:hover, &:focus': {
     backgroundColor: '#f28f1d',
   },
   '&:disabled': {
-    backgroundColor: '#f28f1d',
+    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+    border: '1px solid rgba(0, 0, 0, 0.12)',
   },
 });
 
@@ -71,10 +73,14 @@ export const TitleStyled = styled(Title)`
 `;
 
 export const AuthWrapper = styled(Box)`
-  padding-top: 40px;
+  padding-top: 120px;
+  padding-bottom: 40px;
 
   @media screen and (min-width: 768px) {
-    padding-top: 160px;
+    padding-top: 240px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 306px;
   }
 `;
 
@@ -97,7 +103,7 @@ export const BgWrapper = styled(Box)`
     }
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     top: 0;
     left: 100px;
     background-image: url(${BgImgAuthDesk1x});
