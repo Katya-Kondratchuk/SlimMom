@@ -1,7 +1,7 @@
 // import { TextField, Typography } from '@mui/material';
 import moment from 'moment';
 import { Box } from '@mui/system';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { useEffect, useState } from 'react';
 import { HeadingStyled } from './DiaryDateСalendar.styled';
@@ -31,14 +31,22 @@ export default function DiaryDateСalendar({ onDateChange }) {
     // >
 
     <LocalizationProvider dateAdapter={AdapterMoment}>
-      <DatePicker
+      <DesktopDatePicker
         label="Basic example"
         value={value}
         onChange={newValue => {
           setValue(newValue);
         }}
         renderInput={({ inputRef, InputProps }) => (
-          <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              marginTop: {
+                xs: '40px',
+              },
+            }}
+          >
             {/* <input ref={inputRef} {...inputProps} /> */}
             <HeadingStyled ref={inputRef}>{viewDate}</HeadingStyled>
             {InputProps?.endAdornment}
