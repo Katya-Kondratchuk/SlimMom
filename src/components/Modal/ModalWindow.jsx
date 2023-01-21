@@ -20,10 +20,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Box } from '@mui/system';
 import { arrayRandElement } from 'components/RightSideBar/RightSideBar';
-import { ListStyled } from '../DairyProductList/DairyProductList.styled';
 import Filter from './Filter';
 import LoadingSpiner from '../AuthForm/LoadingSpiner/LoadingSpiner';
 import { useTheme } from '@mui/material/styles';
+import { ListStyled } from 'components/Dairy/DairyProductList/DairyProductList.styled';
 const ModalWindow = ({ values, open, onClose, setOpen }) => {
   const [data, setData] = useState({});
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
