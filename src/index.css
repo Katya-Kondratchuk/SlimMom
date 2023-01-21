@@ -6,3 +6,8 @@ body {
   font-style: normal;
   color: #212121;
 }
+/* .MuiBackdrop-root.MuiModal-backdrop {
+  display: none;
+  @media screen and (max-width: 767px) {
+  }
+} */

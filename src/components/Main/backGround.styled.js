@@ -5,19 +5,19 @@ import deskTopMainBg2x from '../../assets/images/backroundImage/desktopMainBg@2x
 import tabletMainBg2x from '../../assets/images/backroundImage/tabletMainBg@2x-min.png';
 
 export const BgImg = styled.div`
-  @media screen and (min-width: 768px) {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: -1;
-
-    width: 768px;
-    height: 1024px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 668px;
+    height: 834px;
 
     background-image: url(${tabletMainBg});
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-size: contain;
+
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -27,8 +27,8 @@ export const BgImg = styled.div`
 
   @media screen and (min-width: 1280px) {
     background-image: url(${desktopMainBg});
-    width: 1280px;
-    height: 850px;
+    width: 100vw;
+    height: 100vh;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {

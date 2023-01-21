@@ -42,11 +42,15 @@ const Header = () => {
           minWidth: '100%',
           backgroundColor: 'transparent',
           boxShadow: { lg: 'none' },
-          paddingTop: { lg: '131px' },
+          // paddingTop: { lg: '131px' },
+          top: '80px',
+          minHeight: '80px',
+          position: { lg: 'absolute' },
         }}
       >
         <Toolbar
           sx={{
+            minHeight: '80px !important',
             justifyContent: {
               xs: 'space-between',
               lg: isLoggedIn ? 'space-between' : 'start',

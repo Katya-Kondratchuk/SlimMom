@@ -2,22 +2,27 @@ import { Box } from '@mui/material';
 import styled from 'styled-components';
 export const StyledItem = styled.li`
   margin-bottom: 14px;
+  & span,
   ::marker {
     color: #9b9faa;
     font-family: 'Verdana';
     font-size: 14px;
     line-height: 1.2;
+    margin-right: 2px;
   }
+  /* ::marker {
+    font-size: 14px;
+  } */
   /* @media screen and (max-width: 767px) {
     
   } */
 `;
 export const BoxStyled = styled(Box)`
   position: absolute;
-  top: 25%;
+  top: 15.4%;
   /* left: 50%; */
   width: 100vw;
-  max-height: 638px;
+  max-height: 656px;
   padding: 40px 20px 119px;
 
   @media screen and (min-width: 768px) {
