@@ -4,10 +4,7 @@ import { RightSideBar } from 'components/RightSideBar/RightSideBar';
 import DiaryDateСalendar from 'components/Dairy/DiaryDateСalendar/DiaryDateСalendar';
 import { useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
-
 import { Box } from '@mui/system';
-import UserMenu from 'components/Header/UserMenu';
 import { MessageStyled } from './DairyProductList/DairyProductList.styled';
 import { StyledContainer } from 'components/Main/Main.styled';
 import {
@@ -15,7 +12,8 @@ import {
   getDayProducts,
   postProduct,
 } from 'services/api/base_api';
-import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
+
+import { Stack } from '@mui/material';
 
 const Dairy = () => {
   const [products, setProducts] = useState([]);
@@ -23,7 +21,6 @@ const Dairy = () => {
   const [currentDayId, setCurrentDayId] = useState('');
   const [summaryDay, setSummaryDay] = useState({});
   const [isHidden, setIsHidden] = useState(false);
-  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
   // console.log(products);
   // console.log(currentDayId);
@@ -112,44 +109,48 @@ const Dairy = () => {
 
   return (
     <StyledContainer>
-      <div style={{ display: 'flex' }}>
-        <div style={{ marginRight: '136px' }}>
-          {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
-
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }}>
           <Box
             sx={{
-              display: {
-                xs: 'flex',
-                md: 'block',
-              },
-              flexDirection: 'column-reverse',
+              margin: { xs: '0 auto', md: '0' },
+              marginRight: { xs: '0px', lg: '136px' },
             }}
-            component="div"
           >
-            <DairyAddProductForm
-              onSubmitting={handelSubmitPost}
-              onHiddenClick={handelHideComponents}
-            />
-            {!isHidden &&
-              (products.length === 0 ? (
-                <MessageStyled>
-                  There are no products on the selected date
-                </MessageStyled>
-              ) : (
-                <DairyProductList
-                  poducts={products}
-                  onDeleteProduct={handleDelete}
-                  dayId={currentDayId}
-                />
-              ))}
+            {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
+
+            <Box
+              sx={{
+                display: {
+                  xs: 'flex',
+                  md: 'block',
+                },
+                flexDirection: 'column-reverse',
+              }}
+              component="div"
+            >
+              <DairyAddProductForm
+                onSubmitting={handelSubmitPost}
+                onHiddenClick={handelHideComponents}
+              />
+              {!isHidden &&
+                (products.length === 0 ? (
+                  <MessageStyled>
+                    There are no products on the selected date
+                  </MessageStyled>
+                ) : (
+                  <DairyProductList
+                    poducts={products}
+                    onDeleteProduct={handleDelete}
+                    dayId={currentDayId}
+                  />
+                ))}
+            </Box>
           </Box>
-        </div>
-        <div>
-          {isLoggedIn && (
-            <UserMenu styles={{ xs: 'none', md: 'none', lg: 'flex' }} />
-          )}
-          <RightSideBar summaryDayInfo={summaryDay} />
-        </div>
+          <div>
+            <RightSideBar summaryDayInfo={summaryDay} />
+          </div>
+        </Stack>
       </div>
     </StyledContainer>
   );
