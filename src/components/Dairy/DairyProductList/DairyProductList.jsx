@@ -1,4 +1,4 @@
-import DairyProdactItem from 'components/DairyProdactItem/DairyProdactItem';
+import DairyProdactItem from 'components/Dairy/DairyProdactItem/DairyProdactItem';
 import { ListStyled } from './DairyProductList.styled';
 // import PropTypes from 'prop-types';
 
