@@ -46,5 +46,6 @@ export const MessageStyled = styled.h2`
     width: 270px;
     margin: 0 auto;
     margin-top: 35px;
+    margin-bottom: 15px;
   }
 `;
