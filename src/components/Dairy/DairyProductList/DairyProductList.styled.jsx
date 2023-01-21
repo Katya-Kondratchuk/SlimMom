@@ -39,4 +39,12 @@ export const MessageStyled = styled.h2`
   margin-left: 40px;
   margin-top: 55px;
   width: 550px;
+  @media screen and (max-width: 767px) {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.1;
+    width: 270px;
+    margin: 0 auto;
+    margin-top: 35px;
+  }
 `;
