@@ -5,6 +5,7 @@ import UserMenu from './UserMenu';
 import UserNav from './UserNav';
 import { ReactComponent as Logo } from '../../assets/image/header/logo-svg.svg';
 import { ReactComponent as LogoText } from '../../assets/image/header/Group 18.svg';
+import mainLogo from '../../assets/image/header/logo-desk-png.png';
 import { Link } from 'react-router-dom';
 import {
   AppBar,
@@ -17,6 +18,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import ModalMenu from 'components/Menu/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
@@ -32,9 +34,6 @@ const Header = () => {
     setOpen(false);
   };
 
-  // console.log(open);
-  // console.log(anchorEl);
-
   return (
     <>
       <AppBar
@@ -43,11 +42,15 @@ const Header = () => {
           minWidth: '100%',
           backgroundColor: 'transparent',
           boxShadow: { lg: 'none' },
-          paddingTop: { lg: '131px' },
+          // paddingTop: { lg: '131px' },
+          top: '80px',
+          minHeight: '80px',
+          position: { lg: 'absolute' },
         }}
       >
         <Toolbar
           sx={{
+            minHeight: '80px !important',
             justifyContent: {
               xs: 'space-between',
               lg: isLoggedIn ? 'space-between' : 'start',
@@ -57,7 +60,8 @@ const Header = () => {
           <Stack
             direction="row"
             justifyContent="flex-start"
-            alignItems="center"
+            // alignItems="center"
+            alignItems="baseline"
             spacing={2}
             sx={{
               width: { md: '100%', lg: 'auto' },
@@ -65,16 +69,33 @@ const Header = () => {
             }}
           >
             <Link
-              to="/"
+              to={isLoggedIn ? '/diary' : '/'}
               style={{
                 marginRight: 'auto',
               }}
             >
               <Stack direction={'row'} alignItems="center" spacing={2}>
-                <Logo />
                 <Box
                   sx={{
-                    display: { xs: isLoggedIn ? 'flex' : 'none', md: 'flex' },
+                    display: { xs: 'flex', md: 'flex', lg: 'none' },
+                  }}
+                >
+                  <Logo />
+                </Box>
+                <Box
+                  sx={{
+                    display: { xs: 'none', md: 'none', lg: 'flex' },
+                  }}
+                >
+                  <img src={mainLogo} alt="logo" />
+                </Box>
+                <Box
+                  sx={{
+                    display: {
+                      xs: isLoggedIn ? 'flex' : 'none',
+                      md: 'flex',
+                      lg: 'none',
+                    },
                   }}
                 >
                   <LogoText />
@@ -94,7 +115,11 @@ const Header = () => {
             )}
 
             {isLoggedIn && (
-              <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
+              <Box
+                sx={{
+                  display: { xs: 'none', lg: 'flex' },
+                }}
+              >
                 <Divider
                   orientation="vertical"
                   variant="middle"
@@ -116,26 +141,30 @@ const Header = () => {
             )}
             {isLoggedIn && (
               <>
-                <IconButton
-                  size="large"
-                  color="blue"
-                  aria-label="menu"
-                  sx={{ m: 0, p: 0, display: { sm: 'flex', lg: 'none' } }}
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
-                  onClick={handleClick}
-                >
-                  <MenuIcon />
-                </IconButton>
+                {open ? (
+                  <CloseIcon sx={{ color: 'black' }} />
+                ) : (
+                  <IconButton
+                    size="large"
+                    color="blue"
+                    aria-label="menu"
+                    sx={{ m: 0, p: 0, display: { sm: 'flex', lg: 'none' } }}
+                    id="basic-button"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                )}
                 {open && (
                   <ModalMenu
                     anchorEl={anchorEl}
                     onClose={handleClose}
                     open={open}
                   >
-                    <UserNav handleClose={handleClose}></UserNav>
+                    <UserNav handleClose={handleClose} changeStyle></UserNav>
                   </ModalMenu>
                 )}
               </>

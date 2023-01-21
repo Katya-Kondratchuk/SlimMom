@@ -1,4 +1,3 @@
-// import React from 'react';
 import Modal from '@mui/material/Modal';
 import {
   Divider,
@@ -54,7 +53,6 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
     postDailyRate(values)
       .then(res => setData(res))
       .finally(() => setLoading(false));
-    console.log(postDailyRate(values));
   }, [values]);
 
   const handleCloseBtn = () => setOpen(!open);
