@@ -1,12 +1,6 @@
 import { MenuStyled } from './Menu.styled';
 
-export default function ModalMenu({
-  anchorEl,
-  onClose,
-  onClick,
-  open,
-  children,
-}) {
+export default function ModalMenu({ anchorEl, onClose, open, children }) {
   return (
     <MenuStyled
       id="basic-menu"

@@ -5,7 +5,6 @@ export function arrayRandElement(products = []) {
   const rand = Math.floor(Math.random() * products.length);
   return products[rand];
 }
-// backgroundImage:'url(../images/desktoprightSideBar.png)' backgroundColor:'#F0F1F3',
 export function RightSideBar({ summaryDayInfo }) {
   const data = useSelector(state => state.daily);
   const products = data.notAllowedProducts;
@@ -18,12 +17,8 @@ export function RightSideBar({ summaryDayInfo }) {
     kcalLeft = 0,
     percentsOfDailyRate = 0,
     dailyRate = 0,
-    date = 0,
+    date = backendDate,
   } = summaryDayInfo || todaysData || {};
-
-  // Получаем случайный ключ массива
-  // const rand = () => Math.floor(Math.random() * products.length);
-  // console.log(products[rand]);
 
   return (
     <>
@@ -33,16 +28,22 @@ export function RightSideBar({ summaryDayInfo }) {
           subheader={<ListSubheader>Summary for {date}</ListSubheader>}
         >
           <ListItem disableGutters>
-            <ListItemText primary={`Left ${kcalLeft}`} />
+            <ListItemText
+              primary={`Left ${kcalLeft || data.dailyRate - kcalConsumed || 0}`}
+            />
           </ListItem>
           <ListItem disableGutters>
             <ListItemText primary={`Consumed ${kcalConsumed}`} />
           </ListItem>
           <ListItem disableGutters>
-            <ListItemText primary={`Daily rate ${dailyRate}`} />
+            <ListItemText
+              primary={`Daily rate ${dailyRate || data.dailyRate || 0}`}
+            />
           </ListItem>
           <ListItem disableGutters>
-            <ListItemText primary={`n% of normal ${percentsOfDailyRate}`} />
+            <ListItemText
+              primary={`n% of normal ${percentsOfDailyRate.toFixed(0)} %`}
+            />
           </ListItem>
         </List>
         <List

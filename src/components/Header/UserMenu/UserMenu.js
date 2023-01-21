@@ -32,12 +32,16 @@ const UserMenu = ({ styles }) => {
           textAlign: 'right',
           letterSpacing: '0.04em',
           color: '#212121',
+          fontFamily: 'Verdana',
+          fontStyle: 'normal',
         }}
       >
         {name ? normalizeName(name) : 'User'}
       </p>
       <Button
         sx={{
+          fontFamily: 'Verdana',
+          fontStyle: 'normal',
           border: 'none',
           textTransform: 'capitalize',
           marginLeft: 0,

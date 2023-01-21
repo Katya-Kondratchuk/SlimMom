@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as Api from '../../services/api/base_api';
 
 export const dailyRateOperation = createAsyncThunk(
-  'dailyRateId',
+  'daily/dailyRateId',
 
   async (value, { rejectWithValue }) => {
     const { id, data } = value;
