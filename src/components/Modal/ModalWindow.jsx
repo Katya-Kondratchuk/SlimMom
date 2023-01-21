@@ -89,7 +89,7 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
               hight: '40px',
               position: 'absolute',
               zIndex: 2,
-              top: '-40px',
+              top: '-39px',
               left: 0,
               display: { xs: 'block', md: 'none' },
             }}
@@ -136,7 +136,7 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
           <Box
             component="div"
             sx={{
-              maxWidth: '380px',
+              // maxWidth: '380px',
               m: '0 auto',
             }}
           >
@@ -155,15 +155,13 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
             <ListStyled
               sx={{
                 height: '140px',
-                marginBottom: '30px',
-                marginTop: '10px',
-                marginLeft: '8px',
-                maxWidth: '100%',
+                m: '0 auto 30px',
                 '& .MuiListItem-root': {
                   padding: 0,
                 },
                 '&.MuiList-root': {
-                  marginTop: 0,
+                  marginTop: '15px',
+                  width: { xs: '78vw', md: '370px' },
                 },
               }}
             >

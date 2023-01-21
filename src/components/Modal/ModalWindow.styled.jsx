@@ -19,7 +19,7 @@ export const StyledItem = styled.li`
 `;
 export const BoxStyled = styled(Box)`
   position: absolute;
-  top: 15.4%;
+  top: 14.4%;
   /* left: 50%; */
   width: 100vw;
   max-height: 656px;
