@@ -31,10 +31,9 @@ const Dairy = () => {
       return;
     }
     getDayProducts({ date: date }).then(res => {
-      console.log(res);
       const newDayId = res.id;
       const newEatenProducts = res.eatenProducts;
-      // console.log(newDayId);
+
       setSummaryDay(res.daySummary ?? { ...res, date: date });
 
       setCurrentDayId(newDayId ?? '');
@@ -46,10 +45,8 @@ const Dairy = () => {
     setIsHidden(value);
   };
   const handleDateChange = date => {
-    // console.log(date);
     const backendDate = new Date(date).toISOString().split('T')[0];
     setDate(backendDate);
-    // console.log(backendDate);
   };
 
   const handelSubmitPost = object => {
@@ -108,8 +105,14 @@ const Dairy = () => {
   };
 
   return (
-    <StyledContainer>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <StyledContainer sx={{ width: '100%' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: { xs: '0px', lg: '253px' },
+        }}
+      >
         <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }}>
           <Box
             sx={{
@@ -151,7 +154,7 @@ const Dairy = () => {
             <RightSideBar summaryDayInfo={summaryDay} />
           </div>
         </Stack>
-      </div>
+      </Box>
     </StyledContainer>
   );
 };

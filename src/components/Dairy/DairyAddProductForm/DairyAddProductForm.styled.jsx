@@ -49,11 +49,11 @@ export const FormStyled = styled.form`
   display: flex;
   position: relative;
 
-  /* div.wrapper.afterInvisible {
+  &.afterInvisible {
     ::after {
       display: none;
     }
-  } */
+  }
 
   ::after {
     left: 0;
@@ -71,10 +71,6 @@ export const FormStyled = styled.form`
     );
     @media screen and (max-width: 767px) {
       bottom: 77px;
-    }
-
-    &.afterInvisible::after {
-      display: none;
     }
   }
 
