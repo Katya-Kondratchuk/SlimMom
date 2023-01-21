@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 
 import { Box } from '@mui/system';
 import { MessageStyled } from './DairyProductList/DairyProductList.styled';
-import { StyledContainer } from 'components/Main/Main.styled';
 import {
   deleteProduct,
   getDayProducts,
@@ -31,10 +30,9 @@ const Dairy = () => {
       return;
     }
     getDayProducts({ date: date }).then(res => {
-      console.log(res);
       const newDayId = res.id;
       const newEatenProducts = res.eatenProducts;
-      // console.log(newDayId);
+
       setSummaryDay(res.daySummary ?? { ...res, date: date });
 
       setCurrentDayId(newDayId ?? '');
@@ -46,21 +44,17 @@ const Dairy = () => {
     setIsHidden(value);
   };
   const handleDateChange = date => {
-    // console.log(date);
     const backendDate = new Date(date).toISOString().split('T')[0];
     setDate(backendDate);
-    // console.log(backendDate);
   };
 
   const handelSubmitPost = object => {
-    // console.log(object);
-
     const newProduct = {
       date: date,
       productId: object.id,
       weight: +object.weight,
     };
-    // console.log(newProduct);
+
     postProduct(newProduct).then(res => {
       // console.log(res);
 
@@ -108,13 +102,19 @@ const Dairy = () => {
   };
 
   return (
-    <StyledContainer>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: { xs: '0px', lg: '253px' },
+        }}
+      >
         <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }}>
           <Box
             sx={{
               margin: { xs: '0 auto', md: '0' },
-              marginRight: { xs: '0px', lg: '136px' },
+              marginRight: { xs: '0px', lg: '113px' },
             }}
           >
             {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
@@ -151,8 +151,8 @@ const Dairy = () => {
             <RightSideBar summaryDayInfo={summaryDay} />
           </div>
         </Stack>
-      </div>
-    </StyledContainer>
+      </Box>
+    </>
   );
 };
 
