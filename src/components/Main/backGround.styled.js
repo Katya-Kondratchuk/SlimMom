@@ -13,8 +13,8 @@ export const BgImg = styled.div`
   right: 0;
   z-index: -1;
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 668px;
-    height: 834px;
+    width: 100vw;
+    height: 100vh;
 
     background-image: url(${tabletMainBg});
 
@@ -27,6 +27,7 @@ export const BgImg = styled.div`
 
   @media screen and (min-width: 1280px) {
     background-image: url(${desktopMainBg});
+
     width: 100vw;
     height: 100vh;
     @media screen and (min-device-pixel-ratio: 2),

@@ -10,17 +10,10 @@ export const StyledItem = styled.li`
     line-height: 1.2;
     margin-right: 2px;
   }
-  /* ::marker {
-    font-size: 14px;
-  } */
-  /* @media screen and (max-width: 767px) {
-    
-  } */
 `;
 export const BoxStyled = styled(Box)`
   position: absolute;
   top: 14.4%;
-  /* left: 50%; */
   width: 100vw;
   max-height: 656px;
   padding: 40px 20px 119px;
