@@ -7,8 +7,15 @@ export const SideBarRight = styled.div`
     height: 326px;
     background-image: url(${bgi});
     background-repeat: no-repeat;
-    background-position: right bottom;
     background-size: contain;
+    background-color: #F0F1F3;
+    font-family: Verdana;
+font-size: 14px;
+font-weight: 400;
+line-height: 17px;
+letter-spacing: 0.04em;
+color: #9B9FAA;
+
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -18,7 +25,7 @@ export const SideBarRight = styled.div`
   @media screen and (min-width: 1280px) {
     background-image: url(${bgi});
     width: 517px;
-    height: 850px;
+    height: 100vh;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
