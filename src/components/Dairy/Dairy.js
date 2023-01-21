@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 
 import { Box } from '@mui/system';
 import { MessageStyled } from './DairyProductList/DairyProductList.styled';
-import { StyledContainer } from 'components/Main/Main.styled';
 import {
   deleteProduct,
   getDayProducts,
@@ -50,14 +49,12 @@ const Dairy = () => {
   };
 
   const handelSubmitPost = object => {
-    // console.log(object);
-
     const newProduct = {
       date: date,
       productId: object.id,
       weight: +object.weight,
     };
-    // console.log(newProduct);
+
     postProduct(newProduct).then(res => {
       // console.log(res);
 
@@ -105,7 +102,7 @@ const Dairy = () => {
   };
 
   return (
-    <StyledContainer sx={{ width: '100%' }}>
+    <>
       <Box
         sx={{
           display: 'flex',
@@ -117,7 +114,7 @@ const Dairy = () => {
           <Box
             sx={{
               margin: { xs: '0 auto', md: '0' },
-              marginRight: { xs: '0px', lg: '136px' },
+              marginRight: { xs: '0px', lg: '113px' },
             }}
           >
             {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
@@ -155,7 +152,7 @@ const Dairy = () => {
           </div>
         </Stack>
       </Box>
-    </StyledContainer>
+    </>
   );
 };
 
