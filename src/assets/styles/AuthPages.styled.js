@@ -73,11 +73,14 @@ export const TitleStyled = styled(Title)`
 `;
 
 export const AuthWrapper = styled(Box)`
-  padding-top: 40px;
+  padding-top: 120px;
   padding-bottom: 40px;
 
   @media screen and (min-width: 768px) {
-    padding-top: 160px;
+    padding-top: 240px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 306px;
   }
 `;
 
@@ -100,7 +103,7 @@ export const BgWrapper = styled(Box)`
     }
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     top: 0;
     left: 100px;
     background-image: url(${BgImgAuthDesk1x});

@@ -4,7 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RequireAuthRoute } from './RequireAuthRoute';
 import { RequireNotAuthRoute } from './RequireNotAuthRoute';
-import { selectAuthUserData } from 'redux/auth/authSelectors';
+import {
+  selectAuthUserData,
+  selectAuthIsLoggedIn,
+} from 'redux/auth/authSelectors';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -15,19 +18,30 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 const AllRouts = () => {
   const userData = useSelector(selectAuthUserData);
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
   return (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
+          <Route
+            index
+            element={
+              <RequireNotAuthRoute
+                component={<HomePage />}
+                redirectTo="/diary"
+              />
+            }
+          />
           <Route
             path="login"
             element={
               <RequireNotAuthRoute
                 component={<LoginPage />}
                 redirectTo={
-                  userData?.dailyRate !== 0 ? '/diary' : '/calculator'
+                  isLoggedIn && userData?.dailyRate !== 0
+                    ? '/diary'
+                    : '/calculator'
                 }
               />
             }
