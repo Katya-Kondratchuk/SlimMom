@@ -16,6 +16,7 @@ export const ListStyled = styled(List)`
   }
 
   &.MuiList-root {
+    margin-left: 20px;
     margin-top: 44px;
     padding: 0;
     width: 650px;
@@ -36,7 +37,8 @@ export const MessageStyled = styled.h2`
   font-weight: 700;
   font-family: 'Verdana';
   color: #070730a7;
-  margin-left: 40px;
+  margin-left: 60px;
+  margin-right: 60px;
   margin-top: 55px;
   width: 550px;
   @media screen and (max-width: 767px) {
