@@ -1,18 +1,19 @@
 {
   "files": {
     "main.css": "/SlimMom/static/css/main.e4d51215.css",
-    "main.js": "/SlimMom/static/js/main.6e0fa26e.js",
-    "static/js/566.eaf0666b.chunk.js": "/SlimMom/static/js/566.eaf0666b.chunk.js",
+    "main.js": "/SlimMom/static/js/main.da5dea5f.js",
+    "static/js/566.10e3bf8d.chunk.js": "/SlimMom/static/js/566.10e3bf8d.chunk.js",
     "static/js/506.840e0935.chunk.js": "/SlimMom/static/js/506.840e0935.chunk.js",
     "static/js/366.344fc974.chunk.js": "/SlimMom/static/js/366.344fc974.chunk.js",
-    "static/js/713.a6dd5539.chunk.js": "/SlimMom/static/js/713.a6dd5539.chunk.js",
-    "static/js/929.9132e7e9.chunk.js": "/SlimMom/static/js/929.9132e7e9.chunk.js",
+    "static/js/713.e825ac4f.chunk.js": "/SlimMom/static/js/713.e825ac4f.chunk.js",
+    "static/js/929.4e48c7d4.chunk.js": "/SlimMom/static/js/929.4e48c7d4.chunk.js",
     "static/js/155.bb526049.chunk.js": "/SlimMom/static/js/155.bb526049.chunk.js",
     "static/js/95.f77fdec0.chunk.js": "/SlimMom/static/js/95.f77fdec0.chunk.js",
     "static/js/694.77bde2c2.chunk.js": "/SlimMom/static/js/694.77bde2c2.chunk.js",
     "static/js/779.3f3e3b91.chunk.js": "/SlimMom/static/js/779.3f3e3b91.chunk.js",
     "static/js/131.fc3e9ba8.chunk.js": "/SlimMom/static/js/131.fc3e9ba8.chunk.js",
-    "static/js/530.cd666481.chunk.js": "/SlimMom/static/js/530.cd666481.chunk.js",
+    "static/js/940.a5eae87d.chunk.js": "/SlimMom/static/js/940.a5eae87d.chunk.js",
+    "static/js/220.57fe7963.chunk.js": "/SlimMom/static/js/220.57fe7963.chunk.js",
     "static/media/auth-bg-desk-2x.png": "/SlimMom/static/media/auth-bg-desk-2x.145a2125c2d58fad8d45.png",
     "static/media/auth-bg-tabl-2x.png": "/SlimMom/static/media/auth-bg-tabl-2x.7762f634d1c96b6baf04.png",
     "static/media/auth-bg-desk-1x.png": "/SlimMom/static/media/auth-bg-desk-1x.564081392be1cf34ad1e.png",
@@ -23,24 +24,26 @@
     "static/media/tabletMainBg-min.png": "/SlimMom/static/media/tabletMainBg-min.1c320fee67164ac0d33b.png",
     "static/media/logo-svg.svg": "/SlimMom/static/media/logo-svg.48e741d06356bcbc28435c8169b4c12c.svg",
     "static/media/desktoprightSideBar.png": "/SlimMom/static/media/desktoprightSideBar.07ec7143c40752d1b8ad.png",
+    "static/media/sidebarTablet2x-min.png": "/SlimMom/static/media/sidebarTablet2x-min.c32c518f4646adab925c.png",
     "static/media/Group 18.svg": "/SlimMom/static/media/Group 18.f99c2e341eb0e93dfe4ce6c09783ce75.svg",
     "index.html": "/SlimMom/index.html",
     "main.e4d51215.css.map": "/SlimMom/static/css/main.e4d51215.css.map",
-    "main.6e0fa26e.js.map": "/SlimMom/static/js/main.6e0fa26e.js.map",
-    "566.eaf0666b.chunk.js.map": "/SlimMom/static/js/566.eaf0666b.chunk.js.map",
+    "main.da5dea5f.js.map": "/SlimMom/static/js/main.da5dea5f.js.map",
+    "566.10e3bf8d.chunk.js.map": "/SlimMom/static/js/566.10e3bf8d.chunk.js.map",
     "506.840e0935.chunk.js.map": "/SlimMom/static/js/506.840e0935.chunk.js.map",
     "366.344fc974.chunk.js.map": "/SlimMom/static/js/366.344fc974.chunk.js.map",
-    "713.a6dd5539.chunk.js.map": "/SlimMom/static/js/713.a6dd5539.chunk.js.map",
-    "929.9132e7e9.chunk.js.map": "/SlimMom/static/js/929.9132e7e9.chunk.js.map",
+    "713.e825ac4f.chunk.js.map": "/SlimMom/static/js/713.e825ac4f.chunk.js.map",
+    "929.4e48c7d4.chunk.js.map": "/SlimMom/static/js/929.4e48c7d4.chunk.js.map",
     "155.bb526049.chunk.js.map": "/SlimMom/static/js/155.bb526049.chunk.js.map",
     "95.f77fdec0.chunk.js.map": "/SlimMom/static/js/95.f77fdec0.chunk.js.map",
     "694.77bde2c2.chunk.js.map": "/SlimMom/static/js/694.77bde2c2.chunk.js.map",
     "779.3f3e3b91.chunk.js.map": "/SlimMom/static/js/779.3f3e3b91.chunk.js.map",
     "131.fc3e9ba8.chunk.js.map": "/SlimMom/static/js/131.fc3e9ba8.chunk.js.map",
-    "530.cd666481.chunk.js.map": "/SlimMom/static/js/530.cd666481.chunk.js.map"
+    "940.a5eae87d.chunk.js.map": "/SlimMom/static/js/940.a5eae87d.chunk.js.map",
+    "220.57fe7963.chunk.js.map": "/SlimMom/static/js/220.57fe7963.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e4d51215.css",
-    "static/js/main.6e0fa26e.js"
+    "static/js/main.da5dea5f.js"
   ]
 }
