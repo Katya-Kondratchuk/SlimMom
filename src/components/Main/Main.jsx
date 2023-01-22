@@ -19,50 +19,8 @@ import {
 } from 'redux/auth/authSelectors.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { dailyRateOperation } from 'redux/daily/dailyOperation.js';
-
-const schema = yup.object().shape({
-  height: yup
-    .number()
-    .required('Please write down your your height')
-    .typeError('Your height must be a number!')
-    .positive('Height mast be a positive number')
-    .min(110, 'You cant be that short!')
-    .integer('Your height must be an integer!')
-    .max(230, 'You cant be that big!'),
-
-  age: yup
-    .number()
-    .required('Please write down your your age')
-    .typeError('Your age must be a number!')
-    .positive('Age mast be a positive number')
-    .min(15, 'Aplication is not for children')
-    .integer('Your age must be an integer!')
-    .max(80, 'Better check your weight with a doctor'),
-
-  weight: yup
-    .number()
-    .required('Please write down your current weight')
-    .typeError('Your current weight must be a number!')
-    .positive('Weight mast be a positive number')
-    .min(50, 'You are too light to use this app.')
-    .integer('Your weight must be an integer!')
-    .max(350, 'You cant be that big!'),
-
-  desiredWeight: yup
-    .number()
-    .required('Please write down your desired weight')
-    .typeError('Your desired weight must be a number!')
-    .positive('Desired weight mast be a positive')
-    .min(45, 'You cant be that light.')
-    .integer('Your desired weight must be an integer!')
-    .max(120, 'You can do better!')
-    .notOneOf(
-      [yup.ref('weight'), null],
-      'Your desired weight and current weight are same!'
-    ),
-
-  bloodType: yup.number().required('Please chose your blood type'),
-});
+import useTranslateFormErrors from 'hooks/useTranslateFormErrors.js';
+import { useTranslation } from 'react-i18next';
 
 function MyFormControlLabel(props) {
   const radioGroup = useRadioGroup();
@@ -83,6 +41,7 @@ MyFormControlLabel.propTypes = {
 const Home = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const userInitValues = useSelector(selectAuthUserData);
   const localInitValues = JSON.parse(localStorage?.getItem('item'));
@@ -95,6 +54,49 @@ const Home = ({ onSubmit }) => {
     bloodType: userInitValues?.bloodType || localInitValues?.bloodType || '',
   };
 
+  const schema = yup.object().shape({
+    height: yup
+      .number(t('calc.form.numberOnly'))
+      .required(t('calc.form.height.req'))
+      .typeError(t('calc.form.height.err'))
+      .positive(t('calc.form.height.positive'))
+      .min(110, t('calc.form.height.min'))
+      .integer(t('calc.form.height.integer'))
+      .max(230, t('calc.form.height.max')),
+
+    age: yup
+      .number(t('calc.form.numberOnly'))
+      .required(t('calc.form.age.req'))
+      .typeError(t('calc.form.age.err'))
+      .positive(t('calc.form.age.positive'))
+      .min(15, t('calc.form.age.min'))
+      .integer(t('calc.form.age.integer'))
+      .max(80, t('calc.form.age.max')),
+
+    weight: yup
+      .number(t('calc.form.numberOnly'))
+      .required(t('calc.form.curW.req'))
+      .typeError(t('calc.form.curW.err'))
+      .positive(t('calc.form.curW.positive'))
+      .min(50, t('calc.form.curW.min'))
+      .integer(t('calc.form.curW.integer'))
+      .max(350, t('calc.form.curW.max')),
+
+    desiredWeight: yup
+      .number(t('calc.form.numberOnly'))
+      .required(t('calc.form.desW.req'))
+      .typeError(t('calc.form.desW.err'))
+      .positive(t('calc.form.desW.positive'))
+      .min(45, t('calc.form.desW.min'))
+      .integer(t('calc.form.desW.integer'))
+      .max(120, t('calc.form.desW.max'))
+      .notOneOf([yup.ref('weight'), null], t('calc.form.desW.notOneOf')),
+
+    bloodType: yup
+      .number(t('calc.form.numberOnly'))
+      .required(t('calc.form.type.req')),
+  });
+
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
@@ -105,6 +107,8 @@ const Home = ({ onSubmit }) => {
     },
     validateOnBlur: true,
   });
+
+  useTranslateFormErrors(formik.errors, formik.touched, formik.setFieldTouched);
 
   const isValid = schema.isValidSync(formik.values);
   const handleCloseModal = () => {
@@ -147,7 +151,7 @@ const Home = ({ onSubmit }) => {
             fontSize: { xs: '18px', md: '34px' },
           }}
         >
-          Calculate your daily calorie intake right now
+          {t('calc.title')}
         </Typography>
         <Box
           component="form"
@@ -172,12 +176,12 @@ const Home = ({ onSubmit }) => {
                 shrink
                 error={formik.touched.height && Boolean(formik.errors.height)}
               >
-                Height*
+                {t('calc.form.height.title')}*
               </StyledInputLable>
               <Input
                 notched="true"
                 id="height"
-                placeholder="Write down your height in sm."
+                placeholder={t('calc.form.height.placeholder')}
                 value={formik.values.height}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -202,13 +206,13 @@ const Home = ({ onSubmit }) => {
                 error={formik.touched.age && Boolean(formik.errors.age)}
                 sx={{ mt: { xs: '12px', md: '20px' } }}
               >
-                Age*
+                {t('calc.form.age.title')}*
               </StyledInputLable>
               <Input
                 notched="true"
                 id="age"
                 value={formik.values.age}
-                placeholder="Write down your age."
+                placeholder={t('calc.form.age.placeholder')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.age && Boolean(formik.errors.age)}
@@ -233,12 +237,12 @@ const Home = ({ onSubmit }) => {
                 htmlFor="weight"
                 sx={{ mt: { xs: '12px', md: '20px' } }}
               >
-                Current Weight*
+                {t('calc.form.curW.title')}*
               </StyledInputLable>
               <Input
                 notched="true"
                 id="weight"
-                placeholder="Write down your weight in kg."
+                placeholder={t('calc.form.curW.placeholder')}
                 aria-describedby="weight-helper-text"
                 value={formik.values.weight}
                 onChange={formik.handleChange}
@@ -268,12 +272,12 @@ const Home = ({ onSubmit }) => {
                 shrink
                 htmlFor="desiredWeight"
               >
-                Desired Weight*
+                {t('calc.form.desW.title')}*
               </StyledInputLable>
               <Input
                 notched="true"
                 id="desiredWeight"
-                placeholder="Your desired weight in kg."
+                placeholder={t('calc.form.desW.placeholder')}
                 value={formik.values.desiredWeight}
                 aria-describedby="desiredWeight-helper-text"
                 onChange={formik.handleChange}
@@ -309,7 +313,7 @@ const Home = ({ onSubmit }) => {
                 shrink
                 htmlFor="bloodType"
               >
-                Blood Type*
+                {t('calc.form.type.title')}*
               </StyledInputLable>
               <Input
                 readOnly
@@ -317,7 +321,7 @@ const Home = ({ onSubmit }) => {
                 id="bloodType"
                 name="bloodType"
                 value={formik.values.bloodType}
-                placeholder="Choose your blood type."
+                placeholder={t('calc.form.type.placeholder')}
                 aria-describedby="bloodType-helper-text"
                 error={
                   formik.touched.bloodType && Boolean(formik.errors.bloodType)
@@ -390,7 +394,7 @@ const Home = ({ onSubmit }) => {
                 : handleCloseModal()
             }
           >
-            {isValid ? `Start losing weight` : `Fill in your data `}
+            {isValid ? t('calc.btnText.valid') : t('calc.btnText.notValid')}
           </ColorButton>
         </Box>
       </Box>

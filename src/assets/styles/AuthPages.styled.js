@@ -73,7 +73,7 @@ export const TitleStyled = styled(Title)`
 `;
 
 export const AuthWrapper = styled(Box)`
-  padding-top: 40px;
+  padding-top: 80px;
   padding-bottom: 40px;
 
   @media screen and (min-width: 768px) {

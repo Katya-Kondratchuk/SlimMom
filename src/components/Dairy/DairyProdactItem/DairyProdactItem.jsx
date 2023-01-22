@@ -1,8 +1,10 @@
 import { ListItem, ListItemText, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useTranslation } from 'react-i18next';
 // import PropTypes from 'prop-types';
 
 export default function DairyProdactItem({ name, grams, kcal, deleteProduct }) {
+  const { t } = useTranslation();
   return (
     <>
       <ListItem
@@ -73,7 +75,7 @@ export default function DairyProdactItem({ name, grams, kcal, deleteProduct }) {
               letterSpacing: '0.04em',
             },
           }}
-          primary={`${grams} g`}
+          primary={`${grams} ${t('diary.g')}`}
         />
         <ListItemText
           sx={{
@@ -128,7 +130,7 @@ export default function DairyProdactItem({ name, grams, kcal, deleteProduct }) {
             },
           }}
           primary={`${kcal}`}
-          secondary={'kcal'}
+          secondary={t('diary.kcal')}
         />
         <IconButton
           sx={{
