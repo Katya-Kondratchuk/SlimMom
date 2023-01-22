@@ -10,6 +10,9 @@ export default function DairyProductList({ poducts, onDeleteProduct, dayId }) {
           xs: '0px',
           md: '20px',
         },
+        width: { md: '650px', xs: '292px' },
+        minHeight: { md: '271px', xs: '280px' },
+        maxHeight: { md: '271px', xs: '280px' },
       }}
     >
       {poducts.map(({ id, weight, title, kcal }) => {
