@@ -21,7 +21,6 @@ export const SideBarRight = styled.div`
     letter-spacing: 0.04em;
     background-image: url(${bgit1x});
     background-position: 106% 100%;
-    background-size: 50%;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {

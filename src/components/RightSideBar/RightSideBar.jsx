@@ -26,12 +26,13 @@ export function RightSideBar({ summaryDayInfo }) {
   const data = useSelector(state => state.daily);
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   const userData = useSelector(selectAuthUserData);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const backendDate = new Date().toISOString().split('T')[0];
   const todaysData = data?.summaries?.find(({ date }) => date === backendDate);
   const fobidenPropucts =
     userData?.notAllowedProducts || data.notAllowedProducts;
 
-  const [searchQuery, setSearchQuery] = useState('');
   const overWeigth = useRef();
 
   const filterData = (query, fobidenPropucts) => {
@@ -186,37 +187,39 @@ export function RightSideBar({ summaryDayInfo }) {
               />{' '}
             </WrapperFilter>
           )}
-          <ListStyled
-            className="List"
-            sx={{
-              m: {
-                xs: '0 auto',
-                md: '0 auto',
-                lg: '0 auto',
-              },
-              maxWidth: { xs: '280px', md: '300px', lg: '380px' },
-              fontWeight: '700',
-              '& .MuiListItem-root': {
-                padding: { xs: '6px', md: '4px', lg: '6px' },
-              },
-              '&.MuiList-root.List': {
-                marginTop: '15px',
-                maxHeight: '150px',
-              },
-            }}
-          >
-            {dataFiltered?.map(product => (
-              <ListItem disableGutters key={product}>
-                <ListItemText
-                  primary={
-                    product
-                      ? product
-                      : `${arrayRandElement(fobidenPropucts) || ''}`
-                  }
-                />
-              </ListItem>
-            ))}
-          </ListStyled>
+          {data && (
+            <ListStyled
+              className="List"
+              sx={{
+                m: {
+                  xs: '0 auto',
+                  md: '0 auto',
+                  lg: '0 auto',
+                },
+                maxWidth: { xs: '280px', md: '300px', lg: '380px' },
+                fontWeight: '700',
+                '& .MuiListItem-root': {
+                  padding: { xs: '6px', md: '4px', lg: '6px' },
+                },
+                '&.MuiList-root.List': {
+                  marginTop: '15px',
+                  maxHeight: '150px',
+                },
+              }}
+            >
+              {dataFiltered?.map(product => (
+                <ListItem disableGutters key={product}>
+                  <ListItemText
+                    primary={
+                      product
+                        ? product
+                        : `${arrayRandElement(fobidenPropucts) || ''}`
+                    }
+                  />
+                </ListItem>
+              ))}
+            </ListStyled>
+          )}
         </Box>
       </Stack>
     </SideBarRight>
