@@ -19,9 +19,10 @@ const UserMenu = ({ styles }) => {
         display: styles,
         backgroundColor: { xs: '#E0E0E0', md: 'inherit' },
         justifyContent: 'flex-end',
+        height: '40px',
+        alignItems: 'center',
       }}
       direction="row"
-      divider={<Divider orientation="vertical" flexItem />}
       spacing={2}
     >
       <p
@@ -34,10 +35,23 @@ const UserMenu = ({ styles }) => {
           color: '#212121',
           fontFamily: 'Verdana',
           fontStyle: 'normal',
+          margin: 0,
         }}
       >
         {name ? normalizeName(name) : 'User'}
       </p>
+      <Divider
+        orientation="vertical"
+        flexItem="true"
+        variant="middle"
+        textAlign="center"
+        sx={{
+          alignSelf: 'center',
+          height: '32px',
+          m: '0 auto',
+          borderWidth: '1.5px',
+        }}
+      />
       <Button
         sx={{
           fontFamily: 'Verdana',
@@ -51,6 +65,8 @@ const UserMenu = ({ styles }) => {
           textAlign: 'right',
           letterSpacing: '0.04em',
           color: '#9B9FAA',
+          justifyContent: 'flex-start',
+          p: 0,
         }}
         onClick={() => dispatch(logoutUser())}
       >

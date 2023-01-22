@@ -60,11 +60,10 @@ const Header = () => {
           <Stack
             direction="row"
             justifyContent="flex-start"
-            // alignItems="center"
-            alignItems="baseline"
             spacing={2}
             sx={{
-              width: { md: '100%', lg: 'auto' },
+              alignItems: { xs: 'center', md: 'center', lg: 'baseline' },
+              width: { xs: '100%', md: '100%', lg: 'auto' },
               justifyContent: { md: 'space-between', lg: 'flex-start' },
             }}
           >
@@ -74,7 +73,7 @@ const Header = () => {
                 marginRight: 'auto',
               }}
             >
-              <Stack direction={'row'} alignItems="center" spacing={2}>
+              <Stack direction={'row'} alignItems="center" spacing={1}>
                 <Box
                   sx={{
                     display: { xs: 'flex', md: 'flex', lg: 'none' },
@@ -115,19 +114,33 @@ const Header = () => {
             )}
 
             {isLoggedIn && (
-              <Box
-                sx={{
-                  display: { xs: 'none', lg: 'flex' },
-                }}
-              >
-                <Divider
-                  orientation="vertical"
-                  variant="middle"
-                  flexItem
-                  sx={{ mr: '20px' }}
-                />
-                <UserNav />
-              </Box>
+              <>
+                <Box
+                  sx={{
+                    display: { xs: 'none', lg: 'flex' },
+                  }}
+                >
+                  <Divider
+                    orientation="vertical"
+                    flexItem="true"
+                    variant="middle"
+                    textAlign="center"
+                    sx={{
+                      alignSelf: 'center',
+                      height: '32px',
+                      m: '0 auto',
+                      borderWidth: '1.5px',
+                    }}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    display: { xs: 'none', lg: 'flex' },
+                  }}
+                >
+                  <UserNav />
+                </Box>
+              </>
             )}
             {!isLoggedIn && (
               <Box sx={{ display: { xs: 'flex', lg: 'none' } }}>
