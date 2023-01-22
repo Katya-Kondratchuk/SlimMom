@@ -100,11 +100,13 @@
   },
   "summary": {
     "title": "Résumé pour",
-    "left": "",
+    "left": "Restant",
     "consumed": "Consommé",
+    "daily": "Taux journalier",
     "n": "n% de la normale",
     "noFoodTitle": "Nourriture non recommandée",
-    "noFoodText": "Votre régime sera affiché ici"
+    "noFoodText": "Votre régime sera affiché ici",
+    "overweidth": "% de surpoids"
   },
   "diary": {
     "enterProduct": "Entrez le nom du produit",

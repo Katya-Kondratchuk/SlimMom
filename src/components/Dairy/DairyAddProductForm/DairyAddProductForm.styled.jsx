@@ -97,7 +97,7 @@ export const IconStyled = styled(IconButton)`
     @media screen and (max-width: 767px) {
       position: absolute;
       top: 83px;
-      left: 0;
+      left: -15px;
       z-index: 1;
       width: 40px;
       display: none;

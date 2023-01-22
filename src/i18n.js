@@ -26,7 +26,7 @@ i18n
   .init({
     fallbackLng: 'en',
     resources,
-    debug: true,
+    // debug: true,
     whitelist: ['en', 'fr', 'uk'],
     defaultNS: ['translation'],
   });

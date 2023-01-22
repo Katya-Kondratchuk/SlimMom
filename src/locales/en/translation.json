@@ -102,9 +102,11 @@
     "title": "Summary for",
     "left": "Left",
     "consumed": "Consumed",
+    "daily": "Daily rate",
     "n": "n% of normal",
     "noFoodTitle": "Food not recommended",
-    "noFoodText": "Your diet will be displayed here"
+    "noFoodText": "Your diet will be displayed here",
+    "overweidth": "% overweidth"
   },
   "diary": {
     "enterProduct": "Enter product name",
