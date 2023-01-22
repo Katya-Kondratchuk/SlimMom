@@ -5,12 +5,14 @@ import {
   BgWrapper,
   TitleStyled,
 } from 'assets/styles/AuthPages.styled';
+import { useTranslation } from 'react-i18next';
 
 const RegistrationPage = () => {
+  const { t } = useTranslation();
   return (
     <AuthWrapper>
       <ContainerLayout>
-        <TitleStyled>Register</TitleStyled>
+        <TitleStyled>{t('auth.title.register')}</TitleStyled>
         <RegisterForm />
         <BgWrapper />
       </ContainerLayout>

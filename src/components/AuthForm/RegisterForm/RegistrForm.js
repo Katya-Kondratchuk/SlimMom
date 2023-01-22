@@ -7,31 +7,34 @@ import { Form, WrapperButton } from '../AuthForm.styled';
 import InputAuthFrom from '../InputAuthFrom';
 import LoadingSpiner from '../LoadingSpiner';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
+import useTranslateFormErrors from 'hooks/useTranslateFormErrors';
 
 const RegistrForm = () => {
   const loading = useSelector(selectAuthLoading);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   let schema = yup.object().shape({
     username: yup
       .string()
-      .min(3, 'Min length 3!')
-      .max(254, 'Max length 254!')
-      .typeError('Length must be greater than 3 and less than 254')
-      .required('Required'),
+      .min(3, t('auth.input.name.min'))
+      .max(254, t('auth.input.name.max'))
+      .typeError(t('auth.input.name.err'))
+      .required(t('auth.input.required')),
     email: yup
       .string()
-      .min(3, 'Min length 3!')
-      .max(254, 'Max length 254!')
-      .typeError('Length must be greater than 3 and less than 254')
-      .email('Invalid email - u need @ and .')
-      .required('Required'),
+      .min(3, t('auth.input.email.min'))
+      .max(254, t('auth.input.email.max'))
+      .typeError(t('auth.input.email.err'))
+      .email(t('auth.input.email.mail'))
+      .required(t('auth.input.required')),
     password: yup
       .string()
-      .min(8, 'Min length 8!')
-      .max(100, 'Max length 100!')
-      .typeError('Length must be greater than 8 and less than 100')
-      .required('Required'),
+      .min(8, t('auth.input.pass.min'))
+      .max(100, t('auth.input.pass.max'))
+      .typeError(t('auth.input.pass.err'))
+      .required(t('auth.input.required')),
   });
 
   const formik = useFormik({
@@ -46,13 +49,15 @@ const RegistrForm = () => {
     },
   });
 
+  useTranslateFormErrors(formik.errors, formik.touched, formik.setFieldTouched);
+
   const isValid = schema.isValidSync(formik.values);
 
   return (
     <Form onSubmit={formik.handleSubmit}>
       <InputAuthFrom
         id="standard-required-register-name"
-        label="Name"
+        label={t('auth.input.name.label')}
         type="text"
         name="username"
         sx={{
@@ -67,7 +72,7 @@ const RegistrForm = () => {
 
       <InputAuthFrom
         id="standard-required-register-email"
-        label="Email"
+        label={t('auth.input.email.label')}
         type="email"
         name="email"
         sx={{
@@ -82,7 +87,7 @@ const RegistrForm = () => {
 
       <InputAuthFrom
         id="standard-required-register-pass"
-        label="Password"
+        label={t('auth.input.pass.label')}
         type="password"
         name="password"
         value={formik.values.password}
@@ -99,7 +104,7 @@ const RegistrForm = () => {
           disabled={loading || !isValid}
           sx={{ backgroundColor: '#FC842D' }}
         >
-          {loading ? <LoadingSpiner /> : 'Register'}
+          {loading ? <LoadingSpiner /> : t('auth.title.register')}
         </ButtonStyled>
         <LinkyStyled
           variant="outlined"
@@ -109,7 +114,7 @@ const RegistrForm = () => {
           }}
           to="/login"
         >
-          Log in
+          {t('auth.title.login')}
         </LinkyStyled>
       </WrapperButton>
     </Form>

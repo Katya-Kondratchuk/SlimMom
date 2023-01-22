@@ -38,7 +38,7 @@ const UserMenu = ({ styles }) => {
           margin: 0,
         }}
       >
-        {name ? normalizeName(name) : 'User'}
+        {name && normalizeName(name)}
       </p>
       <Divider
         orientation="vertical"
