@@ -32,11 +32,6 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
   const buttonEl = useRef();
   const arrowEl = useRef();
 
-  // console.log(productList);
-  // console.log(selectedProduct);
-  // console.log(weigth);
-  // console.log(query);
-
   useEffect(() => {
     if (query === '') {
       setProductList([]);
@@ -45,11 +40,6 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
 
     getProducts(query).then(res => {
       const products = res[0]?.title ? res : [];
-      // console.log(typeof res === 'object');
-      // console.log(typeof res);
-      // console.log(res[0]);
-      // console.log(products);
-
       setProductList(products);
     });
   }, [query]);
@@ -176,7 +166,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
             inputProps={{
               inputMode: 'numeric',
               pattern: 'd{4}',
-              max: 9999,
+              max: 2000,
             }}
             variant="filled"
           />
@@ -194,7 +184,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
             onClick={() => (isMobile ? handleChangeView(false) : null)}
             type="submit"
             variant="contained"
-            disabled={query && weigth ? false : true}
+            disabled={query && weigth && selectedProduct ? false : true}
           >
             Add
           </ButtonStyled>
