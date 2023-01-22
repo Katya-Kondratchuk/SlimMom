@@ -2,7 +2,8 @@
   "auth": {
     "title": {
       "login": "Log In",
-      "register": "Register"
+      "register": "Register",
+      "exit": "Exit"
     },
     "input": {
       "email": {
@@ -24,8 +25,7 @@
         "max": "Max length 100!",
         "err": "Length must be greater than 8 and less than 100"
       },
-      "required": "Required",
-      "exit": "Exit"
+      "required": "Required"
     },
     "notific": {
       "reg": {

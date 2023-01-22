@@ -13,7 +13,7 @@ export const WrapperSwitcher = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    top: 215px;
+    top: 160px;
     left: 80px;
   }
 `;

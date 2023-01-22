@@ -1,7 +1,9 @@
 import { MenuItem } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { NavLinkMenu } from './AuthNav.styled';
 
 const UserNav = ({ handleClose }) => {
+  const { t } = useTranslation();
   return (
     <>
       <MenuItem
@@ -22,7 +24,7 @@ const UserNav = ({ handleClose }) => {
           to="/diary"
           onClick={handleClose}
         >
-          Diary
+          {t('navigate.diary')}
         </NavLinkMenu>
       </MenuItem>
       <MenuItem
@@ -43,7 +45,7 @@ const UserNav = ({ handleClose }) => {
           to="/calculator"
           onClick={handleClose}
         >
-          Calculator
+          {t('navigate.calc')}
         </NavLinkMenu>
       </MenuItem>
     </>

@@ -2,7 +2,8 @@
   "auth": {
     "title": {
       "login": "Connexion",
-      "register": "Inscription"
+      "register": "Inscription",
+      "exit": "Sortir"
     },
     "input": {
       "email": {
@@ -24,8 +25,7 @@
         "max": "Longueur maximale 100!",
         "err": "La longueur doit être supérieure à 8 et inférieure à 100"
       },
-      "required": "Obligatoire",
-      "exit": "Sortir"
+      "required": "Obligatoire"
     },
     "notific": {
       "reg": {
