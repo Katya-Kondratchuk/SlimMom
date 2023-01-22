@@ -19,13 +19,14 @@ import debounce from 'lodash.debounce';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { ButtonStyled } from 'assets/styles/AuthPages.styled';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
   const [query, setQuery] = useState('');
   const [weigth, setWeigth] = useState('');
   const [productList, setProductList] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState('');
-
+  const { t } = useTranslation();
   const isMobile = useMediaQuery('(max-width:767px)');
 
   const formEl = useRef();
@@ -117,7 +118,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
             onChange={(_, value) => {
               setSelectedProduct(value);
             }}
-            noOptionsText="No products"
+            noOptionsText={t('diary.form.product.noOptionsText')}
             options={productListValue}
             renderInput={params => (
               <FieldStyled
@@ -126,7 +127,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
                 onChange={debouncedQuery}
                 value={query}
                 id="filled-product"
-                label="Enter product name"
+                label={t('diary.form.product.label')}
                 name="product"
                 variant="filled"
               />
@@ -134,7 +135,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
           />
           <TextField
             required
-            label="Grams"
+            label={t('diary.form.gr.label')}
             id="filled-number"
             name="grams"
             type="number"
@@ -161,7 +162,9 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
               },
             }}
             InputProps={{
-              endAdornment: <InputAdornment position="end">gr</InputAdornment>,
+              endAdornment: (
+                <InputAdornment position="end">{t('diary.g')}</InputAdornment>
+              ),
             }}
             inputProps={{
               inputMode: 'numeric',
@@ -186,7 +189,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
             variant="contained"
             disabled={query && weigth && selectedProduct ? false : true}
           >
-            Add
+            {t('diary.form.btn')}
           </ButtonStyled>
         </div>
         <FabStyled

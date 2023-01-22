@@ -5,9 +5,11 @@ import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { useEffect, useState } from 'react';
 import { HeadingStyled } from './DiaryDateСalendar.styled';
+import { useTranslation } from 'react-i18next';
 
 export default function DiaryDateСalendar({ onDateChange }) {
   const [value, setValue] = useState(moment(new Date()));
+  const { t } = useTranslation();
 
   useEffect(() => {
     onDateChange(value);
@@ -17,7 +19,7 @@ export default function DiaryDateСalendar({ onDateChange }) {
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <DesktopDatePicker
-        label="Basic example"
+        label={t('diary.calendarLabel')}
         value={value}
         onChange={newValue => {
           setValue(newValue);

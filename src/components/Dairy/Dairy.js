@@ -13,6 +13,7 @@ import {
 import { Stack } from '@mui/material';
 import { CustomLoaderStyled } from './DairyLoader/DairyLoader.styled';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const Dairy = () => {
   const [products, setProducts] = useState([]);
@@ -21,6 +22,7 @@ const Dairy = () => {
   const [summaryDay, setSummaryDay] = useState({});
   const [isHidden, setIsHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (date === '') {
@@ -135,9 +137,7 @@ const Dairy = () => {
             ) : (
               !isHidden &&
               (products.length === 0 ? (
-                <MessageStyled>
-                  There are no products on the selected date
-                </MessageStyled>
+                <MessageStyled>{t('diary.noselectedDate')}</MessageStyled>
               ) : (
                 <DairyProductList
                   poducts={products}

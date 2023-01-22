@@ -111,7 +111,18 @@
     "noselectedDate": "Il n'y a pas de produits à la date sélectionnée",
     "grams": "Grammes",
     "g": "g",
-    "kcal": "kcal"
+    "kcal": "kcal",
+    "form": {
+      "gr": {
+        "label": "Grammes"
+      },
+      "product": {
+        "label": "Entrez le nom du produit",
+        "noOptionsText": "Aucun produit"
+      },
+      "btn": "Ajouter"
+    },
+    "calendarLabel": "Exemple de base"
   },
   "navigate": {
     "diary": "Agenda",
