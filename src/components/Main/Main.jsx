@@ -120,10 +120,10 @@ const Home = ({ onSubmit }) => {
         p: {
           xs: '32px 0 41px 0',
           md: '100px 0 48px 0',
-          lg: '293px 0 111px 0 ',
+          lg: '293px 0 52px 0 ',
         },
         mr: {
-          lg: '139px',
+          lg: '235px',
         },
       }}
     >
