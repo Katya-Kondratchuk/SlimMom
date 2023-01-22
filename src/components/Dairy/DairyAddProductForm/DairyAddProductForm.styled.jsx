@@ -12,7 +12,7 @@ export const FabStyled = styled(Fab)`
 
     @media screen and (max-width: 767px) {
       margin: 0 auto;
-      margin-top: 60px;
+      margin-top: 30px;
       width: 48px;
       height: 48px;
     }
@@ -62,6 +62,7 @@ export const FormStyled = styled.form`
     position: absolute;
     right: 0;
     width: 100%;
+    pointer-events: none;
     z-index: 1;
     height: 50px;
     background: linear-gradient(
@@ -70,7 +71,7 @@ export const FormStyled = styled.form`
       #ffffff 42.19%
     );
     @media screen and (max-width: 767px) {
-      bottom: 77px;
+      bottom: 53px;
     }
   }
 
@@ -78,6 +79,7 @@ export const FormStyled = styled.form`
     display: block;
     @media screen and (max-width: 767px) {
       display: none;
+      min-height: 450px;
     }
   }
 

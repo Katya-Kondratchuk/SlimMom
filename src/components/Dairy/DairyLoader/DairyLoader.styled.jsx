@@ -11,5 +11,6 @@ export const CustomLoaderStyled = styled(CustomLoader)`
     height: 130px;
     margin: 0;
     margin-top: 20px;
+    margin-bottom: 142px;
   }
 `;

@@ -4,7 +4,14 @@ import { ListStyled } from './DairyProductList.styled';
 
 export default function DairyProductList({ poducts, onDeleteProduct, dayId }) {
   return (
-    <ListStyled>
+    <ListStyled
+      sx={{
+        marginLeft: {
+          xs: '0px',
+          md: '20px',
+        },
+      }}
+    >
       {poducts.map(({ id, weight, title, kcal }) => {
         return (
           <DairyProdactItem

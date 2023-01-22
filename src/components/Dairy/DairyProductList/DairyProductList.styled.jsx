@@ -16,17 +16,18 @@ export const ListStyled = styled(List)`
   }
 
   &.MuiList-root {
-    margin-left: 20px;
     margin-top: 44px;
     padding: 0;
     width: 650px;
     position: relative;
     overflow: auto;
+    min-height: 271px;
     max-height: 271px;
     @media screen and (max-width: 767px) {
       margin-top: 12px;
       width: 292px;
-      max-height: 220px;
+      max-height: 280px;
+      min-height: 280px;
     }
   }
 `;
@@ -39,15 +40,17 @@ export const MessageStyled = styled.h2`
   color: #070730a7;
   margin-left: 60px;
   margin-right: 60px;
-  margin-top: 55px;
+  margin-top: 44px;
+  margin-bottom: 0;
+  height: 271px;
   width: 550px;
   @media screen and (max-width: 767px) {
     font-weight: 700;
     font-size: 24px;
     line-height: 1.1;
     width: 270px;
+    height: 257px;
     margin: 0 auto;
     margin-top: 35px;
-    margin-bottom: 15px;
   }
 `;
