@@ -6,10 +6,10 @@ export const MenuStyled = styled(Menu)`
     box-shadow: none;
     background-color: inherit;
     top: 10vh !important;
-    left: 25vw !important;
+    left: 30vw !important;
     @media screen and (min-width: 768px) {
       top: 20vh !important;
-      left: 35vw !important;
+      left: 40vw !important;
     }
   }
 

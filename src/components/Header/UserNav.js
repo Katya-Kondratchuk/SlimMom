@@ -1,12 +1,13 @@
 import { MenuItem } from '@mui/material';
 import { NavLinkMenu } from './AuthNav.styled';
 
-const UserNav = ({ handleClose, changeStyle }) => {
+const UserNav = ({ handleClose }) => {
   return (
     <>
       <MenuItem
         sx={{
-          mr: 4,
+          mr: { xs: 0, lg: '24px' },
+          p: 0,
           fontWeight: 700,
           fontSize: '14px',
           lineHeight: 1.2,
@@ -26,7 +27,8 @@ const UserNav = ({ handleClose, changeStyle }) => {
       </MenuItem>
       <MenuItem
         sx={{
-          mr: 4,
+          mr: 0,
+          p: 0,
           fontWeight: 700,
           fontSize: '14px',
           lineHeight: 1.2,
