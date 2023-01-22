@@ -89,7 +89,14 @@ const Dairy = () => {
   return (
     <Stack
       direction={{ xs: 'column', md: 'column', lg: 'row' }}
-      sx={{ gap: '93px', m: '0 auto' }}
+      sx={{
+        gap: {
+          xs: '60px',
+          md: '55px',
+          lg: '93px',
+        },
+        m: '0 auto',
+      }}
     >
       <Box
         sx={{

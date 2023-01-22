@@ -13,23 +13,8 @@ export default function DiaryDateСalendar({ onDateChange }) {
     onDateChange(value);
   }, [onDateChange, value]);
 
-  // console.log(value.toString());
-  // console.log(value);
-  //   console.log(new Date(value).toLocaleDateString());
   const viewDate = new Date(value).toLocaleDateString();
   return (
-    // <Box
-    //   sx={{
-    //     width: 300,
-    //     height: 300,
-    //     backgroundColor: 'primary.dark',
-    //     '&:hover': {
-    //       backgroundColor: 'primary.main',
-    //       opacity: [0.9, 0.8, 0.7],
-    //     },
-    //   }}
-    // >
-
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <DesktopDatePicker
         label="Basic example"
@@ -44,17 +29,16 @@ export default function DiaryDateСalendar({ onDateChange }) {
               alignItems: 'center',
               marginTop: {
                 xs: '40px',
+                md: '70px',
+                lg: '0px',
               },
             }}
           >
-            {/* <input ref={inputRef} {...inputProps} /> */}
             <HeadingStyled ref={inputRef}>{viewDate}</HeadingStyled>
             {InputProps?.endAdornment}
           </Box>
         )}
       />
     </LocalizationProvider>
-
-    // </Box>
   );
 }
