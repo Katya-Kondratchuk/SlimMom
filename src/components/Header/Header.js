@@ -106,7 +106,6 @@ const Header = () => {
                 <Divider
                   orientation="vertical"
                   variant="middle"
-                  flexItem
                   sx={{ mr: '20px' }}
                 />
                 <AuthNav />
@@ -122,7 +121,6 @@ const Header = () => {
                 >
                   <Divider
                     orientation="vertical"
-                    flexItem="true"
                     variant="middle"
                     textAlign="center"
                     sx={{
