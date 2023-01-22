@@ -1,7 +1,7 @@
 import { Box, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import UserMenu from 'components/Header/UserMenu';
-import { SideBarRight } from './RightSideBar.styled';
+import { SideBarRight, WrapperFilter } from './RightSideBar.styled';
 import { selectAuthIsLoggedIn } from '../../redux/auth/authSelectors';
 import { ListStyled } from 'components/Dairy/DairyProductList/DairyProductList.styled';
 import { useState } from 'react';
@@ -86,7 +86,7 @@ const fobidenPropucts = data.notAllowedProducts;
               primary={` ${
                 kcalLeft || Math.ceil(data.dailyRate - kcalConsumed, 1)
   || 0 + '00'
-              }kcal`}
+              } kcal`}
             />
           </ListItem>
           <ListItem 
@@ -96,7 +96,7 @@ const fobidenPropucts = data.notAllowedProducts;
             <ListItemText primary="Consumed" />
             <ListItemText
               sx={{ textAlign: 'end' }}
-              primary={`${Math.ceil(kcalConsumed, 1) || '000 '}kcal`}
+              primary={`${Math.ceil(kcalConsumed, 1) || '000'} kcal`}
             />
           </ListItem>
           <ListItem
@@ -106,7 +106,7 @@ const fobidenPropucts = data.notAllowedProducts;
             <ListItemText primary="Daily rate" />
             <ListItemText
               sx={{ textAlign: 'end' }}
-              primary={` ${dailyRate || data.dailyRate || 0 + '00 '}kcal`}
+              primary={` ${dailyRate || data.dailyRate || 0 + '00'} kcal`}
             />
           </ListItem>
           <ListItem
@@ -116,7 +116,7 @@ const fobidenPropucts = data.notAllowedProducts;
             <ListItemText primary="n% of normal" />
             <ListItemText
               sx={{ textAlign: 'end' }}
-              primary={`${percentsOfDailyRate.toFixed(0) + '%' || '000 kcal'}`}
+              primary={`${percentsOfDailyRate.toFixed(0) > 100 ?  percentsOfDailyRate.toFixed(0) - 100 + ' % overweidth!': + '%' || '000 kcal'}`}
             />
           </ListItem>
         </List></Box>
@@ -127,12 +127,13 @@ const fobidenPropucts = data.notAllowedProducts;
           sx={{
             m: { xs: '20px auto', md: '12px auto 20px auto' },
             fontWeight: '700',
-            textAlign:'center'
+                        pl: { xs: '15px', md: '35px' },
+
           }}
         >
           Food you should not eat
         </Typography>
-        {data &&         <Filter searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        {data &&     <WrapperFilter > <Filter searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> </WrapperFilter>  
  }
         <ListStyled
          sx={{
@@ -141,7 +142,7 @@ const fobidenPropucts = data.notAllowedProducts;
               md: 'auto 79px auto 32px',
               lg: '0 auto',
             },
-            maxWidth: { xs: '280px',lg:'380px', md: '288px' },
+            maxWidth: { xs: '280px',lg:'280px', md: '288px' },
             fontWeight: '700',
              '& .MuiListItem-root': {
               padding: {xs:'6px',md:'4px',lg:'6px'} ,
