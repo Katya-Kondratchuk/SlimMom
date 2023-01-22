@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
@@ -32,6 +33,14 @@ export const getProducts = async value => {
     const response = await axios.get(`/product?search=${value}`);
     return response.data;
   } catch (error) {
+    toast.warning('No allowed products', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 700,
+      theme: 'colored',
+      icon: '🚀',
+      toastId: 'yes',
+      pauseOnHover: false,
+    });
     return {
       error,
     };
@@ -50,7 +59,6 @@ export const postProduct = async value => {
 };
 // Delete Dairy Product
 export const deleteProduct = async value => {
-  console.log(value);
   try {
     const response = await axios.delete('/day', {
       data: value,

@@ -93,7 +93,7 @@ export default function DairyProdactItem({ name, grams, kcal, deleteProduct }) {
             mr: {
               xs: '1px',
               // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-              md: '24px',
+              md: '18px',
             },
             textAlign: 'right',
             borderBottom: '1px solid #80808038',

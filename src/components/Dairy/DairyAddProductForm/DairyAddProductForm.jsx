@@ -14,9 +14,11 @@ import {
 import { getProducts } from 'services/api/base_api';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
-import { ColorButton } from 'components/Main/Main.styled';
+
 import debounce from 'lodash.debounce';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import { ButtonStyled } from 'assets/styles/AuthPages.styled';
+import { toast } from 'react-toastify';
 
 export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
   const [query, setQuery] = useState('');
@@ -41,7 +43,6 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
       return;
     }
 
-    console.log('useEffect get products');
     getProducts(query).then(res => {
       const products = res[0]?.title ? res : [];
       // console.log(typeof res === 'object');
@@ -61,6 +62,14 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
     setWeigth(e.target.elements.grams.value.trim());
 
     if (!selectedProduct) {
+      toast('Select allowed product', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+        theme: 'light',
+        icon: '🔥',
+        toastId: 'yes',
+        pauseOnHover: false,
+      });
       return;
     }
     const { _id } = productList.find(elem => elem.title.ru === selectedProduct);
@@ -68,6 +77,14 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
     onSubmitting({ weight: weigth, id: _id });
     setQuery('');
     setWeigth('');
+    toast('Product add successfully', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+      theme: 'light',
+      icon: '🍭',
+      toastId: 'yes',
+      pauseOnHover: false,
+    });
     e.currentTarget.reset();
   };
 
@@ -163,22 +180,24 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
             }}
             variant="filled"
           />
-          <ColorButton
+          <ButtonStyled
             sx={{
               display: {
                 xs: 'block',
                 md: 'none',
               },
               margin: '0 auto',
+              backgroundColor: '#FC842D',
               marginBottom: '20px',
               boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
             }}
             onClick={() => (isMobile ? handleChangeView(false) : null)}
             type="submit"
+            variant="contained"
             disabled={query && weigth ? false : true}
           >
             Add
-          </ColorButton>
+          </ButtonStyled>
         </div>
         <FabStyled
           ref={buttonEl}

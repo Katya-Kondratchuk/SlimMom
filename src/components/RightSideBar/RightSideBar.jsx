@@ -1,4 +1,11 @@
-import { Box, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { useSelector } from 'react-redux';
 import UserMenu from 'components/Header/UserMenu';
 import { SideBarRight, WrapperFilter } from './RightSideBar.styled';
@@ -15,7 +22,7 @@ export function RightSideBar({ summaryDayInfo }) {
   const data = useSelector(state => state.daily);
   const backendDate = new Date().toISOString().split('T')[0];
   const todaysData = data?.summaries?.find(({ date }) => date === backendDate);
-const fobidenPropucts = data.notAllowedProducts;
+  const fobidenPropucts = data.notAllowedProducts;
 
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
@@ -42,41 +49,50 @@ const fobidenPropucts = data.notAllowedProducts;
   return (
     <SideBarRight styled={{ marginTop: '292px' }}>
       {isLoggedIn && (
-        <Box sx={{marginTop:{xs:'40px',lg:'122px'},mr:'16px'}}> <UserMenu styles={{ xs: 'none', md: 'none', lg: 'flex' }}  /></Box>
-       
+        <Box sx={{ marginTop: { xs: '40px', lg: '122px' }, mr: '16px' }}>
+          {' '}
+          <UserMenu styles={{ xs: 'none', md: 'none', lg: 'flex' }} />
+        </Box>
       )}
-      <Stack direction={{ xs: 'column', md: 'row', lg: 'column' }} sx={{gap:{md:'80px',lg:'0'}}}>
-       <Box > <Typography
-          id="modal-modal-title"
-          variant="h4"
-          component="h4"
-          sx={{
-            m: {
-              xs: '0 auto',
-              md: '12px auto 20px auto',
-              lg: '140px 123px 36px 94px',
-            },
-            textAlign:'center'
-          }}
-        >
-          Summary for {date}
-        </Typography>
-        <List
-          sx={{
-            width: '100%',
-            m: {
-              xs: '0 auto',
-              md: '60px 79px auto 32px',
-              lg: '0 123px 30px 94px',
-            },
-            maxWidth: { xs: '280px', md: '288px' },
-            fontWeight: '700',
-            '& .MuiListItem-root': {
-              padding: {xs:'3px',md:'8px',lg:'3px'
-            },
-          }}}
-        >
-          <ListItem
+      <Stack
+        direction={{ xs: 'column', md: 'row', lg: 'column' }}
+        sx={{ gap: { md: '80px', lg: '0' } }}
+      >
+        <Box>
+          {' '}
+          <Typography
+            id="modal-modal-title"
+            variant="h4"
+            component="h4"
+            sx={{
+              m: {
+                xs: '0 auto',
+                md: '12px auto 20px auto',
+                lg: '140px 123px 36px 94px',
+              },
+              textAlign: 'center',
+            }}
+          >
+              Summary for {date}
+          </Typography>
+
+            <List
+            sx={{
+              width: '100%',
+              m: {
+                xs: '0 auto',
+                md: '60px 79px auto 32px',
+                lg: '0 123px 30px 94px',
+              },
+              maxWidth: { xs: '280px', md: '288px' },
+              fontWeight: '700',
+              '& .MuiListItem-root': {
+                padding: { xs: '3px', md: '8px', lg: '3px' },
+              },
+            }}
+          >
+
+             <ListItem 
             disableGutters
             sx={{ display: 'flex', justifyContent: 'space-between' }}
           >
@@ -150,18 +166,9 @@ const fobidenPropucts = data.notAllowedProducts;
             '&.MuiList-root': {
               marginTop: '15px',  maxHeight:'150px',
 
-            },
-          }}
-          // sx={{
-          //   height: '140px',
-          //   marginBottom: '30px',
-          //   marginTop: '10px',
-          //   marginLeft: '8px',
-          //   maxWidth: '100%',
-           
-          // }}
-        >
-          {dataFiltered?.map(product => (
+            }}}
+          >
+            {dataFiltered?.map(product => (
               <ListItem disableGutters key={product}>
                 <ListItemText
                   primary={
@@ -172,7 +179,8 @@ const fobidenPropucts = data.notAllowedProducts;
                 />
               </ListItem>
             ))}
-        </ListStyled></Box>
+          </ListStyled>
+        </Box>
       </Stack>
     </SideBarRight>
   );
