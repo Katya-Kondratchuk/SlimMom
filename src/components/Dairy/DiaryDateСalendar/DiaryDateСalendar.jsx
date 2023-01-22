@@ -29,7 +29,7 @@ export default function DiaryDateСalendar({ onDateChange }) {
               alignItems: 'center',
               marginTop: {
                 xs: '40px',
-                md: '70px',
+                md: '52px',
                 lg: '0px',
               },
             }}

@@ -92,7 +92,7 @@ const Dairy = () => {
       sx={{
         gap: {
           xs: '60px',
-          md: '55px',
+          md: '30px',
           lg: '93px',
         },
         m: '0 auto',
@@ -103,6 +103,8 @@ const Dairy = () => {
           display: 'flex',
           justifyContent: 'center',
           paddingTop: { xs: '0px', lg: '253px' },
+          width: { lg: '60vw' },
+          height: { lg: '100%' },
         }}
       >
         <Box
@@ -147,7 +149,10 @@ const Dairy = () => {
           </Box>
         </Box>
       </Box>
-      <RightSideBar summaryDayInfo={summaryDay} />
+      <RightSideBar
+        summaryDayInfo={summaryDay}
+        styled={{ width: { lg: '40vw' }, height: { lg: '100%' } }}
+      />
     </Stack>
   );
 };
