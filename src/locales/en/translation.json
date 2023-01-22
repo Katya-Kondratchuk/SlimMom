@@ -135,5 +135,9 @@
   "modal": {
     "noEat": "Food you should not eat",
     "start": "Start losing weight"
+  },
+  "notFoundPage": {
+    "title": "Not Found Page",
+    "textLink": "Go home"
   }
 }

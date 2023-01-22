@@ -124,5 +124,9 @@
   "modal": {
     "noEat": "Nourriture que vous ne devriez pas manger",
     "start": "Commencez à perdre du poids"
+  },
+  "notFoundPage": {
+    "title": "Page introuvable",
+    "textLink": "Aller à la page d'accueil"
   }
 }
