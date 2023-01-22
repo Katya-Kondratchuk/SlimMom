@@ -18,16 +18,10 @@ export const ListStyled = styled(List)`
   &.MuiList-root {
     margin-top: 44px;
     padding: 0;
-    width: 650px;
     position: relative;
     overflow: auto;
-    min-height: 271px;
-    max-height: 271px;
     @media screen and (max-width: 767px) {
       margin-top: 12px;
-      width: 292px;
-      max-height: 280px;
-      min-height: 280px;
     }
   }
 `;

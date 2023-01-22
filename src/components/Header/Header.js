@@ -102,14 +102,30 @@ const Header = () => {
               </Stack>
             </Link>
             {!isLoggedIn && (
-              <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
-                <Divider
-                  orientation="vertical"
-                  variant="middle"
-                  sx={{ mr: '20px' }}
-                />
-                <AuthNav />
-              </Box>
+              <>
+                <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
+                  <Divider
+                    orientation="vertical"
+                    variant="middle"
+                    textAlign="center"
+                    sx={{
+                      alignSelf: 'center',
+                      height: '32px',
+                      m: '0 auto',
+                      borderWidth: '1.5px',
+                      position: { lg: ' relative' },
+                      top: { lg: '6px' },
+                    }}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    display: { xs: 'none', lg: 'flex' },
+                  }}
+                >
+                  <AuthNav />
+                </Box>
+              </>
             )}
 
             {isLoggedIn && (
@@ -128,6 +144,8 @@ const Header = () => {
                       height: '32px',
                       m: '0 auto',
                       borderWidth: '1.5px',
+                      position: { lg: ' relative' },
+                      top: { lg: '6px' },
                     }}
                   />
                 </Box>
