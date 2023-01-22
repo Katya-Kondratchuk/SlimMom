@@ -87,7 +87,10 @@ const Dairy = () => {
   };
 
   return (
-    <>
+    <Stack
+      direction={{ xs: 'column', md: 'column', lg: 'row' }}
+      sx={{ gap: '93px', m: '0 auto' }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -95,54 +98,50 @@ const Dairy = () => {
           paddingTop: { xs: '0px', lg: '253px' },
         }}
       >
-        <Stack direction={{ xs: 'column', md: 'column', lg: 'row' }}>
+        <Box
+          sx={{
+            margin: { xs: '0 auto', md: '0' },
+            // marginRight: { xs: '0px', lg: '113px' },
+          }}
+        >
+          {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
+
           <Box
             sx={{
-              margin: { xs: '0 auto', md: '0' },
-              marginRight: { xs: '0px', lg: '93px' },
+              display: {
+                xs: 'flex',
+                md: 'block',
+              },
+              flexDirection: 'column-reverse',
             }}
+            component="div"
           >
-            {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
-
-            <Box
-              sx={{
-                display: {
-                  xs: 'flex',
-                  md: 'block',
-                },
-                flexDirection: 'column-reverse',
-              }}
-              component="div"
-            >
-              <DairyAddProductForm
-                onSubmitting={handelSubmitPost}
-                onHiddenClick={handelHideComponents}
-              />
-              {/* <CustomLoaderStyled /> */}
-              {isLoading && products.length === 0 ? (
-                <CustomLoaderStyled />
+            <DairyAddProductForm
+              onSubmitting={handelSubmitPost}
+              onHiddenClick={handelHideComponents}
+            />
+            {/* <CustomLoaderStyled /> */}
+            {isLoading && products.length === 0 ? (
+              <CustomLoaderStyled />
+            ) : (
+              !isHidden &&
+              (products.length === 0 ? (
+                <MessageStyled>
+                  There are no products on the selected date
+                </MessageStyled>
               ) : (
-                !isHidden &&
-                (products.length === 0 ? (
-                  <MessageStyled>
-                    There are no products on the selected date
-                  </MessageStyled>
-                ) : (
-                  <DairyProductList
-                    poducts={products}
-                    onDeleteProduct={handleDelete}
-                    dayId={currentDayId}
-                  />
-                ))
-              )}
-            </Box>
+                <DairyProductList
+                  poducts={products}
+                  onDeleteProduct={handleDelete}
+                  dayId={currentDayId}
+                />
+              ))
+            )}
           </Box>
-          <div>
-            <RightSideBar summaryDayInfo={summaryDay} />
-          </div>
-        </Stack>
+        </Box>
       </Box>
-    </>
+      <RightSideBar summaryDayInfo={summaryDay} />
+    </Stack>
   );
 };
 
