@@ -13,22 +13,22 @@ import useTranslateFormErrors from 'hooks/useTranslateFormErrors';
 const LoginForm = () => {
   const loading = useSelector(selectAuthLoading);
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   let schema = yup.object().shape({
     email: yup
       .string()
-      .typeError(i18n.t('auth.input.email.err'))
-      .min(3, i18n.t('auth.input.email.min'))
-      .max(254, i18n.t('auth.input.email.max'))
-      .email(i18n.t('auth.input.email.mail'))
-      .required(i18n.t('auth.input.required')),
+      .typeError(t('auth.input.email.err'))
+      .min(3, t('auth.input.email.min'))
+      .max(254, t('auth.input.email.max'))
+      .email(t('auth.input.email.mail'))
+      .required(t('auth.input.required')),
     password: yup
       .string()
-      .min(8, i18n.t('auth.input.pass.min'))
-      .max(100, i18n.t('auth.input.pass.max'))
-      .typeError(i18n.t('auth.input.pass.err'))
-      .required(i18n.t('auth.input.required')),
+      .min(8, t('auth.input.pass.min'))
+      .max(100, t('auth.input.pass.max'))
+      .typeError(t('auth.input.pass.err'))
+      .required(t('auth.input.required')),
   });
 
   const formik = useFormik({
