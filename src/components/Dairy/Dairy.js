@@ -3,7 +3,6 @@ import DairyProductList from 'components/Dairy/DairyProductList/DairyProductList
 import { RightSideBar } from 'components/RightSideBar/RightSideBar';
 import DiaryDateСalendar from 'components/Dairy/DiaryDateСalendar/DiaryDateСalendar';
 import { useEffect, useState } from 'react';
-
 import { Box } from '@mui/system';
 import { MessageStyled } from './DairyProductList/DairyProductList.styled';
 import {
@@ -11,8 +10,9 @@ import {
   getDayProducts,
   postProduct,
 } from 'services/api/base_api';
-
 import { Stack } from '@mui/material';
+import { CustomLoaderStyled } from './DairyLoader/DairyLoader.styled';
+import { toast } from 'react-toastify';
 
 const Dairy = () => {
   const [products, setProducts] = useState([]);
@@ -20,23 +20,24 @@ const Dairy = () => {
   const [currentDayId, setCurrentDayId] = useState('');
   const [summaryDay, setSummaryDay] = useState({});
   const [isHidden, setIsHidden] = useState(false);
-
-  // console.log(products);
-  // console.log(currentDayId);
-  // console.log(date);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (date === '') {
       return;
     }
+    setIsLoading(true);
     getDayProducts({ date: date }).then(res => {
-      const newDayId = res.id;
-      const newEatenProducts = res.eatenProducts;
+      setTimeout(() => {
+        const newDayId = res.id;
+        const newEatenProducts = res.eatenProducts;
 
-      setSummaryDay(res.daySummary ?? { ...res, date: date });
+        setSummaryDay(res.daySummary ?? { ...res, date: date });
 
-      setCurrentDayId(newDayId ?? '');
-      setProducts(newEatenProducts ?? []);
+        setCurrentDayId(newDayId ?? '');
+        setProducts(newEatenProducts ?? []);
+        setIsLoading(false);
+      }, 1000);
     });
   }, [date]);
 
@@ -56,8 +57,6 @@ const Dairy = () => {
     };
 
     postProduct(newProduct).then(res => {
-      // console.log(res);
-
       if (res.newDay) {
         setCurrentDayId(res.newDay.id);
         setProducts(prev => [...prev, ...[res.eatenProduct]]);
@@ -66,38 +65,24 @@ const Dairy = () => {
         setProducts(res.day.eatenProducts);
         setSummaryDay(res.daySummary);
       }
-
-      // const new = [res.eatenProduct];
-      // setProducts(prevProducts => [
-      //   ...prevProducts,
-      //   ...[
-      //     {
-      //       ...(res?.day || res?.newDay),
-      //       ...res.eatenProduct,
-      //       dayId: res.day?.id || res.newDay?.id,
-      //     },
-      //   ],
-      // ]);
     });
-    //     {
-    //   "date": "2020-12-31",
-    //   "productId": "5d51694802b2373622ff552c",
-    //   "weight": 100
-    // }
-    // console.log(newProduct);
-    // setProducts(prevProducts => [...prevProducts, ...newProduct]);
   };
 
   const handleDelete = object => {
-    // console.log(object);
-    deleteProduct(object).then(res => {
-      console.log(res);
-    });
+    deleteProduct(object).then(res => {});
     getDayProducts({ date: date }).then(res => {
       const newEatenProducts = res.eatenProducts;
       setProducts(newEatenProducts ?? []);
 
       setSummaryDay(res.daySummary);
+    });
+    toast('Product removed successfully', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 500,
+      theme: 'light',
+      icon: '🚽',
+      toastId: 'yes',
+      pauseOnHover: false,
     });
   };
 
@@ -114,7 +99,7 @@ const Dairy = () => {
           <Box
             sx={{
               margin: { xs: '0 auto', md: '0' },
-              marginRight: { xs: '0px', lg: '113px' },
+              marginRight: { xs: '0px', lg: '93px' },
             }}
           >
             {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
@@ -133,7 +118,11 @@ const Dairy = () => {
                 onSubmitting={handelSubmitPost}
                 onHiddenClick={handelHideComponents}
               />
-              {!isHidden &&
+              {/* <CustomLoaderStyled /> */}
+              {isLoading && products.length === 0 ? (
+                <CustomLoaderStyled />
+              ) : (
+                !isHidden &&
                 (products.length === 0 ? (
                   <MessageStyled>
                     There are no products on the selected date
@@ -144,7 +133,8 @@ const Dairy = () => {
                     onDeleteProduct={handleDelete}
                     dayId={currentDayId}
                   />
-                ))}
+                ))
+              )}
             </Box>
           </Box>
           <div>
