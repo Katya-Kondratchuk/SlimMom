@@ -42,7 +42,6 @@ const UserMenu = ({ styles }) => {
       </p>
       <Divider
         orientation="vertical"
-        flexItem="true"
         variant="middle"
         textAlign="center"
         sx={{
