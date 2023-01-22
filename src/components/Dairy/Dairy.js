@@ -4,18 +4,15 @@ import { RightSideBar } from 'components/RightSideBar/RightSideBar';
 import DiaryDateСalendar from 'components/Dairy/DiaryDateСalendar/DiaryDateСalendar';
 import { useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
-
 import { Box } from '@mui/system';
-import UserMenu from 'components/Header/UserMenu';
 import { MessageStyled } from './DairyProductList/DairyProductList.styled';
-import { StyledContainer } from 'components/Main/Main.styled';
 import {
   deleteProduct,
   getDayProducts,
   postProduct,
 } from 'services/api/base_api';
-import { selectAuthIsLoggedIn } from 'redux/auth/authSelectors';
+
+import { Stack } from '@mui/material';
 
 const Dairy = () => {
   const [products, setProducts] = useState([]);
@@ -23,7 +20,6 @@ const Dairy = () => {
   const [currentDayId, setCurrentDayId] = useState('');
   const [summaryDay, setSummaryDay] = useState({});
   const [isHidden, setIsHidden] = useState(false);
-  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
   // console.log(products);
   // console.log(currentDayId);
@@ -34,10 +30,9 @@ const Dairy = () => {
       return;
     }
     getDayProducts({ date: date }).then(res => {
-      console.log(res);
       const newDayId = res.id;
       const newEatenProducts = res.eatenProducts;
-      // console.log(newDayId);
+
       setSummaryDay(res.daySummary ?? { ...res, date: date });
 
       setCurrentDayId(newDayId ?? '');
@@ -49,21 +44,17 @@ const Dairy = () => {
     setIsHidden(value);
   };
   const handleDateChange = date => {
-    // console.log(date);
     const backendDate = new Date(date).toISOString().split('T')[0];
     setDate(backendDate);
-    // console.log(backendDate);
   };
 
   const handelSubmitPost = object => {
-    // console.log(object);
-
     const newProduct = {
       date: date,
       productId: object.id,
       weight: +object.weight,
     };
-    // console.log(newProduct);
+
     postProduct(newProduct).then(res => {
       // console.log(res);
 
@@ -111,9 +102,23 @@ const Dairy = () => {
   };
 
   return (
-    <StyledContainer>
-      <div style={{ display: 'flex' }}>
-        <div style={{ marginRight: '136px' }}>
+    <Stack
+      direction={{ xs: 'column', md: 'column', lg: 'row' }}
+      sx={{ gap: '113px', m: '0 auto' }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: { xs: '0px', lg: '253px' },
+        }}
+      >
+        <Box
+          sx={{
+            margin: { xs: '0 auto', md: '0' },
+            // marginRight: { xs: '0px', lg: '113px' },
+          }}
+        >
           {!isHidden && <DiaryDateСalendar onDateChange={handleDateChange} />}
 
           <Box
@@ -143,15 +148,10 @@ const Dairy = () => {
                 />
               ))}
           </Box>
-        </div>
-        <div>
-          {isLoggedIn && (
-            <UserMenu styles={{ xs: 'none', md: 'none', lg: 'flex' }} />
-          )}
-          <RightSideBar summaryDayInfo={summaryDay} />
-        </div>
-      </div>
-    </StyledContainer>
+        </Box>
+      </Box>
+      <RightSideBar summaryDayInfo={summaryDay} />
+    </Stack>
   );
 };
 

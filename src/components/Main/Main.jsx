@@ -26,36 +26,42 @@ const schema = yup.object().shape({
     .required('Please write down your your height')
     .typeError('Your height must be a number!')
     .positive('Height mast be a positive number')
-    .min(130, 'You cant be that short!')
-    .max(220, 'Humans cant be that big!'),
+    .min(110, 'You cant be that short!')
+    .integer('Your height must be an integer!')
+    .max(230, 'You cant be that big!'),
 
   age: yup
     .number()
+    .required('Please write down your your age')
     .typeError('Your age must be a number!')
+    .positive('Age mast be a positive number')
     .min(15, 'Aplication is not for children')
-    .max(80, 'Better check your weight with a doctor')
-    .required('Please write down your your age'),
+    .integer('Your age must be an integer!')
+    .max(80, 'Better check your weight with a doctor'),
+
   weight: yup
     .number()
     .required('Please write down your current weight')
     .typeError('Your current weight must be a number!')
+    .positive('Weight mast be a positive number')
     .min(50, 'You are too light to use this app.')
-    .max(350, 'You cant be that big!')
-    .positive('Weight mast be a positive number'),
+    .integer('Your weight must be an integer!')
+    .max(350, 'You cant be that big!'),
 
   desiredWeight: yup
     .number()
+    .required('Please write down your desired weight')
     .typeError('Your desired weight must be a number!')
+    .positive('Desired weight mast be a positive')
     .min(45, 'You cant be that light.')
-    .max(100, 'You can do better!')
+    .integer('Your desired weight must be an integer!')
+    .max(120, 'You can do better!')
     .notOneOf(
       [yup.ref('weight'), null],
       'Your desired weight and current weight are same!'
-    )
-    .required('Please write down your desired weight')
-    .positive('Desired weight mast be a positive'),
+    ),
 
-  bloodType: yup.string().required('Please chose your blood type'),
+  bloodType: yup.number().required('Please chose your blood type'),
 });
 
 function MyFormControlLabel(props) {
@@ -89,7 +95,6 @@ const Home = ({ onSubmit }) => {
     bloodType: userInitValues?.bloodType || localInitValues?.bloodType || '',
   };
 
-  console.log('Hi!');
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
@@ -109,17 +114,27 @@ const Home = ({ onSubmit }) => {
   const id = useSelector(selectAuthUserId);
 
   return (
-    <Box component="div">
+    <Box
+      component="div"
+      sx={{
+        p: {
+          xs: '32px 0 41px 0',
+          md: '100px 0 48px 0',
+          lg: '293px 0 111px 0 ',
+        },
+        mr: {
+          lg: '139px',
+        },
+      }}
+    >
       <Box
         component="div"
         sx={{
-          textAlign: 'centr',
           maxWidth: { lg: '608px', md: '518px', xs: '280px' },
 
           m: {
-            xs: '32px auto 0 auto',
-            md: '100px auto 0 auto',
-            lg: '147px auto 0 0',
+            xs: '0 auto',
+            lg: '0',
           },
         }}
       >
@@ -185,7 +200,7 @@ const Home = ({ onSubmit }) => {
                 disableAnimation
                 shrink
                 error={formik.touched.age && Boolean(formik.errors.age)}
-                sx={{ mt: { xs: '32px', md: '20px' } }}
+                sx={{ mt: { xs: '12px', md: '20px' } }}
               >
                 Age*
               </StyledInputLable>
@@ -216,19 +231,16 @@ const Home = ({ onSubmit }) => {
                 disableAnimation
                 shrink
                 htmlFor="weight"
-                sx={{ mt: { xs: '32px', md: '20px' } }}
+                sx={{ mt: { xs: '12px', md: '20px' } }}
               >
                 Current Weight*
               </StyledInputLable>
               <Input
                 notched="true"
-                fullWidth
                 id="weight"
-                name="weight"
-                label="Current weight*"
                 placeholder="Write down your weight in kg."
-                value={formik.values.weight}
                 aria-describedby="weight-helper-text"
+                value={formik.values.weight}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.weight && Boolean(formik.errors.weight)}
@@ -251,7 +263,7 @@ const Home = ({ onSubmit }) => {
                   formik.touched.desiredWeight &&
                   Boolean(formik.errors.desiredWeight)
                 }
-                sx={{ mt: { xs: '32px', md: '0' } }}
+                sx={{ mt: { xs: '12px', md: '0' } }}
                 disableAnimation
                 shrink
                 htmlFor="desiredWeight"
@@ -260,10 +272,7 @@ const Home = ({ onSubmit }) => {
               </StyledInputLable>
               <Input
                 notched="true"
-                fullWidth
                 id="desiredWeight"
-                name="desiredWeight"
-                label="Desired Weight*"
                 placeholder="Your desired weight in kg."
                 value={formik.values.desiredWeight}
                 aria-describedby="desiredWeight-helper-text"
@@ -295,7 +304,7 @@ const Home = ({ onSubmit }) => {
                 error={
                   formik.touched.bloodType && Boolean(formik.errors.bloodType)
                 }
-                sx={{ mt: { xs: '32px', md: '20px' } }}
+                sx={{ mt: { xs: '12px', md: '20px' } }}
                 disableAnimation
                 shrink
                 htmlFor="bloodType"
@@ -360,16 +369,16 @@ const Home = ({ onSubmit }) => {
                   {formik.errors.bloodType}
                 </FormHelperText>
               ) : (
-                <FormHelperText id="bloodType-helper-text"></FormHelperText>
+                <FormHelperText id="bloodType-helper-text"> </FormHelperText>
               )}
             </Box>
           </Box>
           <ColorButton
             sx={{
               m: {
-                xs: '40px auto 0 auto',
-                md: '60px auto 0 32px',
-                lg: '60px auto 0 323px',
+                xs: '20px auto 0 auto',
+                md: '40px auto 0 0px',
+                lg: '40px auto 0 323px',
               },
             }}
             disabled={isValid ? false : true}

@@ -1,4 +1,4 @@
-import { Fab, TextField } from '@mui/material';
+import { Fab, IconButton, TextField } from '@mui/material';
 
 import styled from 'styled-components';
 
@@ -49,6 +49,12 @@ export const FormStyled = styled.form`
   display: flex;
   position: relative;
 
+  &.afterInvisible {
+    ::after {
+      display: none;
+    }
+  }
+
   ::after {
     left: 0;
     bottom: -345px;
@@ -80,6 +86,22 @@ export const FormStyled = styled.form`
     font-weight: 700;
     @media screen and (max-width: 767px) {
       font-size: 14px;
+    }
+  }
+`;
+
+export const IconStyled = styled(IconButton)`
+  &.MuiButtonBase-root {
+    @media screen and (max-width: 767px) {
+      position: absolute;
+      top: 83px;
+      left: 0;
+      z-index: 1;
+      width: 40px;
+      display: none;
+    }
+    @media screen and (min-width: 768px) {
+      display: none;
     }
   }
 `;
