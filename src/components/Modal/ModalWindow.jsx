@@ -24,12 +24,13 @@ import Filter from './Filter';
 import LoadingSpiner from '../AuthForm/LoadingSpiner/LoadingSpiner';
 import { useTheme } from '@mui/material/styles';
 import { ListStyled } from 'components/Dairy/DairyProductList/DairyProductList.styled';
+import { useTranslation } from 'react-i18next';
 const ModalWindow = ({ values, open, onClose, setOpen }) => {
   const [data, setData] = useState({});
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   const fobidenPropucts = data.notAllowedProducts;
   const [loading, setLoading] = useState(false);
-
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const filterData = (query, fobidenPropucts) => {
     if (!query) {
@@ -110,7 +111,7 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
               lineHeight: '1.4',
             }}
           >
-            Your recommended daily calorie intake is
+            {t('calc.modal.title')}
           </Typography>
           <Typography
             id="modal-modal-title"
@@ -123,7 +124,8 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
             {loading ? (
               <LoadingSpiner color="#264061" />
             ) : (
-              Math.ceil(data.dailyRate, 1) + ' kcal'
+              data?.dailyRate &&
+              Math.ceil(data.dailyRate, 1) + ` ${t('calc.modal.kcal')}`
             )}
           </Typography>
           <Divider
@@ -149,7 +151,7 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
                 textAlign: 'center',
               }}
             >
-              Food you should not eat
+              {t('calc.modal.noEatTitle')}
             </Typography>
             <Filter searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             <ListStyled
@@ -192,7 +194,7 @@ const ModalWindow = ({ values, open, onClose, setOpen }) => {
                 m: '0 auto',
               }}
             >
-              Start losing weight
+              {t('calc.btnText.valid')}
             </ColorButton>
           </Link>
         </BoxStyled>
