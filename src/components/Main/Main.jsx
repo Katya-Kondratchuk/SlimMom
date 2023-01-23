@@ -123,7 +123,7 @@ const Home = ({ onSubmit }) => {
       sx={{
         p: {
           xs: '32px 0 41px 0',
-          md: '100px 0 48px 0',
+          md: '65px 0 48px 0',
           lg: '293px 0 52px 0 ',
         },
         mr: {
@@ -146,7 +146,7 @@ const Home = ({ onSubmit }) => {
           variant="h2"
           component="h1"
           sx={{
-            mb: { xs: '34px', md: '68px' },
+            mb: { xs: '34px', md: '25px' },
             textAlign: { xs: 'center', md: 'start' },
             fontSize: { xs: '18px', md: '34px' },
           }}
@@ -381,7 +381,7 @@ const Home = ({ onSubmit }) => {
             sx={{
               m: {
                 xs: '20px auto 0 auto',
-                md: '40px auto 0 0px',
+                md: '20px auto 0 0px',
                 lg: '40px auto 0 323px',
               },
             }}

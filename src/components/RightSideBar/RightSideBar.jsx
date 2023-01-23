@@ -18,6 +18,7 @@ import { useState } from 'react';
 import Filter from 'components/Modal/Filter';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 export function arrayRandElement(products = []) {
   const rand = Math.floor(Math.random() * products.length);
@@ -52,14 +53,20 @@ export function RightSideBar({ summaryDayInfo }) {
   const {
     kcalConsumed = 0,
     kcalLeft = 0,
-    percentsOfDailyRate = 0,
     dailyRate = 0,
     date = backendDate,
   } = summaryDayInfo || todaysData || {};
 
   const handleOverWeigth = () => {
-    if (+percentsOfDailyRate.toFixed(0) > 100) {
+    if (+((kcalConsumed * 100) / dailyRate).toFixed(0) > 100) {
       overWeigth?.current?.classList.add('chahgeColor');
+      toast.warning('You have exceeded your limit!', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+        theme: 'colored',
+        toastId: 'no',
+        pauseOnHover: false,
+      });
     } else {
       overWeigth?.current?.classList.remove('chahgeColor');
     }
@@ -162,12 +169,15 @@ export function RightSideBar({ summaryDayInfo }) {
               <ListItemText
                 sx={{ textAlign: 'end' }}
                 primary={`${
-                  +percentsOfDailyRate.toFixed(0) > 100
-                    ? +percentsOfDailyRate.toFixed(0) -
+                  +((kcalConsumed * 100) / dailyRate).toFixed(0) > 100
+                    ? +((kcalConsumed * 100) / dailyRate).toFixed(0) -
                       100 +
                       ` ${t('summary.overweidth')}!`
-                    : +percentsOfDailyRate.toFixed(0) + '%'
-                } ${t('diary.kcal')}`}
+                    : !+((kcalConsumed * 100) / dailyRate).toFixed(0)
+                    ? '0%'
+                    : +((kcalConsumed * 100) / dailyRate).toFixed(0) + '%'
+                } 
+                  `}
               />
             </ListItem>
           </List>
