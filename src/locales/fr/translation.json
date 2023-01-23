@@ -3,7 +3,7 @@
     "title": {
       "login": "Connexion",
       "register": "Inscription",
-      "exit": "Sortir"
+      "exit": "Sortie"
     },
     "input": {
       "email": {
@@ -38,7 +38,7 @@
     }
   },
   "calc": {
-    "title": "Calculez votre apport calorique quotidien dès maintenant",
+    "title": "Calculez votre apport calorique quotidien",
     "form": {
       "height": {
         "title": "Hauteur",
@@ -89,11 +89,11 @@
       "numberOnly": "Chiffre seulement"
     },
     "btnText": {
-      "valid": "Commencez à perdre du poids",
+      "valid": "Commencez",
       "notValid": "Remplissez vos données"
     },
     "modal": {
-      "title": "Votre apport calorique quotidien recommandé est de",
+      "title": "Votre apport calorique quotidien recommandé",
       "kcal": "kcal",
       "noEatTitle": "Aliments que vous ne devriez pas manger"
     }
