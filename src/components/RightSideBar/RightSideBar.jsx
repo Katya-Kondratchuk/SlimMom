@@ -156,7 +156,7 @@ export function RightSideBar({ summaryDayInfo }) {
                 primary={`${
                   +percentsOfDailyRate.toFixed(0) > 100
                     ? +percentsOfDailyRate.toFixed(0) - 100 + ' % overweidth!'
-                    : +percentsOfDailyRate.toFixed(0) + '%'
+                    : +percentsOfDailyRate.toFixed(0) + '%' && '000'
                 } kcal`}
               />
             </ListItem>

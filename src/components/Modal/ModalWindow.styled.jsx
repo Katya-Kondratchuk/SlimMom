@@ -16,7 +16,7 @@ export const BoxStyled = styled(Box)`
   top: 14.4%;
   width: 100vw;
   max-height: 656px;
-  padding: 40px 20px 119px;
+  padding: 40px 0px 119px;
 
   @media screen and (min-width: 768px) {
     width: 672px;
