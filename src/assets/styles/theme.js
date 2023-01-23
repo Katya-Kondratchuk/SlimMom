@@ -41,7 +41,6 @@ export const theme = createTheme({
       fontWeight: 700,
       fontSize: 14,
       lineHeight: 1.2,
-      // letter-spacing: 0.04em;
       color: '#212121',
     },
   },
@@ -52,17 +51,5 @@ export const theme = createTheme({
       md: 768,
       lg: 1280,
     },
-  },
-  components: {
-    // MuiMenu: {
-    //   styleOverrides: {
-    //     paper: { top: '10%', left: '25%', backgroundColor: 'red' },
-    //   },
-    // },
-    // MuiPaper: {
-    //   styleOverrides: {
-    //     rounded: { top: '10%', left: '25%', backgroundColor: 'red' },
-    //   },
-    // },
   },
 });
