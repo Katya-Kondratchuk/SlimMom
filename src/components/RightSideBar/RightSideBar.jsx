@@ -17,6 +17,7 @@ import { ListStyled } from 'components/Dairy/DairyProductList/DairyProductList.s
 import { useState } from 'react';
 import Filter from 'components/Modal/Filter';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export function arrayRandElement(products = []) {
   const rand = Math.floor(Math.random() * products.length);
@@ -27,6 +28,7 @@ export function RightSideBar({ summaryDayInfo }) {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   const userData = useSelector(selectAuthUserData);
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation();
 
   const backendDate = new Date().toISOString().split('T')[0];
   const todaysData = data?.summaries?.find(({ date }) => date === backendDate);
@@ -93,7 +95,7 @@ export function RightSideBar({ summaryDayInfo }) {
               fontWeight: '16px',
             }}
           >
-            Summary for {date}
+            {t('summary.title')} {date}
           </Typography>
           <List
             sx={{
@@ -113,32 +115,38 @@ export function RightSideBar({ summaryDayInfo }) {
               disableGutters
               sx={{ display: 'flex', justifyContent: 'space-between' }}
             >
-              <ListItemText primary="Left" />
+              <ListItemText primary={t('summary.left')} />
               <ListItemText
                 sx={{ textAlign: 'end' }}
                 primary={` ${
-                  kcalLeft || Math.ceil(dailyRate - kcalConsumed) || 0 + '00'
-                } kcal`}
+                  Math.ceil(kcalLeft) ||
+                  Math.ceil(dailyRate - kcalConsumed) ||
+                  0 + '00'
+                } ${t('diary.kcal')}`}
               />
             </ListItem>
             <ListItem
               disableGutters
               sx={{ display: 'flex', justifyContent: 'space-between' }}
             >
-              <ListItemText primary="Consumed" />
+              <ListItemText primary={t('summary.consumed')} />
               <ListItemText
                 sx={{ textAlign: 'end' }}
-                primary={`${Math.ceil(kcalConsumed, 1) || '000'} kcal`}
+                primary={`${Math.ceil(kcalConsumed, 1) || '000'} ${t(
+                  'diary.kcal'
+                )}`}
               />
             </ListItem>
             <ListItem
               disableGutters
               sx={{ display: 'flex', justifyContent: 'space-between' }}
             >
-              <ListItemText primary="Daily rate" />
+              <ListItemText primary={t('summary.daily')} />
               <ListItemText
                 sx={{ textAlign: 'end' }}
-                primary={` ${dailyRate || data.dailyRate || 0 + '00'} kcal`}
+                primary={` ${dailyRate || data.dailyRate || 0 + '00'} ${t(
+                  'diary.kcal'
+                )}`}
               />
             </ListItem>
             <ListItem
@@ -150,14 +158,16 @@ export function RightSideBar({ summaryDayInfo }) {
               }}
               disableGutters
             >
-              <ListItemText primary="n% of normal" />
+              <ListItemText primary={t('summary.n')} />
               <ListItemText
                 sx={{ textAlign: 'end' }}
                 primary={`${
                   +percentsOfDailyRate.toFixed(0) > 100
-                    ? +percentsOfDailyRate.toFixed(0) - 100 + ' % overweidth!'
-                    : +percentsOfDailyRate.toFixed(0) + '%' && '000'
-                } kcal`}
+                    ? +percentsOfDailyRate.toFixed(0) -
+                      100 +
+                      ` ${t('summary.overweidth')}!`
+                    : +percentsOfDailyRate.toFixed(0) + '%'
+                } ${t('diary.kcal')}`}
               />
             </ListItem>
           </List>
@@ -176,7 +186,7 @@ export function RightSideBar({ summaryDayInfo }) {
               maxWidth: { xs: '280px', lg: '380px' },
             }}
           >
-            Food you should not eat
+            {t('summary.noFoodTitle')}
           </Typography>
           {data && (
             <WrapperFilter>

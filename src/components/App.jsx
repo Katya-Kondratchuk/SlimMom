@@ -5,6 +5,7 @@ import { refreshUser } from 'redux/auth/authOperation';
 import { selectAuthIsLoadCurrentUser } from 'redux/auth/authSelectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoaderSuspense from './LoaderSuspense/LoaderSuspense';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const App = () => {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} theme="light" />
-      {!isLoadCurrentUser && <AllRouts />}
+      {isLoadCurrentUser ? <LoaderSuspense /> : <AllRouts />}
     </>
   );
 };

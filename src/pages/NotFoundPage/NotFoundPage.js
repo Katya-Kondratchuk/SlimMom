@@ -1,8 +1,10 @@
 import { Typography } from '@mui/material';
 import ContainerLayout from 'components/Container/Container';
+import { useTranslation } from 'react-i18next';
 import { LinkBack, NotFoundBg, NotFoundWrapper } from './NotFoundPage.styled';
 
 const NotFoundPage = () => {
+  const { t } = useTranslation();
   return (
     <ContainerLayout>
       <NotFoundWrapper>
@@ -13,9 +15,9 @@ const NotFoundPage = () => {
             mb: '20px',
           }}
         >
-          Not Found Page
+          {t('notFoundPage.title')}
         </Typography>
-        <LinkBack to="/">Go home</LinkBack>
+        <LinkBack to="/">{t('notFoundPage.textLink')}</LinkBack>
       </NotFoundWrapper>
       <NotFoundBg />
     </ContainerLayout>

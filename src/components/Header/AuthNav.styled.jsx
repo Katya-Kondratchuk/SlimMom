@@ -3,6 +3,7 @@ const { default: styled } = require('styled-components');
 
 export const NavLinkAuth = styled(NavLink)`
   text-decoration: none;
+  text-transform: uppercase;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.2;

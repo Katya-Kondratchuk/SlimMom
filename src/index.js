@@ -9,6 +9,7 @@ import './index.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from 'assets/styles/theme';
 import LoaderSuspense from 'components/LoaderSuspense/LoaderSuspense';
+import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
