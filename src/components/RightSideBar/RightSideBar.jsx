@@ -159,7 +159,7 @@ export function RightSideBar({ summaryDayInfo }) {
               <ListItemText primary={t('summary.daily')} />
               <ListItemText
                 sx={{ textAlign: 'end' }}
-                primary={` ${dailyRate || data.dailyRate || 0 + '00'} ${t(
+                primary={` ${dailyRate || data?.dailyRate || 0 + '00'} ${t(
                   'diary.kcal'
                 )}`}
               />
