@@ -35,7 +35,7 @@ export const getProducts = async value => {
   } catch (error) {
     toast.warning('No allowed products', {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 700,
+      autoClose: 3000,
       theme: 'colored',
       icon: '🚀',
       toastId: 'yes',

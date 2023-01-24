@@ -20,6 +20,11 @@ export const FabStyled = styled(Fab)`
     &:hover {
       background-color: #fc2d2d;
     }
+
+    &:disabled {
+      background-color: grey;
+      box-shadow: none;
+    }
   }
 `;
 

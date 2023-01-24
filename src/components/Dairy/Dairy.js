@@ -14,6 +14,7 @@ import { Stack } from '@mui/material';
 import { CustomLoaderStyled } from './DairyLoader/DairyLoader.styled';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const Dairy = () => {
   const [products, setProducts] = useState([]);
@@ -23,6 +24,8 @@ const Dairy = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
+  const userData = useSelector(state => state.daily);
+  console.log(userData);
 
   useEffect(() => {
     if (date === '') {
@@ -80,7 +83,7 @@ const Dairy = () => {
     });
     toast('Product removed successfully', {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 500,
+      autoClose: 3000,
       theme: 'light',
       icon: '🚽',
       toastId: 'yes',
@@ -128,6 +131,7 @@ const Dairy = () => {
             component="div"
           >
             <DairyAddProductForm
+              userData={userData}
               onSubmitting={handelSubmitPost}
               onHiddenClick={handelHideComponents}
             />
@@ -137,7 +141,11 @@ const Dairy = () => {
             ) : (
               !isHidden &&
               (products.length === 0 ? (
-                <MessageStyled>{t('diary.noselectedDate')}</MessageStyled>
+                <MessageStyled>
+                  {Object.keys(userData).length === 0
+                    ? 'Fill data in calculator'
+                    : t('diary.noselectedDate')}
+                </MessageStyled>
               ) : (
                 <DairyProductList
                   poducts={products}

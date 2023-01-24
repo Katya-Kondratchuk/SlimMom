@@ -25,14 +25,25 @@ const Filter = ({ setSearchQuery }) => {
         textAlign: 'center',
       }}
     >
+      {/* <Input
+        notched="true"
+        id="height"
+        placeholder={t('calc.form.height.placeholder')}
+        value={formik.values.height}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.height && Boolean(formik.errors.height)}
+        sx={{ width: '242px' }}
+      /> */}
       <CssTextField
+        variant="standard"
         id="search-bar"
         className="text"
         onInput={e => {
           setSearchQuery(e.target.value);
         }}
         label={t('filter.label')}
-        variant="outlined"
+        // variant="outlined"
         placeholder={t('filter.placeholder')}
         sx={{
           width: {
