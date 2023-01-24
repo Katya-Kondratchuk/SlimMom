@@ -37,6 +37,9 @@ export function RightSideBar({ summaryDayInfo }) {
     userData?.notAllowedProducts || data.notAllowedProducts;
 
   const overWeigth = useRef();
+  const isLimit = useRef();
+  console.log(data);
+  console.log(summaryDayInfo);
 
   const filterData = (query, fobidenPropucts) => {
     if (!query) {
@@ -60,17 +63,22 @@ export function RightSideBar({ summaryDayInfo }) {
   const handleOverWeigth = () => {
     if (+((kcalConsumed * 100) / dailyRate).toFixed(0) > 100) {
       overWeigth?.current?.classList.add('chahgeColor');
-      toast.warning('You have exceeded your limit!', {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1000,
-        theme: 'colored',
-        toastId: 'no',
-        pauseOnHover: false,
-      });
+      if (isLimit.current) {
+        toast.warning('You have exceeded your limit!', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          theme: 'colored',
+          toastId: 'no',
+          pauseOnHover: false,
+        });
+      }
+      isLimit.current = false;
     } else {
       overWeigth?.current?.classList.remove('chahgeColor');
+      isLimit.current = true;
     }
   };
+
   handleOverWeigth();
 
   return (

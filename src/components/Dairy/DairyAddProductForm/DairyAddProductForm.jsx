@@ -21,7 +21,11 @@ import { ButtonStyled } from 'assets/styles/AuthPages.styled';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
+export default function DairyAddProductForm({
+  onSubmitting,
+  onHiddenClick,
+  userData,
+}) {
   const [query, setQuery] = useState('');
   const [weigth, setWeigth] = useState('');
   const [productList, setProductList] = useState([]);
@@ -55,7 +59,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
     if (!selectedProduct) {
       toast('Select allowed product', {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 1000,
+        autoClose: 3000,
         theme: 'light',
         icon: '🔥',
         toastId: 'yes',
@@ -70,7 +74,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
     setWeigth('');
     toast('Product add successfully', {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 1000,
+      autoClose: 3000,
       theme: 'light',
       icon: '🍭',
       toastId: 'yes',
@@ -193,6 +197,7 @@ export default function DairyAddProductForm({ onSubmitting, onHiddenClick }) {
           </ButtonStyled>
         </div>
         <FabStyled
+          disabled={Object.keys(userData).length === 0 ? true : false}
           ref={buttonEl}
           onClick={() => (isMobile ? handleChangeView(true) : null)}
           aria-label="add"
