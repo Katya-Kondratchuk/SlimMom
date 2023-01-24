@@ -394,10 +394,7 @@ const Home = ({ onSubmit }) => {
                 : handleCloseModal()
             }
           >
-            {/* {isValid ? t('calc.btnText.valid') : t('calc.btnText.notValid')} */}
-            {userInitValues?.dailyRate
-              ? t('calc.btnText.valid')
-              : t('calc.btnText.notValid')}
+            {isValid ? t('calc.btnText.valid') : t('calc.btnText.notValid')}
           </ColorButton>
         </Box>
       </Box>
