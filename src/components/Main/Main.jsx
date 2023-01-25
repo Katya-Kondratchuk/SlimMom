@@ -110,6 +110,10 @@ const Home = ({ onSubmit }) => {
     validateOnBlur: true,
   });
   useEffect(() => {
+    const ifEmpty = Object.values(formik.values).includes('');
+    if (ifEmpty) {
+      return;
+    }
     dispatch(dailyRateOperation({ id, data: formik.values }));
   }, [dispatch, formik.values, id]);
 

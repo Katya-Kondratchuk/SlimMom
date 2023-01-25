@@ -13,6 +13,8 @@ import storage from 'redux-persist/lib/storage';
 import { authSlice } from './auth/authSlice';
 import { dailySlice } from './daily/dailySlice';
 
+// const DAILY = 'daily/dailyRateId/fulfilled';
+
 const persistConfig = {
   key: 'refresh-user-token',
   storage,
@@ -27,7 +29,16 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+          // DAILY,
+        ],
+        ignoredActionPaths: ['payload.error'],
       },
     }),
 });

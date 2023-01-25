@@ -6,10 +6,16 @@ export const dailyRateOperation = createAsyncThunk(
 
   async (value, { rejectWithValue }) => {
     const { id, data } = value;
+    console.log(id, data);
     try {
       const dailyRate = await Api.postDailyRateWithId(id, data);
+      console.log(dailyRate);
+      // if (dailyRate.error) {
+      //   return {};
+      // }
       return dailyRate;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.message);
     }
   }
