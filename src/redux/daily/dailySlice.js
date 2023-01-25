@@ -6,7 +6,15 @@ export const dailySlice = createSlice({
   initialState: {},
   extraReducers: {
     [dailyRateOperation.fulfilled]: (state, { payload }) => {
+      console.log(payload);
+      if (payload.error) {
+        return state;
+      }
+
       return (state = payload);
+    },
+    [dailyRateOperation.rejected]: (state, { payload }) => {
+      state.error = payload;
     },
   },
 });
