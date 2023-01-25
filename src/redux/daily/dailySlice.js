@@ -8,13 +8,14 @@ export const dailySlice = createSlice({
     [dailyRateOperation.fulfilled]: (state, { payload }) => {
       console.log(payload);
       if (payload.error) {
-        return state;
+        state.error = payload.error.message;
+      } else {
+        return (state = payload);
       }
-
-      return (state = payload);
     },
-    [dailyRateOperation.rejected]: (state, { payload }) => {
-      state.error = payload;
-    },
+    // [dailyRateOperation.rejected]: (state, action) => {
+    //   console.log(action);
+    //   state.error = action.payload;
+    // },
   },
 });
