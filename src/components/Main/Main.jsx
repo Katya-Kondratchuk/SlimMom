@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dailyRateOperation } from 'redux/daily/dailyOperation.js';
 import useTranslateFormErrors from 'hooks/useTranslateFormErrors.js';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 function MyFormControlLabel(props) {
   const radioGroup = useRadioGroup();
@@ -42,16 +43,17 @@ const Home = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  const id = useSelector(selectAuthUserId);
 
   const userInitValues = useSelector(selectAuthUserData);
-  const localInitValues = JSON.parse(localStorage?.getItem('item'));
+  // const localInitValues = JSON.parse(localStorage?.getItem('item'));
   const initialValues = {
-    height: userInitValues?.height || localInitValues?.height || '',
-    age: userInitValues?.age || localInitValues?.age || '',
-    weight: userInitValues?.weight || localInitValues?.weight || '',
-    desiredWeight:
-      userInitValues?.desiredWeight || localInitValues?.desiredWeight || '',
-    bloodType: userInitValues?.bloodType || localInitValues?.bloodType || '',
+    height: userInitValues?.height || '',
+    age: userInitValues?.age || '',
+    weight: userInitValues?.weight || '',
+    desiredWeight: userInitValues?.desiredWeight || '',
+    bloodType: userInitValues?.bloodType || '',
   };
 
   const schema = yup.object().shape({
@@ -102,11 +104,14 @@ const Home = ({ onSubmit }) => {
     validationSchema: schema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
       setSubmitting(true);
-      localStorage.setItem('item', JSON.stringify(values));
+      // localStorage.setItem('item', JSON.stringify(values));
       setSubmitting(false);
     },
     validateOnBlur: true,
   });
+  useEffect(() => {
+    dispatch(dailyRateOperation({ id, data: formik.values }));
+  }, [dispatch, formik.values, id]);
 
   useTranslateFormErrors(formik.errors, formik.touched, formik.setFieldTouched);
 
@@ -114,8 +119,6 @@ const Home = ({ onSubmit }) => {
   const handleCloseModal = () => {
     setOpen(!open);
   };
-  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
-  const id = useSelector(selectAuthUserId);
 
   return (
     <Box

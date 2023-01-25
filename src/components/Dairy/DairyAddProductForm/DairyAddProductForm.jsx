@@ -197,7 +197,7 @@ export default function DairyAddProductForm({
           </ButtonStyled>
         </div>
         <FabStyled
-          disabled={Object.keys(userData).length === 0 ? true : false}
+          disabled={userData.dailyRate === 0 ? true : false}
           ref={buttonEl}
           onClick={() => (isMobile ? handleChangeView(true) : null)}
           aria-label="add"

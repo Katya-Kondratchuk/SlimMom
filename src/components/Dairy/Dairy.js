@@ -15,6 +15,7 @@ import { CustomLoaderStyled } from './DairyLoader/DairyLoader.styled';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { selectAuthUserData } from 'redux/auth/authSelectors';
 
 const Dairy = () => {
   const [products, setProducts] = useState([]);
@@ -24,7 +25,7 @@ const Dairy = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
-  const userData = useSelector(state => state.daily);
+  const userData = useSelector(selectAuthUserData);
   console.log(userData);
 
   useEffect(() => {
@@ -142,7 +143,7 @@ const Dairy = () => {
               !isHidden &&
               (products.length === 0 ? (
                 <MessageStyled>
-                  {Object.keys(userData).length === 0
+                  {userData?.dailyRate === 0
                     ? 'Fill data in calculator'
                     : t('diary.noselectedDate')}
                 </MessageStyled>

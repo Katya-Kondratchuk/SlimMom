@@ -36,10 +36,11 @@ export function RightSideBar({ summaryDayInfo }) {
   const fobidenPropucts =
     userData?.notAllowedProducts || data.notAllowedProducts;
 
+  console.log(todaysData);
+  console.log(summaryDayInfo);
+
   const overWeigth = useRef();
   const isLimit = useRef();
-  console.log(data);
-  console.log(summaryDayInfo);
 
   const filterData = (query, fobidenPropucts) => {
     if (!query) {
