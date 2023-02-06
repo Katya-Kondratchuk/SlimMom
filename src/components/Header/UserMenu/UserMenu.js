@@ -7,6 +7,7 @@ import {
   selectAuthLoading,
   selectAuthUserName,
 } from 'redux/auth/authSelectors';
+import { dailyRateOperation } from 'redux/daily/dailyOperation';
 import { normalizeName } from 'services/normalized';
 
 const UserMenu = ({ styles }) => {
@@ -69,7 +70,10 @@ const UserMenu = ({ styles }) => {
           justifyContent: 'flex-start',
           p: 0,
         }}
-        onClick={() => dispatch(logoutUser())}
+        onClick={() => {
+          dispatch(dailyRateOperation());
+          dispatch(logoutUser());
+        }}
       >
         {loading ? (
           <LoadingSpiner color="#000" size={9} />

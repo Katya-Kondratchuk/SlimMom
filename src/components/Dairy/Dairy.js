@@ -26,7 +26,7 @@ const Dairy = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
   const userData = useSelector(selectAuthUserData);
-  console.log(userData);
+  // console.log(userData);
 
   useEffect(() => {
     if (date === '') {
