@@ -38,6 +38,7 @@ export const authSlice = createSlice({
         state.user.email = payload.email;
         state.user.id = payload.id;
         state.loadind = false;
+        // console.log({ ...state });
       })
       .addCase(registerUser.rejected, handlerRejected)
 

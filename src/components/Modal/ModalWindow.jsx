@@ -25,13 +25,15 @@ import LoadingSpiner from '../AuthForm/LoadingSpiner/LoadingSpiner';
 import { useTheme } from '@mui/material/styles';
 import { ListStyled } from 'components/Dairy/DairyProductList/DairyProductList.styled';
 import { useTranslation } from 'react-i18next';
+
 const ModalWindow = ({ values, open, onClose, setOpen }) => {
   const [data, setData] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(false);
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   const fobidenPropucts = data.notAllowedProducts;
-  const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState('');
+
   const filterData = (query, fobidenPropucts) => {
     if (!query) {
       return fobidenPropucts;

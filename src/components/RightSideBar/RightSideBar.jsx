@@ -11,6 +11,7 @@ import UserMenu from 'components/Header/UserMenu';
 import { SideBarRight, WrapperFilter } from './RightSideBar.styled';
 import {
   selectAuthIsLoggedIn,
+  selectAuthRefreshToken,
   selectAuthUserData,
 } from '../../redux/auth/authSelectors';
 import { ListStyled } from 'components/Dairy/DairyProductList/DairyProductList.styled';
@@ -28,16 +29,24 @@ export function RightSideBar({ summaryDayInfo }) {
   const data = useSelector(state => state.daily);
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   const userData = useSelector(selectAuthUserData);
+  const token = useSelector(selectAuthRefreshToken);
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useTranslation();
 
   const backendDate = new Date().toISOString().split('T')[0];
   const todaysData = data?.summaries?.find(({ date }) => date === backendDate);
   const fobidenPropucts =
-    userData?.notAllowedProducts || data.notAllowedProducts;
+    userData?.notAllowedProducts.length === 0
+      ? data.notAllowedProducts
+      : userData?.notAllowedProducts;
 
-  console.log(todaysData);
-  console.log(summaryDayInfo);
+  // console.log(data.notAllowedProducts);
+  // console.log(fobidenPropucts);
+
+  if (token === '') {
+    data.dailyRate = 0;
+    console.log(data.dailyRate);
+  }
 
   const overWeigth = useRef();
   const isLimit = useRef();
@@ -46,7 +55,7 @@ export function RightSideBar({ summaryDayInfo }) {
     if (!query) {
       return fobidenPropucts;
     } else {
-      return fobidenPropucts.filter(d =>
+      return fobidenPropucts?.filter(d =>
         d.toLowerCase().includes(query.trim())
       );
     }
@@ -81,7 +90,7 @@ export function RightSideBar({ summaryDayInfo }) {
   };
 
   handleOverWeigth();
-
+  // console.log(data);
   return (
     <SideBarRight>
       {isLoggedIn && (
@@ -160,9 +169,15 @@ export function RightSideBar({ summaryDayInfo }) {
               <ListItemText primary={t('summary.daily')} />
               <ListItemText
                 sx={{ textAlign: 'end' }}
-                primary={` ${dailyRate || data?.dailyRate || 0 + '00'} ${t(
-                  'diary.kcal'
-                )}`}
+                primary={` ${
+                  // userData.dailyRate === 0
+                  //   ? 0 + '00'
+                  //   : dailyRate || data?.dailyRate || userData?.dailyRate
+                  dailyRate ||
+                  userData?.dailyRate ||
+                  data?.dailyRate ||
+                  0 + '00'
+                } ${t('diary.kcal')}`}
               />
             </ListItem>
             <ListItem
@@ -210,10 +225,7 @@ export function RightSideBar({ summaryDayInfo }) {
           {data && (
             <WrapperFilter>
               {' '}
-              <Filter
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-              />{' '}
+              <Filter setSearchQuery={setSearchQuery} />{' '}
             </WrapperFilter>
           )}
           {data && (

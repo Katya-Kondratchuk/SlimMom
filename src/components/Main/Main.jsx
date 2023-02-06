@@ -21,7 +21,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dailyRateOperation } from 'redux/daily/dailyOperation.js';
 import useTranslateFormErrors from 'hooks/useTranslateFormErrors.js';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 
 function MyFormControlLabel(props) {
   const radioGroup = useRadioGroup();
@@ -109,13 +108,13 @@ const Home = ({ onSubmit }) => {
     },
     validateOnBlur: true,
   });
-  useEffect(() => {
-    const ifEmpty = Object.values(formik.values).includes('');
-    if (ifEmpty) {
-      return;
-    }
-    dispatch(dailyRateOperation({ id, data: formik.values }));
-  }, [dispatch, formik.values, id]);
+
+  let obj = {};
+
+  for (let value in formik.values) {
+    obj[value] = Number(formik.values[value]);
+  }
+
 
   useTranslateFormErrors(formik.errors, formik.touched, formik.setFieldTouched);
 
@@ -397,7 +396,12 @@ const Home = ({ onSubmit }) => {
             variant="contained"
             onClick={() =>
               isLoggedIn
-                ? dispatch(dailyRateOperation({ id, data: formik.values }))
+                ? dispatch(
+                    dailyRateOperation({
+                      id,
+                      data: obj,
+                    })
+                  )
                 : handleCloseModal()
             }
           >

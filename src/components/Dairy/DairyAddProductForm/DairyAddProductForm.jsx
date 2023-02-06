@@ -49,7 +49,7 @@ export default function DairyAddProductForm({
     });
   }, [query]);
 
-  const productListValue = productList.map(({ title }) => title.ru);
+  const productListValue = productList.map(({ title }) => title.ua);
 
   const hendleSubmit = e => {
     e.preventDefault();
@@ -67,7 +67,7 @@ export default function DairyAddProductForm({
       });
       return;
     }
-    const { _id } = productList.find(elem => elem.title.ru === selectedProduct);
+    const { _id } = productList.find(elem => elem.title.ua === selectedProduct);
 
     onSubmitting({ weight: weigth, id: _id });
     setQuery('');
